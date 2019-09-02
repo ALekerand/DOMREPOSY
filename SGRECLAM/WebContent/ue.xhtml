@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/template.xhtml">
+			
+			<ui:define name="body">
+				<h:form  id="form">
+				<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="Enregistrement des UE">
+	
+	<br/>	 	
+		
+	
+	<p:outputLabel for="inputlibue" value="UE"></p:outputLabel>
+	<p:inputText id="inputlibue" value="#{ueController.ue.libeleUe}" required="true" requiredMessage="Veuillez resseigner l'ue SVP"></p:inputText>	
+		
+			
+	<br/>
+	
+		<p:toolbar >
+			<f:facet name="left">
+				<p:commandButton value="Enregistrer" action="#{ueController.enregistrer}" update="form" binding="#{ueController.btnEnregistrer1}" ></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{ueController.annuler}" update="form" binding="#{ueController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{ueController.modifier}" update="form" binding="#{ueController.btnModifier1}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+	</p:panel>
+	<br></br>
+	
+	
+ <p:dataTable  var="opf" value="#{ueController.listUe}"  selectionMode="single" selection="#{ueController.selectedUe}" rowKey="#{opf.codeUe}" scrollable="true" scrollHeight="250">
+ 
+ <f:facet name="header">
+            UE
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{ueController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Code du Ue">
+        <h:outputText value="#{opf.codeUe}"/>
+        </p:column>
+        
+        <p:column headerText="Libéllé du Ue ">
+        <h:outputText value="#{opf.libeleUe}"/>
+   		</p:column>
+	
+	
+	</p:dataTable>
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>

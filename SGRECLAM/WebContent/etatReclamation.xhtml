@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!--
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/template.xhtml">
+			
+			<ui:define name="body">
+				<h:form  id="form">
+					<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="Enregistrement Etat Reclamation ">
+	
+	<br/>	 	
+		
+	<p:panelGrid id="etatReclamation" columns="2">
+	<p:outputLabel for="inputetatReclamation" value="Code Reclamation"></p:outputLabel>
+	<p:inputText id="inputetatReclamation" value="#{etatReclamationController.etatReclamation.codeEtatReclam}" required="true" requiredMessage="Veuillez resseigner le code de la réclamation SVP"></p:inputText>
+	<p:outputLabel value="Libéllé Réclamation"></p:outputLabel>
+	<p:inputText  value="#{etatReclamationController.etatReclamation.libelleEtatReclam}" ></p:inputText>
+	</p:panelGrid>
+	</p:panel>	
+			
+	<br/>
+	
+		<p:toolbar >
+			<f:facet name="left">
+				<h:commandButton value="Enregister"  action="#{etatReclamationController.enregistrer}" update="form" ></h:commandButton>
+				<p:commandButton value="Annuler"  action="#{etatReclamationController.annuler}" update="form" binding="#{etatReclamationController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{etatReclamationController.modifier}" update="form" binding="#{etatReclamationController.btnModifier}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+	
+	<br></br>
+	
+	
+ <p:dataTable  var="opf" value="#{etatReclamationController.listEtatReclamation}"  selectionMode="single" selection="#{etatReclamationController.selectedEtatReclamation}" rowKey="#{opf.codeEtatReclam}" scrollable="true" scrollHeight="250">
+ 
+ <f:facet name="header">
+            ETAT RECLAMATION
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{etatReclamationController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Code de l'Etat Reclamation">
+        <h:outputText value="#{opf.codeEtatReclam}"/>
+        </p:column>
+        
+        <p:column headerText="Libéllé d'Etat Reclamation ">
+        <h:outputText value="#{opf.libelleEtatReclam}"/>
+   		</p:column>
+	
+	
+	</p:dataTable>
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>

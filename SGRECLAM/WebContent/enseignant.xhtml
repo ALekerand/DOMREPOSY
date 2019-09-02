@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/template.xhtml">
+			<ui:define name="body">
+				<h:form id="form">
+			<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="Enregistrement des Enseignant">
+	
+	<br/>	 	
+	<p:panelGrid id="enseignant_grid" columns="2">	
+	
+	<p:outputLabel for="inputmatriculeenseignant" value="Matricule"></p:outputLabel>
+	<p:inputText id="inputmatriculeenseignant" value="#{enseignantController.enseignant.matriculeEnsei}" required="true" requiredMessage="Veuillez resseigner le matricule SVP"></p:inputText>	
+	<p:outputLabel value="Nom"></p:outputLabel>
+	<p:inputText value="#{enseignantController.enseignant.nomEnsei}"></p:inputText>
+	<p:outputLabel value="Prenoms"></p:outputLabel >
+	<p:inputText value="#{enseignantController.enseignant.prenomsEnsei}"></p:inputText>
+	<p:outputLabel value="Sexe"></p:outputLabel>
+	<p:inputText value="#{enseignantController.enseignant.sexeEnsei}"></p:inputText>
+	</p:panelGrid>		
+	<br/>
+	
+		<p:toolbar >
+			<f:facet name="left">
+			<p:commandButton value="Enregistrer" action="#{enseignantController.enregistrer}" update="form" ></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{enseignantController.annuler}" update="form" binding="#{enseignantController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{enseignantController.modifier}" update="form" binding="#{enseignantController.btnEnregistrer1}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+	</p:panel>
+	<br></br>
+	
+	
+ <p:dataTable  var="opf" value="#{enseignantController.listEnseignant}"  selectionMode="single" selection="#{enseignantController.selectedEnseignant}" rowKey="#{opf.matriculeEnsei}" scrollable="true" scrollHeight="250">
+ 
+ <f:facet name="header">
+            ENSEIGNANTS
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{enseignantController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Matricule Enseignant">
+        <h:outputText value="#{opf.matriculeEnsei}"/>
+        </p:column>
+        
+        <p:column headerText="Nom Enseignant ">
+        <h:outputText value="#{opf.nomEnsei}"/>
+   		</p:column>
+   		
+   		 <p:column headerText="Prénoms Enseignant ">
+        <h:outputText value="#{opf.prenomsEnsei}"/>
+   		</p:column>
+   		
+   		 <p:column headerText="Sexe Enseignant ">
+        <h:outputText value="#{opf.sexeEnsei}"/>
+   		</p:column>
+	
+	
+	</p:dataTable>
+			
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>

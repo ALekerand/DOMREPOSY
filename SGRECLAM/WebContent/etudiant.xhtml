@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/template.xhtml">
+			<ui:define name="body">
+				<h:form id="form">
+			
+						<p:messages  showDetail="true" closable="true"></p:messages>					
+	<p:panel header="Enregistrement des Etudiant">
+	
+	<br/>	 	
+	<h:panelGrid id="enseignant_grid" columns="4">	
+	<p:outputLabel for="inputmatricule" value="Matricule"></p:outputLabel>
+	<p:inputText id="inputmatricule" value="#{etudiantController.etudiant.matricule}" required="true" requiredMessage="Veuillez resseigner le matricule SVP"></p:inputText>	
+	<p:outputLabel value="Nom"></p:outputLabel>
+	<p:inputText value="#{etudiantController.etudiant.nom}"></p:inputText>
+	<p:outputLabel value="Prenoms"></p:outputLabel >
+	<p:inputText value="#{etudiantController.etudiant.prenoms}"></p:inputText>
+	<p:outputLabel value="Date de Naissance"></p:outputLabel>
+	<p:calendar value="#{etudiantController.etudiant.dateNaissance}" pattern="dd/MM/yyyy"></p:calendar>
+	</h:panelGrid>		
+	<br/>
+	
+		<p:toolbar >
+			<f:facet name="left">
+			<h:commandButton value="Enregistrer" action="#{etudiantController.enregistrer}" update="form" ></h:commandButton>
+				<p:commandButton value="Annuler"  action="#{etudiantController.annuler}" update="form" binding="#{etudiantController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{etudiantController.modifier}" update="form" binding="#{etudiantController.btnEnregistrer}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+		
+	<br />	
+		<p:dataTable  var="opf" value="#{etudiantController.listEtudiant}"  selectionMode="single" selection="#{etudiantController.selectedEtudiant}" rowKey="#{opf.matricule}" scrollable="true" scrollHeight="250">
+ 
+ <f:facet name="header">
+            ETUDIANT
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{etudiantController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Matricule Etudiant">
+        <h:outputText value="#{opf.matricule}"/>
+        </p:column>
+        
+        <p:column headerText="Nom Etudiant ">
+        <h:outputText value="#{opf.nom}"/>
+   		</p:column>
+   		
+   		 <p:column headerText="Prénoms Etudiant ">
+        <h:outputText value="#{opf.prenoms}"/>
+   		</p:column>
+   		
+   		<p:column headerText="Date de naissance ">
+        <h:outputText value="#{opf.dateNaissance}">
+         <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+        </h:outputText>
+   		</p:column>
+  
+	</p:dataTable>
+	</p:panel>
+	<br></br>
+	
+	
+ 
+				
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>
