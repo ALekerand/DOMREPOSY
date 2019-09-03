@@ -62,9 +62,9 @@ public class EtudiantController {
     }
  
  public void annuler() {
-	 etudiant.setMatricule(null);
-	 etudiant.setNom(null);
-	 etudiant.setPrenoms(null);
+	 etudiant.setMatriculeEtude("");
+	 etudiant.setNomEtud(null);
+	 etudiant.setPrenomsEtude(null);
 	 etudiant.setDateNaissance(null);
 	btnModifier.setDisabled(true);
 	btnEnregistrer.setDisabled(false);

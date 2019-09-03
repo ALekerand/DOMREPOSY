@@ -18,16 +18,45 @@
 	<p:panel header="Enregistrement des ECUE">
 	
 	<br/>	 	
+	<table>
+		<tr>
 		
-	<p:panelGrid columns="2">
-	<p:outputLabel for="inputlibecue" value="ECUE"></p:outputLabel>
+			<td>
+				<p:panelGrid columns="2">
+	<p:outputLabel for="inputcodeecue" value="Code ECUE" ></p:outputLabel>
+	<p:inputText id="inputcodeecue" value="#{ecueController.ecue.codeEcue}" required="true" requiredMessage="Veuillez resseigner l'ecue SVP"></p:inputText>
+	
+	<p:outputLabel for="inputlibecue" value="Libellé ECUE"></p:outputLabel>
 	<p:inputText id="inputlibecue" value="#{ecueController.ecue.libelleEcue}" required="true" requiredMessage="Veuillez resseigner l'ecue SVP"></p:inputText>	
-		</p:panelGrid>	
+	</p:panelGrid>
+			</td>
+			
+			<td>
+			<p:dataTable var="dom" value="#{ecueController.listUe}" selection="#{ecueController.selectedUe}" rowKey="#{dom.codeUe}"   >
+				<f:facet name="header">Liste UE </f:facet>
+				
+				<p:column selectionMode="single">
+				</p:column>
+				
+				<p:column headerText="Code UE">
+					<h:outputLabel value="#{dom.codeUe}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Libellé UE">
+					<h:outputLabel value="#{dom.libeleUe}"></h:outputLabel>
+				</p:column>
+				
+			</p:dataTable>
+			</td>
+		</tr>
+	</table>
+	
+		
 	<br/>
 	
 		<p:toolbar >
 			<f:facet name="left">
-				<h:commandButton value="Enregistrer" action="#{ecueController.enregistrer}" update="form" ></h:commandButton>
+				<p:commandButton value="Enregistrer" action="#{ecueController.enregistrer}" update="form" binding="#{ecueController.btnEnregistrer}"></p:commandButton>
 				<p:commandButton value="Annuler"  action="#{ecueController.annuler}" update="form" binding="#{ecueController.btnAnnuler}"></p:commandButton>
 				<p:commandButton value="Modifier"  action="#{ecueController.modifier}" update="form" binding="#{ecueController.btnModifier}"></p:commandButton>
 			</f:facet>
@@ -36,7 +65,7 @@
 	<br></br>
 	
 	
- <p:dataTable  var="opf" value="#{ecueController.listEcue}"  selectionMode="single" selection="#{ecueController.selectedEcue}" rowKey="#{opf.codeEcue}" scrollable="true" scrollHeight="250">
+ <p:dataTable  var="opf" value="#{ecueController.listEcue}"  selectionMode="single" selection="#{ecueController.selectedEcue}" rowKey="#{opf.codeEcue}">
  
  <f:facet name="header">
             ECUE

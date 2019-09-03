@@ -18,11 +18,15 @@
 	<p:panel header="Enregistrement des UE">
 	
 	<br/>	 	
-		
+	<p:panelGrid columns="2">	
 	
-	<p:outputLabel for="inputlibue" value="UE"></p:outputLabel>
-	<p:inputText id="inputlibue" value="#{ueController.ue.libeleUe}" required="true" requiredMessage="Veuillez resseigner l'ue SVP"></p:inputText>	
+	<p:outputLabel for="inputcode" value="Code UE"></p:outputLabel>
+	<p:inputText id="inputcode" value="#{ueController.ue.codeUe}" required="true" requiredMessage="Veuillez resseigner le code de l'ue SVP"></p:inputText>
+	
+	<p:outputLabel for="inputlibue" value="Libellé UE"></p:outputLabel>
+	<p:inputText id="inputlibue" value="#{ueController.ue.libeleUe}" required="true" requiredMessage="Veuillez resseigner le libellé de l'ue SVP"></p:inputText>
 		
+	</p:panelGrid>
 			
 	<br/>
 	

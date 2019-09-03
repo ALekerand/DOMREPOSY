@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/template.xhtml">
+			<ui:define name="body">
+				<h:form  id="form">
+				
+	<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="Enregistrement des Evaluation">
+	
+	<br/>	 	
+		
+	<h:panelGrid columns="6">
+	<p:outputLabel for="inputlib" value="Evaluation"></p:outputLabel>
+	<p:inputText id="inputlib" value="#{evaluationController.evaluation.libeleEvaluation}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
+	
+	<p:outputLabel value="ECUE"></p:outputLabel> 
+	<p:selectOneMenu value="#{evaluationController.choisir}" converter="#{entityConverter}" >
+	<f:selectItem itemLabel="Selectionner" itemValue=" "></f:selectItem>
+	<f:selectItems value="#{evaluationController.listEcue}" var="dom" itemLabel="#{dom.libelleEcue}" itemValue="#{dom}"></f:selectItems>	
+	</p:selectOneMenu>
+	
+	<p:outputLabel value="Type evaluation"></p:outputLabel> 
+	<p:selectOneMenu value="#{evaluationController.choixTypeEvaluation}">
+	<f:selectItem itemLabel="Selectionner" itemValue=" "></f:selectItem>	
+	<f:selectItems value="#{evaluationController.listTypeEvaluation}" var="dom" itemLabel="#{dom.libelleTypeEvalu}" itemValue="#{dom}"></f:selectItems>	
+	</p:selectOneMenu>
+	
+	</h:panelGrid>	
+			
+	<br/>
+	
+		<p:toolbar >
+			<f:facet name="left">
+				<p:commandButton value="Enregistrer" action="#{evaluationController.enregistrer}" update="form" binding="#{evaluationController.btnEnregistrer}" ></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{evaluationController.annuler}" update="form" binding="#{evaluationController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{evaluationController.modifier}" update="form" binding="#{evaluationController.btnModifier}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+	</p:panel>
+	<br></br>
+	
+	
+ <p:dataTable  var="opf" value="#{evaluationController.listEvaluation}"  selectionMode="single" selection="#{evaluationController.selectedEvaluation}" rowKey="#{opf.codeEvaluation}">
+ 
+ <f:facet name="header">
+            LISTE DES EVALUATIONS
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{evaluationController.selectionnerLigne}"></p:ajax>
+   		<p:column headerText="Code">
+        <h:outputText value="#{opf.codeEvaluation}"/>
+   		</p:column>
+   		
+   		<p:column headerText="Libellé">
+        <h:outputText value="#{opf.libeleEvaluation}"/>
+        </p:column>
+        
+        <p:column headerText="Type">
+        <h:outputText value="#{opf.typeEvaluation.libelleTypeEvalu}"/>
+        </p:column>
+        
+        <p:column headerText="Ecue">
+        <h:outputText value="#{opf.ecue.libelleEcue}"/>
+        </p:column>
+	
+	
+	</p:dataTable>	
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>

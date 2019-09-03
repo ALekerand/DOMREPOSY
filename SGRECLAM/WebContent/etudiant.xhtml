@@ -19,11 +19,11 @@
 	<br/>	 	
 	<h:panelGrid id="enseignant_grid" columns="4">	
 	<p:outputLabel for="inputmatricule" value="Matricule"></p:outputLabel>
-	<p:inputText id="inputmatricule" value="#{etudiantController.etudiant.matricule}" required="true" requiredMessage="Veuillez resseigner le matricule SVP"></p:inputText>	
+	<p:inputText id="inputmatricule" value="#{etudiantController.etudiant.matriculeEtude}" required="true" requiredMessage="Veuillez resseigner le matricule SVP"></p:inputText>	
 	<p:outputLabel value="Nom"></p:outputLabel>
-	<p:inputText value="#{etudiantController.etudiant.nom}"></p:inputText>
+	<p:inputText value="#{etudiantController.etudiant.nomEtud}"></p:inputText>
 	<p:outputLabel value="Prenoms"></p:outputLabel >
-	<p:inputText value="#{etudiantController.etudiant.prenoms}"></p:inputText>
+	<p:inputText value="#{etudiantController.etudiant.prenomsEtude}"></p:inputText>
 	<p:outputLabel value="Date de Naissance"></p:outputLabel>
 	<p:calendar value="#{etudiantController.etudiant.dateNaissance}" pattern="dd/MM/yyyy"></p:calendar>
 	</h:panelGrid>		
@@ -38,7 +38,7 @@
 		</p:toolbar>
 		
 	<br />	
-		<p:dataTable  var="opf" value="#{etudiantController.listEtudiant}"  selectionMode="single" selection="#{etudiantController.selectedEtudiant}" rowKey="#{opf.matricule}" scrollable="true" scrollHeight="250">
+		<p:dataTable  var="opf" value="#{etudiantController.listEtudiant}"  selectionMode="single" selection="#{etudiantController.selectedEtudiant}" rowKey="#{opf.matriculeEtude}" scrollable="true" scrollHeight="250">
  
  <f:facet name="header">
             ETUDIANT
@@ -46,15 +46,15 @@
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{etudiantController.selectionnerLigne}"></p:ajax>
    		
    		<p:column headerText="Matricule Etudiant">
-        <h:outputText value="#{opf.matricule}"/>
+        <h:outputText value="#{opf.matriculeEtude}"/>
         </p:column>
         
         <p:column headerText="Nom Etudiant ">
-        <h:outputText value="#{opf.nom}"/>
+        <h:outputText value="#{opf.nomEtud}"/>
    		</p:column>
    		
    		 <p:column headerText="Prénoms Etudiant ">
-        <h:outputText value="#{opf.prenoms}"/>
+        <h:outputText value="#{opf.prenomsEtude}"/>
    		</p:column>
    		
    		<p:column headerText="Date de naissance ">

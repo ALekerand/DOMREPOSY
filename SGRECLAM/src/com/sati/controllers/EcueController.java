@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sati.model.Ecue;
+import com.sati.model.Ue;
 import com.sati.service.Iservice;
 
 /**
@@ -29,9 +30,12 @@ public class EcueController {
 
 	@Autowired
 		Iservice service;
+	
 		private Ecue ecue = new Ecue();
 		private List<Ecue>listEcue = new ArrayList<Ecue>();
 		private Ecue selectedEcue = new Ecue();
+		private List<Ue> listUe = new ArrayList<Ue>();
+		private Ue selectedUe = new Ue();
 		
 		
 		
@@ -46,6 +50,10 @@ public class EcueController {
 		}
 		
 		public void enregistrer() {
+			//Completer l'objet avec ue qui migre
+			ecue.setUe(selectedUe);
+			
+			//envoie en base de donnée
 			service.addObject(ecue);
 			info("Eneregistrement éffectué avec succès!");
 			annuler();
@@ -128,6 +136,23 @@ public class EcueController {
 
 		public void setBtnModifier(CommandButton btnModifier) {
 			this.btnModifier = btnModifier;
+		}
+
+		public List<Ue> getListUe() {
+			listUe = service.getObjects("Ue");
+			return listUe;
+		}
+
+		public void setListUe(List<Ue> listUe) {
+			this.listUe = listUe;
+		}
+
+		public Ue getSelectedUe() {
+			return selectedUe;
+		}
+
+		public void setSelectedUe(Ue selectedUe) {
+			this.selectedUe = selectedUe;
 		}
 
 }
