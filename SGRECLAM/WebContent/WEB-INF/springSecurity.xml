@@ -9,7 +9,7 @@
         
     <http auto-config="true">
         <intercept-url pattern="/pagesAdmin/**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/templates/templateAdministrateur.xhtml" access="ROLE_ADMIN" />
+        <intercept-url pattern="/templates/template.xhtml" access="ROLE_ADMIN" />
         
         <intercept-url pattern="/enseignant/**" access="ROLE_ENSEIGNANT"/>
         <intercept-url pattern="/templates/templateEnseignant.xhtml" access="ROLE_ENSEIGNANT"/>
