@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/template.xhtml">
+			
+			<ui:define name="body">
+				<h:form  id="form">
+				
+				<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="Enregistrement des Motife Reclamation">
+	
+	<br/>	 	
+		
+	<h:panelGrid id="motifereclamation_grid" columns="2">
+	<p:outputLabel for="inputlibelleMotifReclam" value="MotifeReclamation"></p:outputLabel>
+	<p:inputText id="inputlibelleMotifReclam" value="#{motifeReclamationController.motifeReclamation.libelleMotifReclam}" required="true" requiredMessage="Veuillez resseigner le motif de votre Reclamation SVP"></p:inputText>	
+	</h:panelGrid>
+			
+	<br/>
+	
+		<p:toolbar >
+			<f:facet name="left">
+				<p:commandButton value="Enregistrer" action="#{motifeReclamationController.enregistrer}" update="form" binding="#{motifeReclamationController.btnEnregistrer}" ></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{motifeReclamationController.annuler}" update="form" binding="#{motifeReclamationController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{motifeReclamationController.modifier}" update="form" binding="#{motifeReclamationController.btnModifier}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+	</p:panel>
+	<br></br>
+	
+	
+ <p:dataTable  var="opf" value="#{motifeReclamationController.listMotifeReclamation}"  selectionMode="single" selection="#{motifeReclamationController.selectedMotifeReclamation}" rowKey="#{opf.codeMotifReclam}" scrollable="true" scrollHeight="250">
+ 
+ <f:facet name="header">
+            MOTIF RECLAMATION
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{motifeReclamationController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Code du Motif Reclamation">
+        <h:outputText value="#{opf.codeMotifReclam}"/>
+        </p:column>
+        
+        <p:column headerText="Libéllé du Motif Reclamation ">
+        <h:outputText value="#{opf.libelleMotifReclam}"/>
+   		</p:column>
+	
+	
+	</p:dataTable>
+				
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>
