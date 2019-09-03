@@ -14,7 +14,7 @@
         <intercept-url pattern="/enseignant/**" access="ROLE_ENSEIGNANT"/>
         <intercept-url pattern="/templates/templateEnseignant.xhtml" access="ROLE_ENSEIGNANT"/>
         
-        <intercept-url pattern="/personnel/**" access="ROLE_UTILISATEUR"/>
+        <intercept-url pattern="/personnel/**" access="ROLE_ETUDIANT"/>
         <intercept-url pattern="/templates/templateUtilisateur.xhtml" access="ROLE_UTILISATEUR"/>
         <form-login 
         			login-page="/login.jsp" 
