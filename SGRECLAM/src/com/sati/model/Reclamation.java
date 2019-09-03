@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 3 sept. 2019 14:31:19 by Hibernate Tools 5.2.12.Final
+// Generated 3 sept. 2019 16:00:21 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -97,7 +97,7 @@ public class Reclamation implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MATRICULE", nullable = false)
+	@JoinColumn(name = "MATRICULE_ETUDE", nullable = false)
 	public Etudiant getEtudiant() {
 		return this.etudiant;
 	}

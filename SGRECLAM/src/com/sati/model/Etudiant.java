@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 3 sept. 2019 14:31:19 by Hibernate Tools 5.2.12.Final
+// Generated 3 sept. 2019 16:00:21 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -22,10 +22,10 @@ import javax.persistence.TemporalType;
 @Table(name = "etudiant", catalog = "sgreclam_bd")
 public class Etudiant implements java.io.Serializable {
 
-	private String matricule;
+	private String matriculeEtude;
 	private Sexe sexe;
-	private String nom;
-	private String prenoms;
+	private String nomEtud;
+	private String prenomsEtude;
 	private Date dateNaissance;
 	private Set<NiveauEtudiant> niveauEtudiants = new HashSet<NiveauEtudiant>(0);
 	private Set<Reclamation> reclamations = new HashSet<Reclamation>(0);
@@ -33,17 +33,17 @@ public class Etudiant implements java.io.Serializable {
 	public Etudiant() {
 	}
 
-	public Etudiant(String matricule, Sexe sexe) {
-		this.matricule = matricule;
+	public Etudiant(String matriculeEtude, Sexe sexe) {
+		this.matriculeEtude = matriculeEtude;
 		this.sexe = sexe;
 	}
 
-	public Etudiant(String matricule, Sexe sexe, String nom, String prenoms, Date dateNaissance,
+	public Etudiant(String matriculeEtude, Sexe sexe, String nomEtud, String prenomsEtude, Date dateNaissance,
 			Set<NiveauEtudiant> niveauEtudiants, Set<Reclamation> reclamations) {
-		this.matricule = matricule;
+		this.matriculeEtude = matriculeEtude;
 		this.sexe = sexe;
-		this.nom = nom;
-		this.prenoms = prenoms;
+		this.nomEtud = nomEtud;
+		this.prenomsEtude = prenomsEtude;
 		this.dateNaissance = dateNaissance;
 		this.niveauEtudiants = niveauEtudiants;
 		this.reclamations = reclamations;
@@ -51,13 +51,13 @@ public class Etudiant implements java.io.Serializable {
 
 	@Id
 
-	@Column(name = "MATRICULE", unique = true, nullable = false, length = 15)
-	public String getMatricule() {
-		return this.matricule;
+	@Column(name = "MATRICULE_ETUDE", unique = true, nullable = false, length = 15)
+	public String getMatriculeEtude() {
+		return this.matriculeEtude;
 	}
 
-	public void setMatricule(String matricule) {
-		this.matricule = matricule;
+	public void setMatriculeEtude(String matriculeEtude) {
+		this.matriculeEtude = matriculeEtude;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -70,22 +70,22 @@ public class Etudiant implements java.io.Serializable {
 		this.sexe = sexe;
 	}
 
-	@Column(name = "NOM", length = 25)
-	public String getNom() {
-		return this.nom;
+	@Column(name = "NOM_ETUD", length = 25)
+	public String getNomEtud() {
+		return this.nomEtud;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setNomEtud(String nomEtud) {
+		this.nomEtud = nomEtud;
 	}
 
-	@Column(name = "PRENOMS", length = 50)
-	public String getPrenoms() {
-		return this.prenoms;
+	@Column(name = "PRENOMS_ETUDE", length = 50)
+	public String getPrenomsEtude() {
+		return this.prenomsEtude;
 	}
 
-	public void setPrenoms(String prenoms) {
-		this.prenoms = prenoms;
+	public void setPrenomsEtude(String prenomsEtude) {
+		this.prenomsEtude = prenomsEtude;
 	}
 
 	@Temporal(TemporalType.DATE)
