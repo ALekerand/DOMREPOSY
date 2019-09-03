@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 20 août 2019 15:27:17 by Hibernate Tools 5.2.8.Final
+// Generated 3 sept. 2019 14:31:19 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -69,6 +69,7 @@ public class Niveau implements java.io.Serializable {
 	public void setNiveauEcues(Set<NiveauEcue> niveauEcues) {
 		this.niveauEcues = niveauEcues;
 	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "niveau")
 	public Set<NiveauEtudiant> getNiveauEtudiants() {
 		return this.niveauEtudiants;

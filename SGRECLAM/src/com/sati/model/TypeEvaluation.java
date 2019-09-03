@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 20 août 2019 15:27:17 by Hibernate Tools 5.2.8.Final
+// Generated 3 sept. 2019 14:31:19 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;

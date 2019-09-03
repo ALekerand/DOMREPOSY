@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 20 août 2019 15:27:17 by Hibernate Tools 5.2.8.Final
+// Generated 3 sept. 2019 14:31:19 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,6 +23,7 @@ import javax.persistence.TemporalType;
 public class Etudiant implements java.io.Serializable {
 
 	private String matricule;
+	private Sexe sexe;
 	private String nom;
 	private String prenoms;
 	private Date dateNaissance;
@@ -30,13 +33,15 @@ public class Etudiant implements java.io.Serializable {
 	public Etudiant() {
 	}
 
-	public Etudiant(String matricule) {
+	public Etudiant(String matricule, Sexe sexe) {
 		this.matricule = matricule;
+		this.sexe = sexe;
 	}
 
-	public Etudiant(String matricule, String nom, String prenoms, Date dateNaissance,
+	public Etudiant(String matricule, Sexe sexe, String nom, String prenoms, Date dateNaissance,
 			Set<NiveauEtudiant> niveauEtudiants, Set<Reclamation> reclamations) {
 		this.matricule = matricule;
+		this.sexe = sexe;
 		this.nom = nom;
 		this.prenoms = prenoms;
 		this.dateNaissance = dateNaissance;
@@ -53,6 +58,16 @@ public class Etudiant implements java.io.Serializable {
 
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CODE_SEXE", nullable = false)
+	public Sexe getSexe() {
+		return this.sexe;
+	}
+
+	public void setSexe(Sexe sexe) {
+		this.sexe = sexe;
 	}
 
 	@Column(name = "NOM", length = 25)

@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 20 août 2019 15:27:17 by Hibernate Tools 5.2.8.Final
+// Generated 3 sept. 2019 14:31:19 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,6 +20,7 @@ import javax.persistence.Table;
 public class Enseignant implements java.io.Serializable {
 
 	private String matriculeEnsei;
+	private Sexe sexe;
 	private String nomEnsei;
 	private String prenomsEnsei;
 	private String sexeEnsei;
@@ -26,13 +29,15 @@ public class Enseignant implements java.io.Serializable {
 	public Enseignant() {
 	}
 
-	public Enseignant(String matriculeEnsei) {
+	public Enseignant(String matriculeEnsei, Sexe sexe) {
 		this.matriculeEnsei = matriculeEnsei;
+		this.sexe = sexe;
 	}
 
-	public Enseignant(String matriculeEnsei, String nomEnsei, String prenomsEnsei, String sexeEnsei,
+	public Enseignant(String matriculeEnsei, Sexe sexe, String nomEnsei, String prenomsEnsei, String sexeEnsei,
 			Set<Enseigner> enseigners) {
 		this.matriculeEnsei = matriculeEnsei;
+		this.sexe = sexe;
 		this.nomEnsei = nomEnsei;
 		this.prenomsEnsei = prenomsEnsei;
 		this.sexeEnsei = sexeEnsei;
@@ -48,6 +53,16 @@ public class Enseignant implements java.io.Serializable {
 
 	public void setMatriculeEnsei(String matriculeEnsei) {
 		this.matriculeEnsei = matriculeEnsei;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CODE_SEXE", nullable = false)
+	public Sexe getSexe() {
+		return this.sexe;
+	}
+
+	public void setSexe(Sexe sexe) {
+		this.sexe = sexe;
 	}
 
 	@Column(name = "NOM_ENSEI", length = 10)
