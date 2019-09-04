@@ -9,7 +9,7 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/template.xhtml">
+	<ui:composition template="/templates/templateAdmin.xhtml">
 			<ui:define name="body">
 				<h:form id="form">
 			<p:messages  showDetail="true" closable="true"></p:messages>			
@@ -17,7 +17,7 @@
 	<p:panel header="Enregistrement des Enseignant">
 	
 	<br/>	 	
-	<p:panelGrid id="enseignant_grid" columns="2">	
+	<h:panelGrid columns="4" cellpadding="10">	
 	
 	<p:outputLabel for="inputmatriculeenseignant" value="Matricule"></p:outputLabel>
 	<p:inputText id="inputmatriculeenseignant" value="#{enseignantController.enseignant.matriculeEnsei}" required="true" requiredMessage="Veuillez resseigner le matricule SVP"></p:inputText>	
@@ -27,7 +27,7 @@
 	<p:inputText value="#{enseignantController.enseignant.prenomsEnsei}"></p:inputText>
 	<p:outputLabel value="Sexe"></p:outputLabel>
 	<p:inputText value="#{enseignantController.enseignant.sexeEnsei}"></p:inputText>
-	</p:panelGrid>		
+	</h:panelGrid>		
 	<br/>
 	
 		<p:toolbar >
@@ -37,7 +37,6 @@
 				<p:commandButton value="Modifier"  action="#{enseignantController.modifier}" update="form" binding="#{enseignantController.btnEnregistrer1}"></p:commandButton>
 			</f:facet>
 		</p:toolbar>
-	</p:panel>
 	<br></br>
 	
 	
@@ -66,6 +65,8 @@
 	
 	
 	</p:dataTable>
+	
+	</p:panel>
 			
 				</h:form>
 			</ui:define>

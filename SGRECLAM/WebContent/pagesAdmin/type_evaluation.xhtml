@@ -9,21 +9,19 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/template.xhtml">
+	<ui:composition template="/templates/templateAdmin.xhtml">
 			<ui:define name="body">
 				<h:form  id="form">
 				<p:messages  showDetail="true" closable="true"></p:messages>			
 				
 	<p:panel header="Enregistrement des Type Evaluation">
 	
-	<br/>	 	
-		
+	<h:panelGrid columns="4" cellpadding="10"> 
 	
 	<p:outputLabel for="inputlibelleTypeEvalu" value="Type Evaluation"></p:outputLabel>
 	<p:inputText id="inputlibelleTypeEvalu" value="#{typeEvaluationController.typeEvaluation.libelleTypeEvalu}" required="true" requiredMessage="Veuillez resseigner l'Type Evaluation SVP"></p:inputText>	
 		
-			
-	<br/>
+			</h:panelGrid>
 	
 		<p:toolbar >
 			<f:facet name="left">
@@ -32,14 +30,13 @@
 				<p:commandButton value="Modifier"  action="#{typeEvaluationController.modifier}" update="form" binding="#{typeEvaluationController.btnModifie}"></p:commandButton>
 			</f:facet>
 		</p:toolbar>
-	</p:panel>
 	<br></br>
 	
 	
  <p:dataTable  var="opf" value="#{typeEvaluationController.listTypeEvaluation}"  selectionMode="single" selection="#{typeEvaluationController.selectedTypeEvaluation}" rowKey="#{opf.codeTypeEvalu}" scrollable="true" scrollHeight="250">
  
  <f:facet name="header">
-            TYPE EVALUATION
+            Liste des types d'évaluation
         </f:facet>
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{typeEvaluationController.selectionnerLigne}"></p:ajax>
    		
@@ -51,8 +48,10 @@
         <h:outputText value="#{opf.libelleTypeEvalu}"/>
    		</p:column>
 	
-	
 	</p:dataTable>
+	
+	</p:panel>
+	
 				</h:form>
 			</ui:define>
 	</ui:composition>

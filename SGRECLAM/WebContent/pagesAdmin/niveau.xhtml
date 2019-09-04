@@ -9,7 +9,7 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/template.xhtml">
+	<ui:composition template="/templates/templateAdmin.xhtml">
 			<ui:define name="body">
 				<h:form  id="form">
 				
@@ -19,10 +19,10 @@
 	
 	<br/>	 	
 		
-	
+	<h:panelGrid columns="4" cellpadding="10">
 	<p:outputLabel for="inputlibniveau" value="Niveau"></p:outputLabel>
 	<p:inputText id="inputlibniveau" value="#{niveauController.niveau.libeleNiveau}" required="true" requiredMessage="Veuillez resseigner le niveau SVP"></p:inputText>	
-		
+	</h:panelGrid>
 			
 	<br/>
 	
@@ -33,7 +33,7 @@
 				<p:commandButton value="Modifier"  action="#{niveauController.modifier}" update="form" binding="#{niveauController.btnModifier}"></p:commandButton>
 			</f:facet>
 		</p:toolbar>
-	</p:panel>
+	
 	<br></br>
 	
 	
@@ -53,6 +53,8 @@
 	
 	
 	</p:dataTable>	
+	
+	</p:panel>
 				</h:form>
 			</ui:define>
 	</ui:composition>

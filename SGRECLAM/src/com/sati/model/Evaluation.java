@@ -47,8 +47,7 @@ public class Evaluation implements java.io.Serializable {
 	}
 
 	@Id
-	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
+
 	@Column(name = "CODE_EVALUATION", unique = true, nullable = false, length = 5)
 	public String getCodeEvaluation() {
 		return this.codeEvaluation;
@@ -58,7 +57,7 @@ public class Evaluation implements java.io.Serializable {
 		this.codeEvaluation = codeEvaluation;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_ECUE", nullable = false)
 	public Ecue getEcue() {
 		return this.ecue;
@@ -68,7 +67,7 @@ public class Evaluation implements java.io.Serializable {
 		this.ecue = ecue;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_TYPE_EVALU", nullable = false)
 	public TypeEvaluation getTypeEvaluation() {
 		return this.typeEvaluation;

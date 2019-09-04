@@ -9,13 +9,13 @@
         
     <http auto-config="true">
         <intercept-url pattern="/pagesAdmin/**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/templates/template.xhtml" access="ROLE_ADMIN" />
+        <intercept-url pattern="/templates/templateAdmin.xhtml" access="ROLE_ADMIN" />
         
         <intercept-url pattern="/enseignant/**" access="ROLE_ENSEIGNANT"/>
         <intercept-url pattern="/templates/templateEnseignant.xhtml" access="ROLE_ENSEIGNANT"/>
         
         <intercept-url pattern="/personnel/**" access="ROLE_ETUDIANT"/>
-        <intercept-url pattern="/templates/templateUtilisateur.xhtml" access="ROLE_UTILISATEUR"/>
+        <intercept-url pattern="/templates/templateEtudiant.xhtml" access="ROLE_UTILISATEUR"/>
         <form-login 
         			login-page="/login.jsp" 
         			default-target-url="/index.xhtml"

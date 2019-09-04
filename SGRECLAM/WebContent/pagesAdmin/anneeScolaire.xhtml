@@ -9,7 +9,7 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/template.xhtml">
+	<ui:composition template="/templates/templateAdmin.xhtml">
 			
 			<ui:define name="body">
 				<h:form  id="form">
@@ -18,28 +18,31 @@
 	
 	<br/>	 	
 		
-	<p:panelGrid columns="2">
-	<p:outputLabel for="inputlibanneeScolaire" value="Annee Scolaire"></p:outputLabel>
-	<p:inputText id="inputlibanneeScolaire" value="#{anneeScolaireController.anneeScolaire.libelleAnneeScol}" required="true" requiredMessage="Veuillez resseigner l'anneeScolaire SVP"></p:inputText>	
-		</p:panelGrid>
+	<h:panelGrid columns="4" cellpadding="10">
+	<p:outputLabel for="inputdebut" value="Annee début"></p:outputLabel>
+	<p:inputText id="inputdebut" value="#{anneeScolaireController.anneeScolaire.debutAnneeScol}" required="true" requiredMessage="Veuillez resseigner le champs"></p:inputText>	
+	
+	<p:outputLabel for="inputfin" value="Annee fin"></p:outputLabel>
+	<p:inputText id="inputfin" value="#{anneeScolaireController.anneeScolaire.finAnneeScol}" required="true" requiredMessage="Veuillez resseigner le champs"></p:inputText>	
+		</h:panelGrid>
 			
 	<br/>
 	
 		<p:toolbar >
 			<f:facet name="left">
-				<h:commandButton value="Enregistrer" action="#{anneeScolaireController.enregistrer}" update="form"  ></h:commandButton>
+				<p:commandButton value="Enregistrer" action="#{anneeScolaireController.enregistrer}" update="form" binding="#{anneeScolaireController.btnEnregistrer}" ></p:commandButton>
 				<p:commandButton value="Annuler"  action="#{anneeScolaireController.annuler}" update="form" binding="#{anneeScolaireController.btnAnnuler}"></p:commandButton>
 				<p:commandButton value="Modifier"  action="#{anneeScolaireController.modifier}" update="form" binding="#{anneeScolaireController.btnModifier}"></p:commandButton>
 			</f:facet>
 		</p:toolbar>
-	</p:panel>
+	
 	<br></br>
 	
 	
- <p:dataTable  var="opf" value="#{anneeScolaireController.listAnneeScolaire}"  selectionMode="single" selection="#{anneeScolaireController.selectedAnneeScolaire}" rowKey="#{opf.codeAnneeScol}" scrollable="true" scrollHeight="250">
+ <p:dataTable  var="opf" value="#{anneeScolaireController.listAnneeScolaire}"  selectionMode="single" selection="#{anneeScolaireController.selectedAnneeScolaire}" rowKey="#{opf.codeAnneeScol}">
  
  <f:facet name="header">
-            ANNEE SCOLAIRE
+           LISTE DES ANNEE SCOLAIRE
         </f:facet>
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{anneeScolaireController.selectionnerLigne}"></p:ajax>
    		
@@ -53,6 +56,8 @@
 	
 	
 	</p:dataTable>
+	
+	</p:panel>
 				</h:form>
 			</ui:define>
 	</ui:composition>

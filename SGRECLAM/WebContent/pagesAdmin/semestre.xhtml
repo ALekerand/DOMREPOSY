@@ -9,18 +9,20 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/template.xhtml">
+	<ui:composition template="/templates/templateAdmin.xhtml">
 			<ui:define name="body">
 				<h:form  id="form">
 				<p:messages  showDetail="true" closable="true"></p:messages>
 					<p:panel header="Enregistrement de semestre">
-					<br/> 
+					
+					<h:panelGrid columns="4" cellpadding="10"> 
 					<p:outputLabel for="inputSemestre" value="Code"></p:outputLabel>
 	                 <p:inputText id="inputSemestre" value="#{semestreController.semestre.codeSemestre}" required="true" requiredMessage="Veuillez resseigner le semestre SVP"></p:inputText>	
 					
 					 <p:outputLabel for="inputlibsemestre" value="semestre"></p:outputLabel>
 	                 <p:inputText id="inputlibsemestre" value="#{semestreController.semestre.libelleSemestre}" required="true" requiredMessage="Veuillez resseigner le semestre SVP"></p:inputText>	
-					<br></br>
+					
+					</h:panelGrid>
 	
 		<p:toolbar >
 			<f:facet name="left">
@@ -29,7 +31,7 @@
 				<p:commandButton value="Modifier"  action="#{semestreController.modifier}" update="form" binding="#{semestreController.btnModifier}"></p:commandButton>
 			</f:facet>
 		</p:toolbar>
-		</p:panel>
+		
 	<br></br>
 	
  <p:dataTable  var="hjk" value="#{semestreController.listSemestre}"  selectionMode="single" selection="#{semestreController.selectedSemestre}" rowKey="#{hjk.codeSemestre}" scrollable="true" scrollHeight="250">
@@ -47,9 +49,9 @@
         <h:outputText value="#{hjk.libelleSemestre}"/>
    		</p:column>
        
-	
-	
 	</p:dataTable>
+	
+	</p:panel>
 				</h:form>
 			</ui:define>
 	</ui:composition>

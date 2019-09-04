@@ -9,7 +9,7 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/template.xhtml">
+	<ui:composition template="/templates/templateAdmin.xhtml">
 			
 			<ui:define name="body">
 				<h:form  id="form">
@@ -18,7 +18,7 @@
 	<p:panel header="Enregistrement des UE">
 	
 	<br/>	 	
-	<p:panelGrid columns="2">	
+	<h:panelGrid columns="4" cellpadding="10">
 	
 	<p:outputLabel for="inputcode" value="Code UE"></p:outputLabel>
 	<p:inputText id="inputcode" value="#{ueController.ue.codeUe}" required="true" requiredMessage="Veuillez resseigner le code de l'ue SVP"></p:inputText>
@@ -26,7 +26,7 @@
 	<p:outputLabel for="inputlibue" value="Libellé UE"></p:outputLabel>
 	<p:inputText id="inputlibue" value="#{ueController.ue.libeleUe}" required="true" requiredMessage="Veuillez resseigner le libellé de l'ue SVP"></p:inputText>
 		
-	</p:panelGrid>
+	</h:panelGrid>
 			
 	<br/>
 	
@@ -37,27 +37,29 @@
 				<p:commandButton value="Modifier"  action="#{ueController.modifier}" update="form" binding="#{ueController.btnModifier1}"></p:commandButton>
 			</f:facet>
 		</p:toolbar>
-	</p:panel>
+	
 	<br></br>
 	
 	
  <p:dataTable  var="opf" value="#{ueController.listUe}"  selectionMode="single" selection="#{ueController.selectedUe}" rowKey="#{opf.codeUe}" scrollable="true" scrollHeight="250">
  
  <f:facet name="header">
-            UE
+            LISTE DES UNITES D'ENSEIGNEMENT (UE)
         </f:facet>
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{ueController.selectionnerLigne}"></p:ajax>
    		
-   		<p:column headerText="Code du Ue">
+   		<p:column headerText="Code UE">
         <h:outputText value="#{opf.codeUe}"/>
         </p:column>
         
-        <p:column headerText="Libéllé du Ue ">
+        <p:column headerText="Libéllé UE ">
         <h:outputText value="#{opf.libeleUe}"/>
    		</p:column>
 	
 	
 	</p:dataTable>
+	
+	</p:panel>
 				</h:form>
 			</ui:define>
 	</ui:composition>

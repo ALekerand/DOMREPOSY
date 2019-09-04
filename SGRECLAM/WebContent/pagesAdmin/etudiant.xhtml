@@ -9,7 +9,7 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/template.xhtml">
+	<ui:composition template="/templates/templateAdmin.xhtml">
 			<ui:define name="body">
 				<h:form id="form">
 			
@@ -17,7 +17,7 @@
 	<p:panel header="Enregistrement des Etudiant">
 	
 	<br/>	 	
-	<h:panelGrid id="enseignant_grid" columns="4">	
+	<h:panelGrid columns="4" cellpadding="10">	
 	<p:outputLabel for="inputmatricule" value="Matricule"></p:outputLabel>
 	<p:inputText id="inputmatricule" value="#{etudiantController.etudiant.matriculeEtude}" required="true" requiredMessage="Veuillez resseigner le matricule SVP"></p:inputText>	
 	<p:outputLabel value="Nom"></p:outputLabel>

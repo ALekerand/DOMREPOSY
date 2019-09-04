@@ -45,6 +45,10 @@ public class AnneeScolaireController {
 			}
 			
 			public void enregistrer() {
+				//Former le libellé de l'année scolaire
+				anneeScolaire.setLibelleAnneeScol(anneeScolaire.getDebutAnneeScol()+"-"+anneeScolaire.getFinAnneeScol());
+				
+				
 				service.addObject(anneeScolaire);
 				info("Eneregistrement éffectué avec succès!");
 				annuler();
@@ -69,6 +73,8 @@ public class AnneeScolaireController {
 		 
 		 public void annuler() {
 			 anneeScolaire.setCodeAnneeScol(0);
+			 anneeScolaire.setDebutAnneeScol(null);
+			 anneeScolaire.setFinAnneeScol(null);
 			 anneeScolaire.setLibelleAnneeScol(null);
 			btnModifier.setDisabled(true);
 			btnEnregistrer.setDisabled(false);

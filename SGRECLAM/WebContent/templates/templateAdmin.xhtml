@@ -28,19 +28,29 @@
 			
 		
 		<p:submenu label="PARAMETRAGE">
-			<p:menuitem value="Année scolaire" outcome="/anneeScolaire.xhtml"/>
-			<p:menuitem value="Ue" outcome="/ue.xhtml"/>
-			
-			<p:menuitem value="Niveau"  outcome="/niveau.xhtml"/>
-			<p:menuitem value="Semestre" outcome="/semestre.xhtml" />
-			<p:menuitem value="Evaluation" outcome="/evaluation.xhtml" />
-			<p:menuitem value="Motif réclamation" outcome="/evaluation.xhtml"/>
+			<p:menuitem value="Année scolaire" outcome="/pagesAdmin/anneeScolaire.xhtml"/>
+			<p:menuitem value="Niveau"  outcome="/pagesAdmin/niveau.xhtml"/>
+			<p:menuitem value="Semestre" outcome="/pagesAdmin/semestre.xhtml" />
+			<p:menuitem value="Evaluation" outcome="/pagesAdmin/evaluation.xhtml" />
+			<p:menuitem value="Motif réclamation" outcome="/pagesAdmin/evaluation.xhtml"/>
+			<p:menuitem value="Etat réclamation" outcome="/pagesAdmin/etatReclamation.xhtml"/>
+		</p:submenu>
+		
+		<p:submenu label="UE et ECUE">
+			<p:menuitem value="Enregistrer  UE" outcome="/pagesAdmin/ue.xhtml"/>
+			<p:menuitem value="Enregistrer ECUE"  outcome="/pagesAdmin/ecue.xhtml"/>
 		</p:submenu>
 		
 		<p:submenu label="RECLAMATION">
 			<p:menuitem value="Faire une reclamation" />
 			<p:menuitem value="Consulter les réclamations" />
 			<p:menuitem value="Valider les réclamations" />
+		</p:submenu>
+		
+		<p:submenu label="UTILISATEURS" >
+			<p:menuitem value="Enregistrer enseignant" outcome="/pagesAdmin/enseignant.xhtml"/>
+			<p:menuitem value="Enregistrer etudiant" outcome="/pagesAdmin/etudiant.xhtml"/>
+			<p:menuitem value="Créer profil"/>
 		</p:submenu>
 		
 		

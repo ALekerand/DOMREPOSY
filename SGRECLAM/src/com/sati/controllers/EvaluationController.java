@@ -34,11 +34,14 @@ public class EvaluationController {
 	private Evaluation selectedEvaluation = new Evaluation();
 	private List<Ecue> listEcue = new ArrayList<Ecue>();
 	private List<TypeEvaluation> listTypeEvaluation = new ArrayList<>();
-	private Ecue choisir = new Ecue();
+	private Ecue choisirEcue = new Ecue();
 	private TypeEvaluation choixTypeEvaluation = new TypeEvaluation();
 	
+	private int codeEcue;
+	private int codeTypeEvalu;
 	
-	private CommandButton btnEnregistrer= new CommandButton();
+	
+	private CommandButton btnEnregistrer = new CommandButton();
 	private CommandButton btnAnnuler = new CommandButton();
 	private CommandButton btnModifier = new CommandButton();
 	
@@ -51,8 +54,12 @@ public class EvaluationController {
 	
 	public void enregistrer() {
 		
+		//Recuperer les objets en base par leur clé primaire;
+		choisirEcue = (Ecue) service.getObjectById(codeEcue, "Ecue");
+		choixTypeEvaluation =  (TypeEvaluation) service.getObjectById(codeTypeEvalu, "TypeEvaluation");
+		
 		//setter les objets qui migrent
-		evaluation.setEcue(choisir);
+		evaluation.setEcue(choisirEcue);
 		evaluation.setTypeEvaluation(choixTypeEvaluation);
 		
 		//Enregistrement en base de donné
@@ -79,9 +86,12 @@ public class EvaluationController {
     }
  
  public void annuler() {
-	 evaluation.setLibeleEvaluation("");
+	evaluation.setCodeEvaluation("");
+	evaluation.setLibeleEvaluation("");
 	btnModifier.setDisabled(true);
 	btnEnregistrer.setDisabled(false);
+	setCodeEcue(0);
+	setCodeTypeEvalu(0);
  }
 
  public void modifier() {
@@ -152,14 +162,6 @@ public class EvaluationController {
 		this.listTypeEvaluation = listTypeEvaluation;
 	}
 
-	public Ecue getChoisir() {
-		return choisir;
-	}
-
-	public void setChoisir(Ecue choisir) {
-		this.choisir = choisir;
-	}
-
 	public TypeEvaluation getChoixTypeEvaluation() {
 		return choixTypeEvaluation;
 	}
@@ -174,6 +176,31 @@ public class EvaluationController {
 
 	public void setBtnModifier(CommandButton btnModifier) {
 		this.btnModifier = btnModifier;
+	}
+
+
+	public int getCodeEcue() {
+		return codeEcue;
+	}
+
+	public void setCodeEcue(int codeEcue) {
+		this.codeEcue = codeEcue;
+	}
+
+	public Ecue getChoisirEcue() {
+		return choisirEcue;
+	}
+
+	public void setChoisirEcue(Ecue choisirEcue) {
+		this.choisirEcue = choisirEcue;
+	}
+
+	public int getCodeTypeEvalu() {
+		return codeTypeEvalu;
+	}
+
+	public void setCodeTypeEvalu(int codeTypeEvalu) {
+		this.codeTypeEvalu = codeTypeEvalu;
 	}
 
 }

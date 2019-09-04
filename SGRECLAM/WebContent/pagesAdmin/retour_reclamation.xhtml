@@ -9,7 +9,7 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/template.xhtml">
+	<ui:composition template="/templates/templateAdmin.xhtml">
 			<ui:define name="body">
 				<h:form id="form">
 				
@@ -19,10 +19,10 @@
 	
 	<br/>	 	
 		
-	
+	<h:panelGrid columns="4" cellpadding="10">
 	<p:outputLabel for="inputlibelleRetourReclam" value="Type Evaluation"></p:outputLabel>
 	<p:inputText id="inputlibelleRetourReclam" value="#{retourReclamationController.retourReclamation.libelleRetourReclam}" required="true" requiredMessage="Veuillez resseigner les retour Reclamation SVP"></p:inputText>	
-	
+	</h:panelGrid>
 		
 			
 	<br/>
@@ -34,7 +34,7 @@
 				<p:commandButton value="Modifier"  action="#{retourReclamationController.modifier}" update="form" binding="#{retourReclamationController.btnModifier}"></p:commandButton>
 			</f:facet>
 		</p:toolbar>
-	</p:panel>
+	
 	<br></br>
 	
 	
@@ -55,7 +55,7 @@
 	
 	
 	</p:dataTable>
-				
+		</p:panel>		
 				</h:form>
 			</ui:define>
 	</ui:composition>
