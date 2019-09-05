@@ -34,7 +34,7 @@ public class EtudiantController {
 	private Sexe choisirSexe = new Sexe();
 	private int codeSexe;
 	
-	
+
 	private CommandButton btnEnregistrer= new CommandButton();
 	private CommandButton btnAnnuler = new CommandButton();
 	private CommandButton btnModifier = new CommandButton();
@@ -138,6 +138,14 @@ public class EtudiantController {
 
 	public void setChoisirSexe(Sexe choisirSexe) {
 		this.choisirSexe = choisirSexe;
+	}
+	
+	public int getCodeSexe() {
+		return codeSexe;
+	}
+
+	public void setCodeSexe(int codeSexe) {
+		this.codeSexe = codeSexe;
 	}
 
 
