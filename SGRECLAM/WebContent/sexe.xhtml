@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/templateAdmin.xhtml">
+			<ui:define name="body">
+				<h:form id="form">
+				
+<h:panelGrid columns="2" cellpadding="10">
+	<p:outputLabel for="input" value="Libellé"></p:outputLabel>
+	<p:inputText id="input" value="#{sexeController.sexe.libelleSexe}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
+</h:panelGrid>
+
+<br/>
+<p:toolbar >
+			<f:facet name="left">
+				<p:commandButton value="Enregistrer" action="#{sexeController.enregistrer}" update="form" binding="#{sexeController.btnEnregistrer}"></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{sexeController.annuler}" update="form" binding="#{sexeController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{sexeController.modifier}" update="form" binding="#{sexeController.btnModifier}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+		<br/>
+		
+	<p:dataTable  var="dom" value="#{sexeController.listSexe}"  selectionMode="single" selection="#{sexeController.selectedSexe}" rowKey="#{opf.codeSexe}">
+ 
+ <f:facet name="header">
+            LISTE DE SEXE
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{sexeController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Code">
+        <h:outputText value="#{dom.codeSexe}"/>
+        </p:column>
+        
+        <p:column headerText="Libellé">
+        <h:outputText value="#{dom.libelleSexe}"/>
+        </p:column>
+        
+        </p:dataTable>
+				
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>

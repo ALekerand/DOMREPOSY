@@ -13,9 +13,6 @@ import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.sati.model.Ecue;
-import com.sati.model.Etudiant;
 import com.sati.model.Sexe;
 import com.sati.service.Iservice;
 
@@ -24,20 +21,18 @@ import com.sati.service.Iservice;
  *
  */
 @Component
-public class EtudiantController {
+public class SexeController {
 	@Autowired
 	Iservice service;
-	private Etudiant etudiant = new Etudiant();
-	private List<Etudiant> listEtudiant = new ArrayList<Etudiant>();
-	private Etudiant selectedEtudiant = new Etudiant();
+	private Sexe sexe = new Sexe();
 	private List<Sexe> listSexe = new ArrayList<Sexe>();
-	private Sexe choisirSexe = new Sexe();
-	private int codeSexe;
+	private Sexe selectedSexe = new Sexe();
 	
 	
-	private CommandButton btnEnregistrer= new CommandButton();
+	private CommandButton btnEnregistrer = new CommandButton();
 	private CommandButton btnAnnuler = new CommandButton();
 	private CommandButton btnModifier = new CommandButton();
+	
 	
 	@PostConstruct
 	public void initialiser() {
@@ -45,15 +40,14 @@ public class EtudiantController {
 	}
 	
 	public void enregistrer() {
-		choisirSexe = (Sexe) service.getObjectById(codeSexe, "Sexe");
-		service.addObject(etudiant);
+		service.addObject(sexe);
 		info("Eneregistrement éffectué avec succès!");
 		annuler();
 		
 	}
 	
 	public void selectionnerLigne() {
-		etudiant = selectedEtudiant;
+		 sexe = selectedSexe;
 		 btnEnregistrer.setDisabled(true);
 		 btnModifier.setDisabled(false);
 	}
@@ -69,40 +63,36 @@ public class EtudiantController {
     }
  
  public void annuler() {
-	 etudiant.setMatriculeEtude("");
-	 etudiant.setNomEtud(null);
-	 etudiant.setPrenomsEtude(null);
-	 etudiant.setDateNaissance(null);
+	 sexe.setCodeSexe(0);
+	 sexe.setLibelleSexe(null);
 	btnModifier.setDisabled(true);
 	btnEnregistrer.setDisabled(false);
  }
 
  public void modifier() {
-	 service.updateObject(etudiant);
+	 service.updateObject(sexe);
 	 annuler();
 	 info("Modification effectué avec succés!");
  }
-
 	
-	
-	public Etudiant getEtudiant() {
-		return etudiant;
+	public Sexe getSexe() {
+		return sexe;
 	}
-	public void setEtudiant(Etudiant etudiant) {
-		this.etudiant = etudiant;
+	public void setSexe(Sexe sexe) {
+		this.sexe = sexe;
 	}
-	public List<Etudiant> getListEtudiant() {
-		listEtudiant = service.getObjects("Etudiant");
-		return listEtudiant;
+	public List<Sexe> getListSexe() {
+		listSexe = service.getObjects("Sexe");
+		return listSexe;
 	}
-	public void setListEtudiant(List<Etudiant> listEtudiant) {
-		this.listEtudiant = listEtudiant;
+	public void setListSexe(List<Sexe> listSexe) {
+		this.listSexe = listSexe;
 	}
-	public Etudiant getSelectedEtudiant() {
-		return selectedEtudiant;
+	public Sexe getSelectedSexe() {
+		return selectedSexe;
 	}
-	public void setSelectedEtudiant(Etudiant selectedEtudiant) {
-		this.selectedEtudiant = selectedEtudiant;
+	public void setSelectedSexe(Sexe selectedSexe) {
+		this.selectedSexe = selectedSexe;
 	}
 	public CommandButton getBtnEnregistrer() {
 		return btnEnregistrer;
@@ -121,24 +111,6 @@ public class EtudiantController {
 	}
 	public void setBtnModifier(CommandButton btnModifier) {
 		this.btnModifier = btnModifier;
-	}
-
-	public List<Sexe> getListSexe() {
-		listSexe = service.getObjects("Sexe");
-		return listSexe;
-	}
-
-	public void setListSexe(List<Sexe> listSexe) {
-		this.listSexe = listSexe;
-	}
-
-	public Sexe getChoisirSexe() {
-		return choisirSexe;
-	}
-
-	public void setChoisirSexe(Sexe choisirSexe) {
-		this.choisirSexe = choisirSexe;
-	}
-
+	}	
 
 }

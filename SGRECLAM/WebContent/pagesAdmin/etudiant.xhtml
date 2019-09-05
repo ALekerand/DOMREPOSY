@@ -26,6 +26,12 @@
 	<p:inputText value="#{etudiantController.etudiant.prenomsEtude}"></p:inputText>
 	<p:outputLabel value="Date de Naissance"></p:outputLabel>
 	<p:calendar value="#{etudiantController.etudiant.dateNaissance}" pattern="dd/MM/yyyy"></p:calendar>
+	
+	<p:outputLabel value="Sexe"></p:outputLabel> 
+	<p:selectOneMenu value="#{etudiantController.codeSexe}">
+	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
+	<f:selectItems value="#{etudiantController.listSexe}" var="dom" itemLabel="#{dom.libelleSexe}" itemValue="#{dom.codeSexe}"></f:selectItems>	
+	</p:selectOneMenu>
 	</h:panelGrid>		
 	<br/>
 	
