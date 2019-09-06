@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/templateAdmin.xhtml">
+			<ui:define name="pageTitle">Title</ui:define>
+			<ui:define name="pageHeader">Header</ui:define>
+			<ui:define name="body">
+				<h:form id="form">
+				
+								<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="Enregistrement de RECLAMATION">
+	
+	<br/>	 	
+	<table>
+		<tr>
+		
+	<h:panelGrid columns="2" cellpadding="10">
+			
+			<td>
+			<p:dataTable var="dom" value="#{reclamationController.listEvaluation}" selection="#{reclamationController.selectedEvaluation}" rowKey="#{dom.codeEvaluation}"   >
+				<f:facet name="header">Liste des Evaluation </f:facet>
+				
+				<p:column selectionMode="single">
+				</p:column>
+				
+				<p:column headerText="Code Evaluation">
+					<h:outputLabel value="#{dom.codeEvaluation}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Libellé Evaluation">
+					<h:outputLabel value="#{dom.libeleEvaluation}"></h:outputLabel>
+				</p:column>
+				<p:column headerText="ECUE">
+					<h:outputLabel value="#{dom.reclamation.evaluation.ecue.libelleEcue}"></h:outputLabel>
+				</p:column>
+				
+			</p:dataTable>
+			</td>
+			</h:panelGrid>
+		</tr>
+	</table>
+	<br/>
+	<p:outputLabel value="Motif"></p:outputLabel> 
+	<p:selectOneMenu value="#{reclamationController.codeMotifReclam}">
+	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
+	<f:selectItems value="#{reclamationController.listMotifeReclamation}" var="dom" itemLabel="#{dom.libelleMotifReclam}" itemValue="#{dom.codeMotifReclam}"></f:selectItems>	
+	</p:selectOneMenu>
+	<p:outputLabel value="Detail"></p:outputLabel>
+	
+	<p:toolbar >
+			<f:facet name="left">
+				<p:commandButton value="Enregistrer" action="#{reclamationController.enregistrer}" update="form" binding="#{reclamationController.btnEnregistrer}"></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{reclamationController.annuler}" update="form" binding="#{reclamationController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{reclamationController.modifier}" update="form" binding="#{reclamationController.btnModifier}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+		
+			<p:dataTable  var="dom" value="#{reclamationController.listReclamation}"  selectionMode="single" selection="#{Controller.selectedEtudiant}" rowKey="#{opf.matriculeEtude}">
+ 
+ <f:facet name="header">
+            ETUDIANT
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{reclamationController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Numero de la reclamation">
+        <h:outputText value="#{dom.numeroReclam}"/>
+        </p:column>
+        
+        <p:column headerText="Motif">
+        <h:outputText value="#{dom.motifeReclamation.libelleMotifReclam}"/>
+   		</p:column>
+   		
+   		 <p:column headerText="Evaluation">
+        <h:outputText value="#{dom.evaluation.libeleEvaluation}"/>
+   		</p:column>
+   		
+   		<p:column headerText="ECUE">
+        <h:outputText value="#{dom.evaluation.ecue.libelleEcue}">
+        </h:outputText>
+   		</p:column>
+  
+	</p:dataTable>
+		
+		</p:panel>	
+	</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>
