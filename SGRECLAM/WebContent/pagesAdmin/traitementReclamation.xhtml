@@ -14,8 +14,9 @@
 			<ui:define name="pageHeader">Header</ui:define>
 			<ui:define name="body">
 				<h:form id="form">
-				<p:panel header="RECEPTION DE RECLAMATION"></p:panel>
-				<p:dataTable  var="dom" value="#{RecepReclamationController.listReclamation}">
+		<p:panel header="TRAITEMENT DE RECLAMATION">		
+				
+		<p:dataTable var="dom" value="#{TraitementReclamationController.listReclamation}">
 				
 		<p:column headerText="Numero de la reclamation">
         <h:outputText value="#{dom.numeroReclam}"/>
@@ -44,7 +45,7 @@
    		</p:column>
 				
 				</p:dataTable>
-				
+				</p:panel>
 				</h:form>
 			</ui:define>
 	</ui:composition>
