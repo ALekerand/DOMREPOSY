@@ -37,7 +37,7 @@
 	
 		<p:toolbar >
 			<f:facet name="left">
-			<h:commandButton value="Enregistrer" action="#{etudiantController.enregistrer}" update="form" ></h:commandButton>
+				<p:commandButton value="Enregistrer" action="#{etudiantController.enregistrer}" update="form"></p:commandButton>
 				<p:commandButton value="Annuler"  action="#{etudiantController.annuler}" update="form" binding="#{etudiantController.btnAnnuler}"></p:commandButton>
 				<p:commandButton value="Modifier"  action="#{etudiantController.modifier}" update="form" binding="#{etudiantController.btnEnregistrer}"></p:commandButton>
 			</f:facet>
@@ -67,6 +67,10 @@
         <h:outputText value="#{opf.dateNaissance}">
          <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
         </h:outputText>
+   		</p:column>
+   		
+   		 <p:column headerText="Sexe">
+        <h:outputText value="#{opf.sexe.libelleSexe}"/>
    		</p:column>
   
 	</p:dataTable>

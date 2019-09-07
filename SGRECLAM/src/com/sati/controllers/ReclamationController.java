@@ -162,6 +162,7 @@ public class ReclamationController {
 
 	public List<MotifeReclamation> getListMotifeReclamation() {
 		listMotifeReclamation = service.getObjects("MotifeReclamation");
+		System.out.println("tail de la liste:"+listMotifeReclamation.size());
 		return listMotifeReclamation;
 	}
 
