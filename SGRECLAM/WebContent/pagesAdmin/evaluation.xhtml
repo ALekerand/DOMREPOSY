@@ -59,7 +59,7 @@
             LISTE DES EVALUATIONS
         </f:facet>
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{evaluationController.selectionnerLigne}"></p:ajax>
-   		<p:column headerText="Code">
+   		<p:column headerText="Code" style="width:10%">
         <h:outputText value="#{opf.codeEvaluation}"/>
    		</p:column>
    		

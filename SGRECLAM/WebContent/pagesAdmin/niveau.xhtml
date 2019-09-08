@@ -43,13 +43,16 @@
             NIVEAU
         </f:facet>
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{niveauController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Code du niveau" style="width:30%">
+        <h:outputText value="#{opf.codeNiveau}"/>
+        </p:column>
+   		
    		<p:column headerText="Libéllé du niveau ">
         <h:outputText value="#{opf.libeleNiveau}"/>
    		</p:column>
    		
-   		<p:column headerText="Code du niveau">
-        <h:outputText value="#{opf.codeNiveau}"/>
-        </p:column>
+   		
 	
 	
 	</p:dataTable>	

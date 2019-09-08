@@ -45,7 +45,7 @@
         </f:facet>
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{retourReclamationController.selectedRetourReclamation}"></p:ajax>
    		
-   		<p:column headerText="Code Retour Reclamation">
+   		<p:column headerText="Code Retour Reclamation" style="width:30%">
         <h:outputText value="#{opf.codeRetourReclam}"/>
         </p:column>
         
