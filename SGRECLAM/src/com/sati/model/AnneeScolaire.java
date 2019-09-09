@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 3 sept. 2019 16:00:21 by Hibernate Tools 5.2.12.Final
+// Generated 9 sept. 2019 14:39:29 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +25,7 @@ public class AnneeScolaire implements java.io.Serializable {
 	private Integer debutAnneeScol;
 	private Integer finAnneeScol;
 	private String libelleAnneeScol;
+	private Boolean etatAnnee;
 	private Set<NiveauEtudiant> niveauEtudiants = new HashSet<NiveauEtudiant>(0);
 	private Set<Reclamation> reclamations = new HashSet<Reclamation>(0);
 	private Set<Enseigner> enseigners = new HashSet<Enseigner>(0);
@@ -38,12 +39,13 @@ public class AnneeScolaire implements java.io.Serializable {
 	}
 
 	public AnneeScolaire(int codeAnneeScol, Integer debutAnneeScol, Integer finAnneeScol, String libelleAnneeScol,
-			Set<NiveauEtudiant> niveauEtudiants, Set<Reclamation> reclamations, Set<Enseigner> enseigners,
-			Set<NiveauEcue> niveauEcues) {
+			Boolean etatAnnee, Set<NiveauEtudiant> niveauEtudiants, Set<Reclamation> reclamations,
+			Set<Enseigner> enseigners, Set<NiveauEcue> niveauEcues) {
 		this.codeAnneeScol = codeAnneeScol;
 		this.debutAnneeScol = debutAnneeScol;
 		this.finAnneeScol = finAnneeScol;
 		this.libelleAnneeScol = libelleAnneeScol;
+		this.etatAnnee = etatAnnee;
 		this.niveauEtudiants = niveauEtudiants;
 		this.reclamations = reclamations;
 		this.enseigners = enseigners;
@@ -87,6 +89,15 @@ public class AnneeScolaire implements java.io.Serializable {
 
 	public void setLibelleAnneeScol(String libelleAnneeScol) {
 		this.libelleAnneeScol = libelleAnneeScol;
+	}
+
+	@Column(name = "ETAT_ANNEE")
+	public Boolean getEtatAnnee() {
+		return this.etatAnnee;
+	}
+
+	public void setEtatAnnee(Boolean etatAnnee) {
+		this.etatAnnee = etatAnnee;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "anneeScolaire")

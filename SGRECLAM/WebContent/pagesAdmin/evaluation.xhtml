@@ -16,9 +16,8 @@
 	<p:messages  showDetail="true" closable="true"></p:messages>			
 				
 	<p:panel header="Enregistrement des Evaluation">
-	
-	<br/>	 	
-		
+		<fieldset>
+ 	<legend>Information  de l'évaluation</legend>
 	<h:panelGrid columns="4" cellpadding="10">
 	<p:outputLabel for="inputcode" value="Code"></p:outputLabel>
 	<p:inputText id="inputcode" value="#{evaluationController.evaluation.codeEvaluation}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
@@ -38,13 +37,22 @@
 	<f:selectItems value="#{evaluationController.listTypeEvaluation}" var="dom" itemLabel="#{dom.libelleTypeEvalu}" itemValue="#{dom.codeTypeEvalu}"></f:selectItems>	
 	</p:selectOneMenu>
 	
+	
+		<p:outputLabel value="Semestre"></p:outputLabel> 
+	<p:selectOneMenu value="#{evaluationController.codeSemestre}">
+	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
+	<f:selectItems value="#{evaluationController.listSemestre}" var="dom" itemLabel="#{dom.libelleSemestre}" itemValue="#{dom.codeSemestre}"></f:selectItems>	
+	</p:selectOneMenu>
+	
 	</h:panelGrid>	
 			
-	<br/>
+	</fieldset>
+	
+	<br></br>
 	
 		<p:toolbar >
 			<f:facet name="left">
-				<p:commandButton value="Enregistrer" action="#{evaluationController.enregistrer}" update="form" binding="#{evaluationController.btnEnregistrer}" ></p:commandButton>
+				<h:commandButton value="Enregistrer" action="#{evaluationController.enregistrer}" update="form" ></h:commandButton>
 				<p:commandButton value="Annuler"  action="#{evaluationController.annuler}" update="form" binding="#{evaluationController.btnAnnuler}"></p:commandButton>
 				<p:commandButton value="Modifier"  action="#{evaluationController.modifier}" update="form" binding="#{evaluationController.btnModifier}"></p:commandButton>
 			</f:facet>
@@ -73,6 +81,10 @@
         
         <p:column headerText="Ecue">
         <h:outputText value="#{opf.ecue.libelleEcue}"/>
+        </p:column>
+        
+        <p:column headerText="Semestre">
+        <h:outputText value="#{opf.semestre.libelleSemestre}"/>
         </p:column>
 	</p:dataTable>	
 	

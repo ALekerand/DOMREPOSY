@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.sati.model.Ecue;
 import com.sati.model.Evaluation;
+import com.sati.model.Semestre;
 import com.sati.model.TypeEvaluation;
 import com.sati.service.Iservice;
 
@@ -36,6 +37,9 @@ public class EvaluationController {
 	private List<TypeEvaluation> listTypeEvaluation = new ArrayList<>();
 	private Ecue choisirEcue = new Ecue();
 	private TypeEvaluation choixTypeEvaluation = new TypeEvaluation();
+	private List<Semestre> listSemestre = new ArrayList<>();
+	private Semestre selectedSemestre = new Semestre();
+	private String codeSemestre;
 	
 	private int codeEcue;
 	private int codeTypeEvalu;
@@ -57,10 +61,27 @@ public class EvaluationController {
 		//Recuperer les objets en base par leur clé primaire;
 		choisirEcue = (Ecue) service.getObjectById(codeEcue, "Ecue");
 		choixTypeEvaluation =  (TypeEvaluation) service.getObjectById(codeTypeEvalu, "TypeEvaluation");
+		System.out.println("objet selectionné:"+codeSemestre);
+		
+		for (Semestre obSemestre : listSemestre) {
+			System.out.println("Code:"+obSemestre.getCodeSemestre());
+			if (obSemestre.getCodeSemestre().equals(codeSemestre)) {
+				selectedSemestre = obSemestre;
+				System.out.println("C'est fait");
+				break;
+				
+			}
+			
+		}
+		
+		//selectedSemestre = (Semestre) service.getObjectById(codeSemestre, "Semestre");
+		
+
 		
 		//setter les objets qui migrent
 		evaluation.setEcue(choisirEcue);
 		evaluation.setTypeEvaluation(choixTypeEvaluation);
+		evaluation.setSemestre(selectedSemestre);
 		
 		//Enregistrement en base de donné
 		service.addObject(evaluation);
@@ -201,6 +222,31 @@ public class EvaluationController {
 
 	public void setCodeTypeEvalu(int codeTypeEvalu) {
 		this.codeTypeEvalu = codeTypeEvalu;
+	}
+
+	public List<Semestre> getListSemestre() {
+		listSemestre = service.getObjects("Semestre");
+		return listSemestre;
+	}
+
+	public void setListSemestre(List<Semestre> listSemestre) {
+		this.listSemestre = listSemestre;
+	}
+
+	public Semestre getSelectedSemestre() {
+		return selectedSemestre;
+	}
+
+	public void setSelectedSemestre(Semestre selectedSemestre) {
+		this.selectedSemestre = selectedSemestre;
+	}
+
+	public String getCodeSemestre() {
+		return codeSemestre;
+	}
+
+	public void setCodeSemestre(String codeSemestre) {
+		this.codeSemestre = codeSemestre;
 	}
 
 }

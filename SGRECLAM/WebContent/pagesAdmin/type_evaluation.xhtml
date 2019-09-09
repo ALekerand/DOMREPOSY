@@ -15,14 +15,16 @@
 				<p:messages  showDetail="true" closable="true"></p:messages>			
 				
 	<p:panel header="Enregistrement des Type Evaluation">
-	
+	<fieldset>
+ 	<legend>Informations</legend>	
 	<h:panelGrid columns="4" cellpadding="10"> 
 	
 	<p:outputLabel for="inputlibelleTypeEvalu" value="Type Evaluation"></p:outputLabel>
 	<p:inputText id="inputlibelleTypeEvalu" value="#{typeEvaluationController.typeEvaluation.libelleTypeEvalu}" required="true" requiredMessage="Veuillez resseigner l'Type Evaluation SVP"></p:inputText>	
 		
 			</h:panelGrid>
-	
+	</fieldset>
+	<br></br>
 		<p:toolbar >
 			<f:facet name="left">
 				<p:commandButton value="Enregistrer" action="#{typeEvaluationController.enregistrer}" update="form"  ></p:commandButton>

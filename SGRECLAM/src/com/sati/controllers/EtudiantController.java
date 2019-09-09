@@ -4,6 +4,7 @@
 package com.sati.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Component;
 
 import com.sati.model.Ecue;
 import com.sati.model.Etudiant;
+import com.sati.model.Niveau;
+import com.sati.model.NiveauEtudiant;
 import com.sati.model.Sexe;
 import com.sati.service.Iservice;
 
@@ -31,8 +34,12 @@ public class EtudiantController {
 	private List<Etudiant> listEtudiant = new ArrayList<Etudiant>();
 	private Etudiant selectedEtudiant = new Etudiant();
 	private List<Sexe> listSexe = new ArrayList<Sexe>();
+	private List<Niveau> listNiveau = new ArrayList<>();
+	private Niveau choosedNiveau = new Niveau();
+	private int codeNiveau;
 	private Sexe choisirSexe = new Sexe();
 	private int codeSexe;
+	private NiveauEtudiant niveauEtudiant = new  NiveauEtudiant();
 	
 
 	private CommandButton btnEnregistrer= new CommandButton();
@@ -46,7 +53,17 @@ public class EtudiantController {
 	
 	public void enregistrer() {
 		choisirSexe = (Sexe) service.getObjectById(codeSexe, "Sexe");
+		etudiant.setSexe(choisirSexe);
+		choosedNiveau = (Niveau) service.getObjectById(codeNiveau, "Niveau");
+		
+		//Enregistrement de etudiant
 		service.addObject(etudiant);
+		
+		//Enregistrement de NiveauEtudiant
+		niveauEtudiant.setEtudiant(etudiant);
+		niveauEtudiant.setNiveau(choosedNiveau);
+		niveauEtudiant.setDateNiveauEtud(new Date());
+		
 		info("Eneregistrement éffectué avec succès!");
 		annuler();
 		
@@ -146,6 +163,31 @@ public class EtudiantController {
 
 	public void setCodeSexe(int codeSexe) {
 		this.codeSexe = codeSexe;
+	}
+
+	public List<Niveau> getListNiveau() {
+		listNiveau = service.getObjects("Niveau");
+		return listNiveau;
+	}
+
+	public void setListNiveau(List<Niveau> listNiveau) {
+		this.listNiveau = listNiveau;
+	}
+
+	public Niveau getChoosedNiveau() {
+		return choosedNiveau;
+	}
+
+	public void setChoosedNiveau(Niveau choosedNiveau) {
+		this.choosedNiveau = choosedNiveau;
+	}
+
+	public int getCodeNiveau() {
+		return codeNiveau;
+	}
+
+	public void setCodeNiveau(int codeNiveau) {
+		this.codeNiveau = codeNiveau;
 	}
 
 

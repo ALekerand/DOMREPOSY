@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 3 sept. 2019 16:00:21 by Hibernate Tools 5.2.12.Final
+// Generated 9 sept. 2019 14:39:29 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import javax.persistence.Column;

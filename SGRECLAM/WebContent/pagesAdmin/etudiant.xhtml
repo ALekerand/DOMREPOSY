@@ -15,15 +15,16 @@
 			
 						<p:messages  showDetail="true" closable="true"></p:messages>					
 	<p:panel header="Enregistrement des Etudiant">
-	
-	<br/>	 	
-	<h:panelGrid columns="2" cellpadding="10">	
+ 	
+ 	<fieldset>
+ 	<legend>Informations de l'étudiant</legend>
+	<h:panelGrid columns="4" cellpadding="8">	
 	<p:outputLabel for="inputmatricule" value="Matricule"></p:outputLabel>
 	<p:inputText id="inputmatricule" value="#{etudiantController.etudiant.matriculeEtude}" required="true" requiredMessage="Veuillez resseigner le matricule SVP"></p:inputText>	
 	<p:outputLabel value="Nom"></p:outputLabel>
 	<p:inputText value="#{etudiantController.etudiant.nomEtud}"></p:inputText>
 	<p:outputLabel value="Prenoms"></p:outputLabel >
-	<p:inputText value="#{etudiantController.etudiant.prenomsEtude}"></p:inputText>
+	<p:inputText value="#{etudiantController.etudiant.prenomsEtude}" style="width:250px"></p:inputText>
 	<p:outputLabel value="Date de Naissance"></p:outputLabel>
 	<p:calendar value="#{etudiantController.etudiant.dateNaissance}" pattern="dd/MM/yyyy"></p:calendar>
 	
@@ -32,9 +33,15 @@
 	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
 	<f:selectItems value="#{etudiantController.listSexe}" var="dom" itemLabel="#{dom.libelleSexe}" itemValue="#{dom.codeSexe}"></f:selectItems>	
 	</p:selectOneMenu>
-	</h:panelGrid>		
-	<br/>
 	
+	<p:outputLabel value="Niveau"></p:outputLabel> 
+	<p:selectOneMenu value="#{etudiantController.codeNiveau}">
+	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
+	<f:selectItems value="#{etudiantController.listNiveau}" var="dom" itemLabel="#{dom.libeleNiveau}" itemValue="#{dom.codeNiveau}"></f:selectItems>	
+	</p:selectOneMenu>
+	</h:panelGrid>		
+</fieldset>
+	<br />
 		<p:toolbar >
 			<f:facet name="left">
 				<p:commandButton value="Enregistrer" action="#{etudiantController.enregistrer}" update="form"></p:commandButton>
@@ -72,6 +79,7 @@
    		 <p:column headerText="Sexe">
         <h:outputText value="#{opf.sexe.libelleSexe}"/>
    		</p:column>
+   		
   
 	</p:dataTable>
 	</p:panel>

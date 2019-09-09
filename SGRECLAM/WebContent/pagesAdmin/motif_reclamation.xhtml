@@ -18,13 +18,14 @@
 				
 	<p:panel header="Enregistrement des Motife Reclamation">
 	
-	<br/>	 	
+		<fieldset>
+ 	<legend>Informations du motif</legend> 	
 		
-	<h:panelGrid columns="4" cellpadding="10">
+	<h:panelGrid columns="4" cellpadding="8">
 	<p:outputLabel for="inputlibelleMotifReclam" value="MotifeReclamation"></p:outputLabel>
 	<p:inputText id="inputlibelleMotifReclam" value="#{motifeReclamationController.motifeReclamation.libelleMotifReclam}" required="true" requiredMessage="Veuillez resseigner le motif de votre Reclamation SVP"></p:inputText>	
 	</h:panelGrid>
-			
+			</fieldset>	
 	<br/>
 	
 		<p:toolbar >

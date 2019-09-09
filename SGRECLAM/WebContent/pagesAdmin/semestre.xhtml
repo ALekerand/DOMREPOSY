@@ -14,7 +14,8 @@
 				<h:form  id="form">
 				<p:messages  showDetail="true" closable="true"></p:messages>
 					<p:panel header="Enregistrement de semestre">
-					
+				<fieldset>
+ 	<legend>Informations du semestre</legend> 
 					<h:panelGrid columns="4" cellpadding="10"> 
 					<p:outputLabel for="inputSemestre" value="Code"></p:outputLabel>
 	                 <p:inputText id="inputSemestre" value="#{semestreController.semestre.codeSemestre}" required="true" requiredMessage="Veuillez resseigner le semestre SVP"></p:inputText>	
@@ -23,6 +24,8 @@
 	                 <p:inputText id="inputlibsemestre" value="#{semestreController.semestre.libelleSemestre}" required="true" requiredMessage="Veuillez resseigner le semestre SVP"></p:inputText>	
 					
 					</h:panelGrid>
+					</fieldset>
+					<br></br>
 	
 		<p:toolbar >
 			<f:facet name="left">

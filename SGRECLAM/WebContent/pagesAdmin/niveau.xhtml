@@ -17,13 +17,14 @@
 				
 	<p:panel header="Enregistrement des niveaux">
 	
-	<br/>	 	
+	<fieldset>
+ 	<legend>Informations du niveau</legend> 	 	
 		
 	<h:panelGrid columns="4" cellpadding="10">
 	<p:outputLabel for="inputlibniveau" value="Niveau"></p:outputLabel>
 	<p:inputText id="inputlibniveau" value="#{niveauController.niveau.libeleNiveau}" required="true" requiredMessage="Veuillez resseigner le niveau SVP"></p:inputText>	
 	</h:panelGrid>
-			
+		</fieldset>	
 	<br/>
 	
 		<p:toolbar >

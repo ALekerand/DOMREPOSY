@@ -15,20 +15,20 @@
 			<p:messages  showDetail="true" closable="true"></p:messages>			
 				
 	<p:panel header="Enregistrement des Enseignant">
-	
-	<br/>	 	
-	<h:panelGrid columns="4" cellpadding="10">	
+	<fieldset>
+ 	<legend>Information de l'enseignant</legend>	 	
+	<h:panelGrid columns="4" cellpadding="8">	
 	
 	<p:outputLabel for="inputmatriculeenseignant" value="Matricule"></p:outputLabel>
 	<p:inputText id="inputmatriculeenseignant" value="#{enseignantController.enseignant.matriculeEnsei}" required="true" requiredMessage="Veuillez resseigner le matricule SVP"></p:inputText>	
 	<p:outputLabel value="Nom"></p:outputLabel>
 	<p:inputText value="#{enseignantController.enseignant.nomEnsei}"></p:inputText>
 	<p:outputLabel value="Prenoms"></p:outputLabel >
-	<p:inputText value="#{enseignantController.enseignant.prenomsEnsei}"></p:inputText>
+	<p:inputText value="#{enseignantController.enseignant.prenomsEnsei}" style="width:250px"></p:inputText>
 	<p:outputLabel value="Sexe"></p:outputLabel>
 	<p:inputText value="#{enseignantController.enseignant.sexeEnsei}"></p:inputText>
 	</h:panelGrid>		
-	<br/>
+	</fieldset>
 	
 		<p:toolbar >
 			<f:facet name="left">

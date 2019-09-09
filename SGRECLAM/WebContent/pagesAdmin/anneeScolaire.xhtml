@@ -15,9 +15,9 @@
 				<h:form  id="form">
 			<p:messages  showDetail="true" closable="true"></p:messages>			
 	<p:panel header="Enregistrement des UE">
-	
-	<br/>	 	
-		
+	 	
+	<fieldset>
+ 	<legend>INFORMATION SUR L'ANNEE SCOLAIRE</legend>	
 	<h:panelGrid columns="4" cellpadding="10">
 	<p:outputLabel for="inputdebut" value="Annee début"></p:outputLabel>
 	<p:inputText id="inputdebut" value="#{anneeScolaireController.anneeScolaire.debutAnneeScol}" required="true" requiredMessage="Veuillez resseigner le champs"></p:inputText>	
@@ -25,7 +25,7 @@
 	<p:outputLabel for="inputfin" value="Annee fin"></p:outputLabel>
 	<p:inputText id="inputfin" value="#{anneeScolaireController.anneeScolaire.finAnneeScol}" required="true" requiredMessage="Veuillez resseigner le champs"></p:inputText>	
 		</h:panelGrid>
-			
+	</fieldset>		
 	<br/>
 	
 		<p:toolbar >

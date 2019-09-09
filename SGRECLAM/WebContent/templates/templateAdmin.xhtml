@@ -8,7 +8,7 @@
 <h:head>
  <link rel="stylesheet" type="text/css" href="../ressources/css/ngo.css"></link>
 <link rel="stylesheet" type="text/css" href="../ressources/css/monStyle.css"></link>
-<link rel="stylesheet" type="text/css" href="../ressources/css/domi.css"></link>
+<link rel="stylesheet" type="text/css" href="../resource/css/domi.css"></link>
   <title><ui:insert name="title">SGRECLAM</ui:insert></title>
 </h:head>
 
@@ -22,7 +22,7 @@
 </div>
 </p:layoutUnit>
 
-<p:layoutUnit position="west" size="200" header="Menu" collapsible="true">
+<p:layoutUnit position="west" size="225" header="Menu" collapsible="true">
 
 	<h:form>
 		<p:panelMenu >
@@ -33,8 +33,10 @@
 			<p:menuitem value="Niveau"  outcome="/pagesAdmin/niveau.xhtml"/>
 			<p:menuitem value="Semestre" outcome="/pagesAdmin/semestre.xhtml" />
 			<p:menuitem value="Evaluation" outcome="/pagesAdmin/evaluation.xhtml" />
+			<p:menuitem value="Type évaluation" outcome="/pagesAdmin/type_evaluation.xhtml" />
 			<p:menuitem value="Motif réclamation" outcome="/pagesAdmin/motif_reclamation.xhtml"/>
 			<p:menuitem value="Etat réclamation" outcome="/pagesAdmin/etatReclamation.xhtml"/>
+			<p:menuitem value="Genre" outcome="/pagesAdmin/sexe.xhtml"/>
 		</p:submenu>
 		
 		<p:submenu label="UE et ECUE">
@@ -43,9 +45,9 @@
 		</p:submenu>
 		
 		<p:submenu label="RECLAMATION">
-			<p:menuitem value="Faire une reclamation" />
-			<p:menuitem value="Consulter les réclamations" />
-			<p:menuitem value="Valider les réclamations" />
+			<p:menuitem value="Faire une reclamation" outcome="/pagesAdmin/reclamation.xhtml"/>
+			<p:menuitem value="Valider les réclamations" outcome="/pagesAdmin/reception_reclamation.xhtml" />
+			<p:menuitem value="Traiter les réclamations" outcome="/pagesAdmin/traitementReclamation.xhtml"/>
 		</p:submenu>
 		
 		<p:submenu label="UTILISATEURS" >

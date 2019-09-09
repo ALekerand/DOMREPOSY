@@ -16,8 +16,8 @@
 				<p:messages  showDetail="true" closable="true"></p:messages>			
 				
 	<p:panel header="Enregistrement des UE">
-	
-	<br/>	 	
+	<fieldset>
+ 	<legend>Information de l'UE</legend>	
 	<h:panelGrid columns="4" cellpadding="10">
 	
 	<p:outputLabel for="inputcode" value="Code UE"></p:outputLabel>
@@ -27,7 +27,7 @@
 	<p:inputText id="inputlibue" value="#{ueController.ue.libeleUe}" required="true" requiredMessage="Veuillez resseigner le libellé de l'ue SVP"></p:inputText>
 		
 	</h:panelGrid>
-			
+		</fieldset>	
 	<br/>
 	
 		<p:toolbar >

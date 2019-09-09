@@ -17,14 +17,15 @@
 				
 	<p:panel header="Enregistrement des Retour Reclamation">
 	
-	<br/>	 	
+	<fieldset>
+ 	<legend>Informations du retour de réclamation</legend> 	
 		
 	<h:panelGrid columns="4" cellpadding="10">
 	<p:outputLabel for="inputlibelleRetourReclam" value="Type Evaluation"></p:outputLabel>
 	<p:inputText id="inputlibelleRetourReclam" value="#{retourReclamationController.retourReclamation.libelleRetourReclam}" required="true" requiredMessage="Veuillez resseigner les retour Reclamation SVP"></p:inputText>	
 	</h:panelGrid>
 		
-			
+		</fieldset>	
 	<br/>
 	
 		<p:toolbar >

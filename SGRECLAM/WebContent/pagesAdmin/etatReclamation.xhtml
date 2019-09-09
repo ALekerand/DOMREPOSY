@@ -17,21 +17,18 @@
 				
 	<p:panel header="Enregistrement Etat Reclamation ">
 	
-	<br/>	 	
-		
-	<p:panelGrid id="etatReclamation" columns="2">
-	<p:outputLabel for="inputetatReclamation" value="Code Reclamation"></p:outputLabel>
-	<p:inputText id="inputetatReclamation" value="#{etatReclamationController.etatReclamation.codeEtatReclam}" required="true" requiredMessage="Veuillez resseigner le code de la réclamation SVP"></p:inputText>
+	<fieldset>
+ 	<legend>Information sur l'état</legend>
+	<h:panelGrid id="etatReclamation" columns="4" cellpadding="8">
 	<p:outputLabel value="Libéllé Réclamation"></p:outputLabel>
 	<p:inputText  value="#{etatReclamationController.etatReclamation.libelleEtatReclam}" ></p:inputText>
-	</p:panelGrid>
-	</p:panel>	
-			
-	<br/>
-	
+	</h:panelGrid>
+		
+	</fieldset>
+	</p:panel>
 		<p:toolbar >
 			<f:facet name="left">
-				<h:commandButton value="Enregister"  action="#{etatReclamationController.enregistrer}" update="form" ></h:commandButton>
+				<p:commandButton value="Enregister"  action="#{etatReclamationController.enregistrer}" update="form" binding="#{etatReclamationController.btnEnregistrer}"></p:commandButton>
 				<p:commandButton value="Annuler"  action="#{etatReclamationController.annuler}" update="form" binding="#{etatReclamationController.btnAnnuler}"></p:commandButton>
 				<p:commandButton value="Modifier"  action="#{etatReclamationController.modifier}" update="form" binding="#{etatReclamationController.btnModifier}"></p:commandButton>
 			</f:facet>

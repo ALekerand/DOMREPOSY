@@ -30,15 +30,18 @@
 				<p:column selectionMode="single" style="width:5% ">
 				</p:column>
 				
-				<p:column headerText="Code Evaluation" style="width:15%">
+				<p:column headerText="ECUE"  style="width:25%">
+					<h:outputLabel value="#{dom.ecue.libelleEcue}"></h:outputLabel>
+				</p:column>
+				
+				
+				
+				<p:column headerText="Code Evaluation" style="width:25%">
 					<h:outputLabel value="#{dom.codeEvaluation}"></h:outputLabel>
 				</p:column>
 				
 				<p:column headerText="Libellé Evaluation">
 					<h:outputLabel value="#{dom.libeleEvaluation}"></h:outputLabel>
-				</p:column>
-				<p:column headerText="ECUE">
-					<h:outputLabel value="#{dom.ecue.libelleEcue}"></h:outputLabel>
 				</p:column>
 				
 			</p:dataTable>
@@ -47,7 +50,7 @@
 			<td>
 	
 	<fieldset>
-	<legend>Informations complémentaires</legend>
+	<legend>Informations de la réclamation</legend>
 		
 	<h:panelGrid columns="2" cellspacing="10">
 	<p:outputLabel value="Motif"></p:outputLabel> 
@@ -55,9 +58,12 @@
 	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
 	<f:selectItems value="#{reclamationController.listMotifeReclamation}" var="dom" itemLabel="#{dom.libelleMotifReclam}" itemValue="#{dom.codeMotifReclam}"></f:selectItems>	
 	</p:selectOneMenu>
-	<p:outputLabel value="Detail"></p:outputLabel>
-	<p:inputTextarea></p:inputTextarea>
+	<p:outputLabel value="Detail" ></p:outputLabel>
+	<p:inputTextarea style="width:500px" value="#{reclamationController.reclamation.detailReclam}"></p:inputTextarea>
+
 	</h:panelGrid>
+	
+	<p:fileUpload value="#{reclamationController.file}" mode="simple" skinSimple="true"/>
 	</fieldset>
 	</td>
 	</tr>
@@ -65,24 +71,29 @@
 	<br></br>
 	<p:toolbar >
 			<f:facet name="left">
-				<p:commandButton value="Enregistrer" action="#{reclamationController.enregistrer}" update="form" binding="#{reclamationController.btnEnregistrer}"></p:commandButton>
+				<h:commandButton value="Enregistrer" action="#{reclamationController.enregistrer}" update="form" ></h:commandButton>
 				<p:commandButton value="Annuler"  action="#{reclamationController.annuler}" update="form" binding="#{reclamationController.btnAnnuler}"></p:commandButton>
 				<p:commandButton value="Modifier"  action="#{reclamationController.modifier}" update="form" binding="#{reclamationController.btnModifier}"></p:commandButton>
 			</f:facet>
 		</p:toolbar>
 		<br></br>
-			<p:dataTable  var="dom" value="#{reclamationController.listReclamation}"  selectionMode="single" selection="#{Controller.selectedEtudiant}" rowKey="#{dom.matriculeEtude}">
+			<p:dataTable  var="dom" value="#{reclamationController.listReclamation}"  selectionMode="single" selection="#{reclamationController.selectedReclamation}" rowKey="#{dom.numeroReclam}">
  
  <f:facet name="header">
            RECLAMATION
         </f:facet>
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{reclamationController.selectionnerLigne}"></p:ajax>
    		
-   		<p:column headerText="Numero de la reclamation" style="width:10%">
+   		<p:column headerText="Numero de la reclamation" >
         <h:outputText value="#{dom.numeroReclam}"/>
         </p:column>
         
-        <p:column headerText="Motif" style="width:30%">
+        <p:column headerText="Matricule etudiant" style="width:25%">
+        <h:outputText value="#{dom.etudiant.matriculeEtude}">
+        </h:outputText>
+   		</p:column>
+        
+        <p:column headerText="Motif">
         <h:outputText value="#{dom.motifeReclamation.libelleMotifReclam}"/>
    		</p:column>
    		
@@ -90,7 +101,7 @@
         <h:outputText value="#{dom.evaluation.libeleEvaluation}"/>
    		</p:column>
    		
-   		<p:column headerText="ECUE" style="width:30%">
+   		<p:column headerText="ECUE">
         <h:outputText value="#{dom.evaluation.ecue.libelleEcue}">
         </h:outputText>
    		</p:column>

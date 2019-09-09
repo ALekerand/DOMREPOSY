@@ -12,12 +12,13 @@
 	<ui:composition template="/templates/templateAdmin.xhtml">
 			<ui:define name="body">
 				<h:form id="form">
-				
+		<fieldset>
+ 	<legend>Informations du Genre</legend>		
 <h:panelGrid columns="2" cellpadding="10">
-	<p:outputLabel for="input" value="Libellé"></p:outputLabel>
+	<p:outputLabel for="input" value="libéllé genre"></p:outputLabel>
 	<p:inputText id="input" value="#{sexeController.sexe.libelleSexe}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
 </h:panelGrid>
-
+</fieldset>
 <br/>
 <p:toolbar >
 			<f:facet name="left">

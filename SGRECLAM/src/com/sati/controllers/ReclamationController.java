@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.component.commandbutton.CommandButton;
+import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,7 @@ import com.sati.model.MotifeReclamation;
 import com.sati.model.Reclamation;
 import com.sati.model.Sexe;
 import com.sati.model.TypeEvaluation;
+import com.sati.requettes.RequeteAnneeScolaire;
 import com.sati.service.Iservice;
 
 /**
@@ -32,6 +34,9 @@ public class ReclamationController {
 	@Autowired
 	Iservice service;
 	
+	@Autowired
+	RequeteAnneeScolaire requeteAnneeScolaire;
+	
 	private Reclamation reclamation = new Reclamation();
 	private List<Reclamation> listReclamation = new ArrayList<Reclamation>();
 	private Reclamation selectedReclamation = new Reclamation();
@@ -40,6 +45,8 @@ public class ReclamationController {
 	private List<MotifeReclamation> listMotifeReclamation = new ArrayList<MotifeReclamation>();
 	private MotifeReclamation choisirMotifeReclamation = new MotifeReclamation(); 
 	private int codeMotifReclam;
+	private UploadedFile file;
+	
 
 
 
@@ -56,6 +63,7 @@ public class ReclamationController {
 	public void enregistrer() {
 		choisirMotifeReclamation = (MotifeReclamation) service.getObjectById(codeMotifReclam, "MotifeReclamation");	
 		reclamation.setEvaluation(selectedEvaluation);
+		reclamation.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire().get(0));
 		
 		service.addObject(reclamation);
 		info("Eneregistrement éffectué avec succès!");
@@ -103,6 +111,7 @@ public class ReclamationController {
 
 	public List<Reclamation> getListReclamation() {
 		listReclamation = service.getObjects("Reclamation");
+		System.out.println("tail de la liste:"+listReclamation.size());
 		return listReclamation;
 	}
 
@@ -162,7 +171,6 @@ public class ReclamationController {
 
 	public List<MotifeReclamation> getListMotifeReclamation() {
 		listMotifeReclamation = service.getObjects("MotifeReclamation");
-		System.out.println("tail de la liste:"+listMotifeReclamation.size());
 		return listMotifeReclamation;
 	}
 
@@ -187,5 +195,15 @@ public class ReclamationController {
 
 	public void setCodeMotifReclam(int codeMotifReclam) {
 		this.codeMotifReclam = codeMotifReclam;
+	}
+
+
+	public UploadedFile getFile() {
+		return file;
+	}
+
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
 	}
 }
