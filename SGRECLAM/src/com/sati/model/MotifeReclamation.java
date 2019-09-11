@@ -49,7 +49,7 @@ public class MotifeReclamation implements java.io.Serializable {
 		this.codeMotifReclam = codeMotifReclam;
 	}
 
-	@Column(name = "LIBELLE_MOTIF_RECLAM", length = 15)
+	@Column(name = "LIBELLE_MOTIF_RECLAM", length = 20)
 	public String getLibelleMotifReclam() {
 		return this.libelleMotifReclam;
 	}

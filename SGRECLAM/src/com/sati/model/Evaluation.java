@@ -87,7 +87,7 @@ public class Evaluation implements java.io.Serializable {
 		this.typeEvaluation = typeEvaluation;
 	}
 
-	@Column(name = "LIBELE_EVALUATION", length = 15)
+	@Column(name = "LIBELE_EVALUATION", length = 20)
 	public String getLibeleEvaluation() {
 		return this.libeleEvaluation;
 	}

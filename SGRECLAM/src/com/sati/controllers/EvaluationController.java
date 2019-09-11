@@ -113,6 +113,7 @@ public class EvaluationController {
 	btnEnregistrer.setDisabled(false);
 	setCodeEcue(0);
 	setCodeTypeEvalu(0);
+	setCodeSemestre("");
  }
 
  public void modifier() {
