@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/templateAdmin.xhtml">
+			<ui:define name="pageTitle">Title</ui:define>
+			<ui:define name="pageHeader">Header</ui:define>
+			<ui:define name="body">
+		<h:form id="form">
+		
+		<p:messages  showDetail="true" closable="true"></p:messages>
+		
+		<p:dataTable  var="dom" value="#{ConsultationReclamController.listReclamation}">
+		
+		<p:column headerText="Numero de la reclamation">
+        <h:outputText value="#{dom.numeroReclam}"/>
+        </p:column>
+        
+        <p:column headerText="Date reclamation">
+        <h:outputText value="#{dom.dateReclam}">
+        <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+        </h:outputText>
+   		</p:column>
+   		
+   		<p:column headerText="Libelle ECUE" >
+        <h:outputText value="#{dom.evaluation.ecue.libelleEcue}">
+        </h:outputText>
+   		</p:column>
+   		
+   		<p:column headerText="Motif Reclamation">
+        <h:outputText value="#{dom.motifeReclamation}">
+        </h:outputText>
+        </p:column>
+        
+        <p:column headerText="Date de Validation">
+        <h:outputText value="#{dom.dateEtatReclam}">
+        <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+        </h:outputText>
+   		</p:column>
+   		
+   		
+			<p:column headerText="Date de Traitement">
+        <h:outputText value="#{dom.dateRetourReclam}">
+        <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+        </h:outputText>
+   		</p:column>	
+		
+		<p:column headerText="Decision">
+        <h:outputText value="#{dom.retourReclamation.libelleRetourReclam}"/>
+   		</p:column>
+   		
+		</p:dataTable>
+		
+		
+				
+		
+		</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>
