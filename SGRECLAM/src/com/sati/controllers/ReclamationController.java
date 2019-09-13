@@ -23,6 +23,7 @@ import com.sati.model.Reclamation;
 import com.sati.model.Sexe;
 import com.sati.model.TypeEvaluation;
 import com.sati.requettes.RequeteAnneeScolaire;
+import com.sati.requettes.RequeteEcue;
 import com.sati.service.Iservice;
 
 /**
@@ -38,6 +39,8 @@ public class ReclamationController {
 	
 	@Autowired
 	RequeteAnneeScolaire requeteAnneeScolaire;
+	
+	
 	
 	private Reclamation reclamation = new Reclamation();
 	private List<Reclamation> listReclamation = new ArrayList<Reclamation>();
@@ -63,7 +66,7 @@ public class ReclamationController {
 	
 	
 	public void enregistrer() {
-		choisirMotifeReclamation = (MotifReclamation) service.getObjectById(codeMotifReclam, "MotifeReclamation");	
+		choisirMotifeReclamation = (MotifReclamation) service.getObjectById(codeMotifReclam, "MotifReclamation");	
 		reclamation.setEvaluation(selectedEvaluation);
 		reclamation.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire().get(0));
 		
@@ -172,7 +175,7 @@ public class ReclamationController {
 
 
 	public List<MotifReclamation> getListMotifeReclamation() {
-		listMotifeReclamation = service.getObjects("MotifeReclamation");
+		listMotifeReclamation = service.getObjects("MotifReclamation");
 		return listMotifeReclamation;
 	}
 

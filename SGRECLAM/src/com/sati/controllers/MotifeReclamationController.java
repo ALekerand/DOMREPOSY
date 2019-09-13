@@ -91,7 +91,7 @@ public class MotifeReclamationController {
 	}
 
 	public List<MotifReclamation> getListMotifeReclamation() {
-		listMotifeReclamation = service.getObjects("MotifeReclamation");
+		listMotifeReclamation = service.getObjects("MotifReclamation");
 		return listMotifeReclamation;
 	}
 

@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
 	<!-- 
 		Replace path to template, title, header and body
@@ -12,9 +13,87 @@
 			<ui:define name="pageTitle">Title</ui:define>
 			<ui:define name="pageHeader">Header</ui:define>
 			<ui:define name="body">
-				<form jsfc="h:form" id="Form">
+				<h:form  id="form">
 				
-				</form>
+				<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="Enregistrement de RECLAMATION">
+	
+	<br/>	 	
+	<table>
+		<tr>
+			
+			<td style="width:60%">
+			<p:dataTable var="dom" value="#{reclamationController.listEvaluation}" selection="#{reclamationController.selectedEvaluation}" rowKey="#{dom.codeEvaluation}"   >
+				<f:facet name="header">Liste des Evaluation </f:facet>
+				
+				<p:column selectionMode="single" style="width:5% ">
+				</p:column>
+				
+				<p:column headerText="ECUE"  style="width:25%">
+					<h:outputLabel value="#{dom.ecue.libelleEcue}"></h:outputLabel>
+				</p:column>
+				
+				
+				
+				<p:column headerText="Code Evaluation" style="width:25%">
+					<h:outputLabel value="#{dom.codeEvaluation}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Libellé Evaluation">
+					<h:outputLabel value="#{dom.libeleEvaluation}"></h:outputLabel>
+				</p:column>
+				
+			</p:dataTable>
+			</td>
+			
+			<td>
+	
+	<fieldset>
+	<legend>Informations de Type Acteur</legend>
+		
+	
+	<p:outputLabel for="input" value="Detail" ></p:outputLabel>
+	<p:inputTextarea id="input" style="width:500px" value="#{typeActeurController.libelleTypeAct}"></p:inputTextarea>
+
+	</h:panelGrid>
+	
+	<p:fileUpload value="#{reclamationController.file}" mode="simple" skinSimple="true"/>
+	</fieldset>
+	</td>
+	</tr>
+	</table>
+	<br></br>
+	<p:toolbar >
+			<f:facet name="left">
+				<p:commandButton value="Enregistrer" action="#{typeActeurController.enregistrer}" update="form" ></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{typeActeurController.annuler}" update="form" binding="#{typeActeurController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{typeActeurController.modifier}" update="form" binding="#{typeActeurController.btnModifier1}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+		<br></br>
+			<p:dataTable  var="dom" value="#{typeActeurController.listTypeActeur}"  selectionMode="single" selection="#{typeActeurController.selectedTypeActeur}" rowKey="#{dom.codeType}">
+ 
+ <f:facet name="header">
+           TYPE ACTEUR
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{typeActeurController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Code" >
+        <h:outputText value="#{dom.codeType}"/>
+        </p:column>
+        
+        <p:column headerText="Libelle" style="width:25%">
+        <h:outputText value="#{dom.libelleTypeAct}">
+        </h:outputText>
+   		</p:column>
+        
+  
+	</p:dataTable>
+		
+		</p:panel>	
+				
+				</h:form>
 			</ui:define>
 	</ui:composition>
 

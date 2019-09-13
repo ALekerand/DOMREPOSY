@@ -19,6 +19,7 @@ import com.sati.model.Ecue;
 import com.sati.model.Evaluation;
 import com.sati.model.Semestre;
 import com.sati.model.TypeEvaluation;
+import com.sati.requettes.RequeteEcue;
 import com.sati.service.Iservice;
 
 /**
@@ -32,6 +33,9 @@ public class EvaluationController {
 	@Autowired
 	Iservice service;
 	
+	@Autowired
+	RequeteEcue requeteEcue;
+	
 	private Evaluation evaluation = new Evaluation();
 	private List<Evaluation> listEvaluation = new ArrayList<Evaluation>();
 	private Evaluation selectedEvaluation = new Evaluation();
@@ -43,7 +47,7 @@ public class EvaluationController {
 	private Semestre selectedSemestre = new Semestre();
 	private String codeSemestre;
 	
-	private int codeEcue;
+	private String codeEcue;
 	private int codeTypeEvalu;
 	
 	
@@ -61,7 +65,9 @@ public class EvaluationController {
 	public void enregistrer() {
 		
 		//Recuperer les objets en base par leur clé primaire;
-		choisirEcue = (Ecue) service.getObjectById(codeEcue, "Ecue");
+	//	choisirEcue = (Ecue) service.getObjectById(codeEcue, "Ecue");
+		
+		choisirEcue = requeteEcue.recupererEcueparCode(codeEcue).get(0);
 		choixTypeEvaluation =  (TypeEvaluation) service.getObjectById(codeTypeEvalu, "TypeEvaluation");
 		System.out.println("objet selectionné:"+codeSemestre);
 		
@@ -113,7 +119,6 @@ public class EvaluationController {
 	evaluation.setLibeleEvaluation("");
 	btnModifier.setDisabled(true);
 	btnEnregistrer.setDisabled(false);
-	setCodeEcue(0);
 	setCodeTypeEvalu(0);
 	setCodeSemestre("");
  }
@@ -203,11 +208,11 @@ public class EvaluationController {
 	}
 
 
-	public int getCodeEcue() {
+	public String getCodeEcue() {
 		return codeEcue;
 	}
 
-	public void setCodeEcue(int codeEcue) {
+	public void setCodeEcue(String codeEcue) {
 		this.codeEcue = codeEcue;
 	}
 
