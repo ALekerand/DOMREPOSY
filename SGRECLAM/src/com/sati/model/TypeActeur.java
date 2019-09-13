@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 13 sept. 2019 17:10:54 by Hibernate Tools 5.2.12.Final
+// Generated 13 sept. 2019 18:13:52 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class TypeActeur implements java.io.Serializable {
 
 	private int codeType;
+	private String libelleTypeAct;
 	private Set<UserAuthentication> userAuthentications = new HashSet<UserAuthentication>(0);
 
 	public TypeActeur() {
@@ -30,8 +31,9 @@ public class TypeActeur implements java.io.Serializable {
 		this.codeType = codeType;
 	}
 
-	public TypeActeur(int codeType, Set<UserAuthentication> userAuthentications) {
+	public TypeActeur(int codeType, String libelleTypeAct, Set<UserAuthentication> userAuthentications) {
 		this.codeType = codeType;
+		this.libelleTypeAct = libelleTypeAct;
 		this.userAuthentications = userAuthentications;
 	}
 
@@ -45,6 +47,15 @@ public class TypeActeur implements java.io.Serializable {
 
 	public void setCodeType(int codeType) {
 		this.codeType = codeType;
+	}
+
+	@Column(name = "LIBELLE_TYPE_ACT", length = 25)
+	public String getLibelleTypeAct() {
+		return this.libelleTypeAct;
+	}
+
+	public void setLibelleTypeAct(String libelleTypeAct) {
+		this.libelleTypeAct = libelleTypeAct;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typeActeur")

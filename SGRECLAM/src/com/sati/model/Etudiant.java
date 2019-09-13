@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 9 sept. 2019 14:39:29 by Hibernate Tools 5.2.12.Final
+// Generated 13 sept. 2019 18:13:52 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -60,7 +60,7 @@ public class Etudiant implements java.io.Serializable {
 		this.matriculeEtude = matriculeEtude;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CODE_SEXE", nullable = false)
 	public Sexe getSexe() {
 		return this.sexe;
@@ -98,7 +98,7 @@ public class Etudiant implements java.io.Serializable {
 		this.dateNaissance = dateNaissance;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "etudiant")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "etudiant")
 	public Set<NiveauEtudiant> getNiveauEtudiants() {
 		return this.niveauEtudiants;
 	}

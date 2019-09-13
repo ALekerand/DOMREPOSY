@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 9 sept. 2019 14:39:29 by Hibernate Tools 5.2.12.Final
+// Generated 13 sept. 2019 18:13:52 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -49,7 +49,7 @@ public class TypeEvaluation implements java.io.Serializable {
 		this.codeTypeEvalu = codeTypeEvalu;
 	}
 
-	@Column(name = "LIBELLE_TYPE_EVALU", length = 10)
+	@Column(name = "LIBELLE_TYPE_EVALU", length = 20)
 	public String getLibelleTypeEvalu() {
 		return this.libelleTypeEvalu;
 	}
