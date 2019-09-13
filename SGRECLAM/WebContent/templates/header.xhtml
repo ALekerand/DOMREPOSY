@@ -17,12 +17,13 @@
 			<span> <a href="#">Profile</a> <a href="../logout.jsp" style="color: red">Se déconnecter</a> </span>
 
 		</div>
+		<br />
 			<div>
-			<p:outputLabel value="Utilisateur"></p:outputLabel>
-			<h:outputLabel value="#{initialCntroller.user.username}"></h:outputLabel>
+			<p:outputLabel value="Utilisateur: " style="color:white"></p:outputLabel>
+			<h:outputLabel value="#{initialController.user.nomUser} #{initialController.user.prenomsUser}" style="color:white"></h:outputLabel>
 			</div>
 		
-								</td> 
+		</td> 
 	</tr>
 	</table>
 	
