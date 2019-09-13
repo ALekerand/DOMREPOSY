@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 9 sept. 2019 14:39:29 by Hibernate Tools 5.2.12.Final
+// Generated 13 sept. 2019 17:01:23 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,18 +20,18 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "etat_reclamation", catalog = "sgreclam_bd")
 public class EtatReclamation implements java.io.Serializable {
 
-	private String codeEtatReclam;
+	private int codeEtatReclam;
 	private String libelleEtatReclam;
 	private Set<Reclamation> reclamations = new HashSet<Reclamation>(0);
 
 	public EtatReclamation() {
 	}
 
-	public EtatReclamation(String codeEtatReclam) {
+	public EtatReclamation(int codeEtatReclam) {
 		this.codeEtatReclam = codeEtatReclam;
 	}
 
-	public EtatReclamation(String codeEtatReclam, String libelleEtatReclam, Set<Reclamation> reclamations) {
+	public EtatReclamation(int codeEtatReclam, String libelleEtatReclam, Set<Reclamation> reclamations) {
 		this.codeEtatReclam = codeEtatReclam;
 		this.libelleEtatReclam = libelleEtatReclam;
 		this.reclamations = reclamations;
@@ -40,16 +40,16 @@ public class EtatReclamation implements java.io.Serializable {
 	@Id
 	@GenericGenerator(name="lekerand" , strategy="increment")
 	@GeneratedValue(generator="lekerand")
-	@Column(name = "CODE_ETAT_RECLAM", unique = true, nullable = false, length = 3)
-	public String getCodeEtatReclam() {
+	@Column(name = "CODE_ETAT_RECLAM", unique = true, nullable = false)
+	public int getCodeEtatReclam() {
 		return this.codeEtatReclam;
 	}
 
-	public void setCodeEtatReclam(String codeEtatReclam) {
+	public void setCodeEtatReclam(int codeEtatReclam) {
 		this.codeEtatReclam = codeEtatReclam;
 	}
 
-	@Column(name = "LIBELLE_ETAT_RECLAM", length = 10)
+	@Column(name = "LIBELLE_ETAT_RECLAM", length = 20)
 	public String getLibelleEtatReclam() {
 		return this.libelleEtatReclam;
 	}

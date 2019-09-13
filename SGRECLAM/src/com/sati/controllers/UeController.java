@@ -68,7 +68,7 @@ public class UeController {
 	    }
 	 
 	 public void annuler() {
-		 ue.setCodeUe(0);
+		 ue.setCodeUe("");
 		ue.setLibeleUe("");
 		btnModifier1.setDisabled(true);
 		btnEnregistrer1.setDisabled(false);

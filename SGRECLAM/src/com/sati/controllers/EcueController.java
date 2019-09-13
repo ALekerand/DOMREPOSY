@@ -79,7 +79,7 @@ public class EcueController {
 	    }
 	 
 	 public void annuler() {
-		 ecue.setCodeEcue(0);
+		 ecue.setCodeEcue("");
 		 ecue.setLibelleEcue(null);
 		btnModifier.setDisabled(true);
 		btnEnregistrer.setDisabled(false);

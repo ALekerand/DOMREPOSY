@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 9 sept. 2019 14:39:29 by Hibernate Tools 5.2.12.Final
+// Generated 13 sept. 2019 17:01:23 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,6 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class UserAuthentication implements java.io.Serializable {
 
 	private int userId;
+	private TypeActeur typeActeur;
 	private String username;
 	private String password;
 	private Boolean enabled;
@@ -29,19 +32,22 @@ public class UserAuthentication implements java.io.Serializable {
 	private String nomUser;
 	private String prenomsUser;
 	private String photoUser;
+	private String matriculeActeur;
 	private Set<UserAuthorization> userAuthorizations = new HashSet<UserAuthorization>(0);
 
 	public UserAuthentication() {
 	}
 
-	public UserAuthentication(int userId) {
+	public UserAuthentication(int userId, TypeActeur typeActeur) {
 		this.userId = userId;
+		this.typeActeur = typeActeur;
 	}
 
-	public UserAuthentication(int userId, String username, String password, Boolean enabled, String email,
-			Long telephoneUser, String nomUser, String prenomsUser, String photoUser,
-			Set<UserAuthorization> userAuthorizations) {
+	public UserAuthentication(int userId, TypeActeur typeActeur, String username, String password, Boolean enabled,
+			String email, Long telephoneUser, String nomUser, String prenomsUser, String photoUser,
+			String matriculeActeur, Set<UserAuthorization> userAuthorizations) {
 		this.userId = userId;
+		this.typeActeur = typeActeur;
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
@@ -50,6 +56,7 @@ public class UserAuthentication implements java.io.Serializable {
 		this.nomUser = nomUser;
 		this.prenomsUser = prenomsUser;
 		this.photoUser = photoUser;
+		this.matriculeActeur = matriculeActeur;
 		this.userAuthorizations = userAuthorizations;
 	}
 
@@ -63,6 +70,16 @@ public class UserAuthentication implements java.io.Serializable {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CODE_TYPE", nullable = false)
+	public TypeActeur getTypeActeur() {
+		return this.typeActeur;
+	}
+
+	public void setTypeActeur(TypeActeur typeActeur) {
+		this.typeActeur = typeActeur;
 	}
 
 	@Column(name = "USERNAME", length = 15)
@@ -135,6 +152,15 @@ public class UserAuthentication implements java.io.Serializable {
 
 	public void setPhotoUser(String photoUser) {
 		this.photoUser = photoUser;
+	}
+
+	@Column(name = "MATRICULE_ACTEUR", length = 15)
+	public String getMatriculeActeur() {
+		return this.matriculeActeur;
+	}
+
+	public void setMatriculeActeur(String matriculeActeur) {
+		this.matriculeActeur = matriculeActeur;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userAuthentication")

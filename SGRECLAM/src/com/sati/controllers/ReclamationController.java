@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 import com.sati.model.Ecue;
 import com.sati.model.Evaluation;
-import com.sati.model.MotifeReclamation;
+import com.sati.model.MotifReclamation;
 import com.sati.model.Reclamation;
 import com.sati.model.Sexe;
 import com.sati.model.TypeEvaluation;
@@ -44,8 +44,8 @@ public class ReclamationController {
 	private Reclamation selectedReclamation = new Reclamation();
 	private List<Evaluation> listEvaluation = new ArrayList<Evaluation>();
 	private Evaluation selectedEvaluation = new Evaluation();
-	private List<MotifeReclamation> listMotifeReclamation = new ArrayList<MotifeReclamation>();
-	private MotifeReclamation choisirMotifeReclamation = new MotifeReclamation(); 
+	private List<MotifReclamation> listMotifeReclamation = new ArrayList<MotifReclamation>();
+	private MotifReclamation choisirMotifeReclamation = new MotifReclamation(); 
 	private int codeMotifReclam;
 	private UploadedFile file;
 	
@@ -63,7 +63,7 @@ public class ReclamationController {
 	
 	
 	public void enregistrer() {
-		choisirMotifeReclamation = (MotifeReclamation) service.getObjectById(codeMotifReclam, "MotifeReclamation");	
+		choisirMotifeReclamation = (MotifReclamation) service.getObjectById(codeMotifReclam, "MotifeReclamation");	
 		reclamation.setEvaluation(selectedEvaluation);
 		reclamation.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire().get(0));
 		
@@ -171,23 +171,23 @@ public class ReclamationController {
 	}
 
 
-	public List<MotifeReclamation> getListMotifeReclamation() {
+	public List<MotifReclamation> getListMotifeReclamation() {
 		listMotifeReclamation = service.getObjects("MotifeReclamation");
 		return listMotifeReclamation;
 	}
 
 
-	public void setListMotifeReclamation(List<MotifeReclamation> listMotifeReclamation) {
+	public void setListMotifeReclamation(List<MotifReclamation> listMotifeReclamation) {
 		this.listMotifeReclamation = listMotifeReclamation;
 	}
 
 
-	public MotifeReclamation getChoisirMotifeReclamation() {
+	public MotifReclamation getChoisirMotifeReclamation() {
 		return choisirMotifeReclamation;
 	}
 
 
-	public void setChoisirMotifeReclamation(MotifeReclamation choisirMotifeReclamation) {
+	public void setChoisirMotifeReclamation(MotifReclamation choisirMotifeReclamation) {
 		this.choisirMotifeReclamation = choisirMotifeReclamation;
 	}
 	public int getCodeMotifReclam() {

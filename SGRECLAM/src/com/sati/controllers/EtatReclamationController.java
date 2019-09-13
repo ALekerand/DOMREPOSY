@@ -65,7 +65,6 @@ public class EtatReclamationController {
     }
  
  public void annuler() {
-	 etatReclamation.setCodeEtatReclam(null);
 	 etatReclamation.setLibelleEtatReclam(null);
 	btnModifier.setDisabled(true);
 	btnEnregistrer.setDisabled(false);

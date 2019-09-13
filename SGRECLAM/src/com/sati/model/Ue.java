@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 9 sept. 2019 14:39:29 by Hibernate Tools 5.2.12.Final
+// Generated 13 sept. 2019 17:01:23 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,18 +17,18 @@ import javax.persistence.Table;
 @Table(name = "ue", catalog = "sgreclam_bd")
 public class Ue implements java.io.Serializable {
 
-	private int codeUe;
+	private String codeUe;
 	private String libeleUe;
 	private Set<Ecue> ecues = new HashSet<Ecue>(0);
 
 	public Ue() {
 	}
 
-	public Ue(int codeUe) {
+	public Ue(String codeUe) {
 		this.codeUe = codeUe;
 	}
 
-	public Ue(int codeUe, String libeleUe, Set<Ecue> ecues) {
+	public Ue(String codeUe, String libeleUe, Set<Ecue> ecues) {
 		this.codeUe = codeUe;
 		this.libeleUe = libeleUe;
 		this.ecues = ecues;
@@ -36,16 +36,16 @@ public class Ue implements java.io.Serializable {
 
 	@Id
 
-	@Column(name = "CODE_UE", unique = true, nullable = false)
-	public int getCodeUe() {
+	@Column(name = "CODE_UE", unique = true, nullable = false, length = 15)
+	public String getCodeUe() {
 		return this.codeUe;
 	}
 
-	public void setCodeUe(int codeUe) {
+	public void setCodeUe(String codeUe) {
 		this.codeUe = codeUe;
 	}
 
-	@Column(name = "LIBELE_UE", length = 20)
+	@Column(name = "LIBELE_UE", length = 50)
 	public String getLibeleUe() {
 		return this.libeleUe;
 	}

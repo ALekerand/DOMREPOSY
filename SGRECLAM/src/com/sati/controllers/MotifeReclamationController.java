@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.sati.model.MotifeReclamation;
+import com.sati.model.MotifReclamation;
 import com.sati.service.Iservice;
 
 /**
@@ -28,11 +28,11 @@ public class MotifeReclamationController {
 	@Autowired
 	Iservice service;
 	
-	private MotifeReclamation motifeReclamation = new MotifeReclamation();
+	private MotifReclamation motifeReclamation = new MotifReclamation();
 	
-	private List<MotifeReclamation>listMotifeReclamation = new ArrayList<MotifeReclamation>();
+	private List<MotifReclamation>listMotifeReclamation = new ArrayList<MotifReclamation>();
 	
-	private MotifeReclamation selectedMotifeReclamation = new MotifeReclamation();
+	private MotifReclamation selectedMotifeReclamation = new MotifReclamation();
 	
 	private CommandButton btnEnregistrer= new CommandButton();
 	private CommandButton btnAnnuler = new CommandButton();
@@ -82,28 +82,28 @@ public class MotifeReclamationController {
 	
 	
 	
-	public MotifeReclamation getMotifeReclamation() {
+	public MotifReclamation getMotifeReclamation() {
 		return motifeReclamation;
 	}
 
-	public void setMotifeReclamation(MotifeReclamation motifeReclamation) {
+	public void setMotifeReclamation(MotifReclamation motifeReclamation) {
 		this.motifeReclamation = motifeReclamation;
 	}
 
-	public List<MotifeReclamation> getListMotifeReclamation() {
+	public List<MotifReclamation> getListMotifeReclamation() {
 		listMotifeReclamation = service.getObjects("MotifeReclamation");
 		return listMotifeReclamation;
 	}
 
-	public void setListMotifeReclamation(List<MotifeReclamation> listMotifeReclamation) {
+	public void setListMotifeReclamation(List<MotifReclamation> listMotifeReclamation) {
 		this.listMotifeReclamation = listMotifeReclamation;
 	}
 
-	public MotifeReclamation getSelectedMotifeReclamation() {
+	public MotifReclamation getSelectedMotifeReclamation() {
 		return selectedMotifeReclamation;
 	}
 
-	public void setSelectedMotifeReclamation(MotifeReclamation selectedMotifeReclamation) {
+	public void setSelectedMotifeReclamation(MotifReclamation selectedMotifeReclamation) {
 		this.selectedMotifeReclamation = selectedMotifeReclamation;
 	}
 

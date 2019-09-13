@@ -18,20 +18,20 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "motife_reclamation", catalog = "sgreclam_bd")
-public class MotifeReclamation implements java.io.Serializable {
+public class MotifReclamation implements java.io.Serializable {
 
 	private int codeMotifReclam;
 	private String libelleMotifReclam;
 	private Set<Reclamation> reclamations = new HashSet<Reclamation>(0);
 
-	public MotifeReclamation() {
+	public MotifReclamation() {
 	}
 
-	public MotifeReclamation(int codeMotifReclam) {
+	public MotifReclamation(int codeMotifReclam) {
 		this.codeMotifReclam = codeMotifReclam;
 	}
 
-	public MotifeReclamation(int codeMotifReclam, String libelleMotifReclam, Set<Reclamation> reclamations) {
+	public MotifReclamation(int codeMotifReclam, String libelleMotifReclam, Set<Reclamation> reclamations) {
 		this.codeMotifReclam = codeMotifReclam;
 		this.libelleMotifReclam = libelleMotifReclam;
 		this.reclamations = reclamations;

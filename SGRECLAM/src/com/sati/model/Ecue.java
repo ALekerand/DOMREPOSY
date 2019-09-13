@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 9 sept. 2019 14:39:29 by Hibernate Tools 5.2.12.Final
+// Generated 13 sept. 2019 17:01:23 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "ecue", catalog = "sgreclam_bd")
 public class Ecue implements java.io.Serializable {
 
-	private int codeEcue;
+	private String codeEcue;
 	private Ue ue;
 	private String libelleEcue;
 	private Set<NiveauEcue> niveauEcues = new HashSet<NiveauEcue>(0);
@@ -29,12 +29,12 @@ public class Ecue implements java.io.Serializable {
 	public Ecue() {
 	}
 
-	public Ecue(int codeEcue, Ue ue) {
+	public Ecue(String codeEcue, Ue ue) {
 		this.codeEcue = codeEcue;
 		this.ue = ue;
 	}
 
-	public Ecue(int codeEcue, Ue ue, String libelleEcue, Set<NiveauEcue> niveauEcues, Set<Evaluation> evaluations,
+	public Ecue(String codeEcue, Ue ue, String libelleEcue, Set<NiveauEcue> niveauEcues, Set<Evaluation> evaluations,
 			Set<Enseigner> enseigners) {
 		this.codeEcue = codeEcue;
 		this.ue = ue;
@@ -46,12 +46,12 @@ public class Ecue implements java.io.Serializable {
 
 	@Id
 
-	@Column(name = "CODE_ECUE", unique = true, nullable = false)
-	public int getCodeEcue() {
+	@Column(name = "CODE_ECUE", unique = true, nullable = false, length = 15)
+	public String getCodeEcue() {
 		return this.codeEcue;
 	}
 
-	public void setCodeEcue(int codeEcue) {
+	public void setCodeEcue(String codeEcue) {
 		this.codeEcue = codeEcue;
 	}
 
@@ -65,7 +65,7 @@ public class Ecue implements java.io.Serializable {
 		this.ue = ue;
 	}
 
-	@Column(name = "LIBELLE_ECUE", length = 10)
+	@Column(name = "LIBELLE_ECUE", length = 50)
 	public String getLibelleEcue() {
 		return this.libelleEcue;
 	}
