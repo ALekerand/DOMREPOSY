@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.component.commandbutton.CommandButton;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.sati.model.TypeEvaluation;
@@ -22,6 +23,7 @@ import com.sati.service.Iservice;
  *
  */
 @Component
+@Scope("session")
 public class TypeEvaluationController {
 	@Autowired
 	Iservice service;

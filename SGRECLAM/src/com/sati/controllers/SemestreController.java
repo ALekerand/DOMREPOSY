@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.component.commandbutton.CommandButton;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.sati.model.Semestre;
@@ -21,7 +22,8 @@ import com.sati.service.Iservice;
  * @author MACHELI
  *
  */
-    @Component
+ @Component
+ @Scope("session")
 public class SemestreController {
 	@Autowired
 		Iservice service;

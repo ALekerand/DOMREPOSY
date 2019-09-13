@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<body>
+<h:body>
 <div style="background-color:#800080">
 
 <table > 
@@ -13,19 +13,20 @@
 	<td > <img src="../resource/images/logo_UVCI_tres_petit.png" style="margin-right: 50px; margin-left: 25px" /></td>
 	<td style="width:80%"><h1 align="center" style="color:#FFF;" >SYSTEME DE GESTION DES RECLAMATIONS DE NOTES</h1></td> 
 	<td ><div class="account-details" >
-									<span class="account-name">&nbsp;</span> 
-									<span
-										> <a
-										href="#">Profile</a>
-										| <a href="../logout.jsp"
-						                 style="color: red">Se déconnecter</a>
-									</span>
+			<span class="account-name">&nbsp;</span> 
+			<span> <a href="#">Profile</a> <a href="../logout.jsp" style="color: red">Se déconnecter</a> </span>
 
-								</div></td> 
+		</div>
+			<div>
+			<p:outputLabel value="Utilisateur"></p:outputLabel>
+			<h:outputLabel value="#{initialCntroller.user.username}"></h:outputLabel>
+			</div>
+		
+								</td> 
 	</tr>
 	</table>
 	
 	</div>
 
-</body>
+</h:body>
 </html>
