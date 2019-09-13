@@ -49,7 +49,6 @@ public class RequeteUtilisateur {
 	      String name = user.getUsername(); //get logged in username
 	      System.out.println("Retour de la requete:"+name);
 	      return name;
-	 
 	  }
 	 
 	 
