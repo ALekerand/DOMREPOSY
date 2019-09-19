@@ -33,13 +33,26 @@ public class Dao implements IDAO {
 
 	@Override
 	public Object getObjectById(String id, String objet) {
+	// TODO Auto-generated method stub
+	String query= "from" +" "+ objet + " "+ " where id =?";
+	  List liste = getSessionFactory().getCurrentSession().createQuery(query).setParameter(0,id).list();
+	  System.out.println("===========Taille liste requete"+liste.size());
+	  if (liste.size()==0){
+	   return null;}
+	return liste.get(0);
+}
+	
+	
+/*	public Object getObjectById(String id, String objet) {
 		// TODO Auto-generated method stub
 		String query= "from" +" "+ objet + " "+ " where id =?";
 		  List liste = getSessionFactory().getCurrentSession().createQuery(query).setParameter(0,id).list();
 		  if (liste.size()==0){
 		   return null;}
 		return liste.get(0);
-	}
+	}*/
+	
+	
 
 	@Override
 	public List<Object> getObjects(Object object) {

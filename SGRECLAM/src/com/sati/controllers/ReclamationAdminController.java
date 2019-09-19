@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.sati.model.AnneeScolaire;
 import com.sati.model.Ecue;
 import com.sati.model.Etudiant;
 import com.sati.model.Evaluation;
@@ -27,7 +26,6 @@ import com.sati.model.TypeEvaluation;
 import com.sati.model.UserAuthentication;
 import com.sati.requettes.RequeteAnneeScolaire;
 import com.sati.requettes.RequeteEcue;
-import com.sati.requettes.RequeteReclamation;
 import com.sati.requettes.RequeteUtilisateur;
 import com.sati.service.Iservice;
 
@@ -37,7 +35,7 @@ import com.sati.service.Iservice;
  */
 @Component
 @Scope("session")
-public class ReclamationController {
+public class ReclamationAdminController {
 	
 	@Autowired
 	Iservice service;
@@ -47,11 +45,6 @@ public class ReclamationController {
 	
 	@Autowired
 	RequeteUtilisateur requeteUtilisateur;
-	
-	@Autowired
-	RequeteReclamation requeteReclamation;
-	
-	
 	
 	private Reclamation reclamation = new Reclamation();
 	private List<Reclamation> listReclamation = new ArrayList<Reclamation>();
@@ -63,8 +56,10 @@ public class ReclamationController {
 	private int codeMotifReclam;
 	private UploadedFile file;
 	private Etudiant etudiant = new Etudiant();
-	private AnneeScolaire anneeScolaire = new AnneeScolaire();
+	private String matricule; 
 	
+
+
 
 	private CommandButton btnEnregistrer = new CommandButton();
 	private CommandButton btnAnnuler = new CommandButton();
@@ -72,34 +67,34 @@ public class ReclamationController {
 	
 	@PostConstruct
 	public void initialiser() {
-		//Recuperer l'étudiant connecté
-		recupererEtudiantConnecte();
-		
-		//Recuperer l'annee scolaire en cours
-		anneeScolaire = requeteAnneeScolaire.recupererDerniereAnneeScolaire();
-		
 		btnModifier.setDisabled(true);
 	}
 	
 	
-	public void recupererEtudiantConnecte() {
-		UserAuthentication utilisateur = (UserAuthentication) requeteUtilisateur.recuperUser().get(0);
-		etudiant = (Etudiant) service.getObjectById(utilisateur.getMatriculeActeur(), "Etudiant");
-
-		
+	public void rechercherEtudiant() {
+		etudiant = (Etudiant) service.getObjectById(matricule, "Etudiant");
 	}
+	
+	public void annulerRecherche() {
+		matricule="";
+		etudiant.setNomEtud("");
+		etudiant.setPrenomsEtude("");
+		etudiant.setDateNaissance(null);
+	}
+	
 	
 	public void enregistrer() {
 		//Recuperation du motis
 		choisirMotifeReclamation = (MotifReclamation) service.getObjectById(codeMotifReclam, "MotifReclamation");	
 		
-		
+		//Recuperer l'étudiand connecté afin de le faire migrer dans l'objet Reclamation
+				UserAuthentication utilisateur = (UserAuthentication) requeteUtilisateur.recuperUser().get(0);
 		
 		//Ajout des éléments migrants dans l'ojet reclamation avant d'aller en base de données
 		reclamation.setMotifReclamation(choisirMotifeReclamation);
-		reclamation.setEtudiant(etudiant);
+		reclamation.setEtudiant((Etudiant) service.getObjectById(utilisateur.getMatriculeActeur(), "Etudiant"));
 		reclamation.setEvaluation(selectedEvaluation);
-		reclamation.setAnneeScolaire(anneeScolaire);
+		reclamation.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire());
 		
 		
 		service.addObject(reclamation);
@@ -147,7 +142,8 @@ public class ReclamationController {
 	}
 
 	public List<Reclamation> getListReclamation() {
-		listReclamation = requeteReclamation.recupererReclamationbyEtudiant(etudiant.getMatriculeEtude(), anneeScolaire.getCodeAnneeScol());
+		listReclamation = service.getObjects("Reclamation");
+		System.out.println("tail de la liste:"+listReclamation.size());
 		return listReclamation;
 	}
 
@@ -241,5 +237,25 @@ public class ReclamationController {
 
 	public void setFile(UploadedFile file) {
 		this.file = file;
+	}
+
+
+	public Etudiant getEtudiant() {
+		return etudiant;
+	}
+
+
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
+	}
+
+
+	public String getMatricule() {
+		return matricule;
+	}
+
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
 	}
 }

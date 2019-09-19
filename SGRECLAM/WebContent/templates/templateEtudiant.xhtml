@@ -25,35 +25,13 @@
 <p:layoutUnit position="west" size="225" header="Menu" collapsible="true">
 
 	<h:form>
-		<p:panelMenu >
-			
-		
-		<p:submenu label="PARAMETRAGE">
-			<p:menuitem value="Année scolaire" outcome="/pagesAdmin/anneeScolaire.xhtml"/>
-			<p:menuitem value="Niveau"  outcome="/pagesAdmin/niveau.xhtml"/>
-			<p:menuitem value="Semestre" outcome="/pagesAdmin/semestre.xhtml" />
-			<p:menuitem value="Evaluation" outcome="/pagesAdmin/evaluation.xhtml" />
-			<p:menuitem value="Type évaluation" outcome="/pagesAdmin/type_evaluation.xhtml" />
-			<p:menuitem value="Motif réclamation" outcome="/pagesAdmin/motif_reclamation.xhtml"/>
-			<p:menuitem value="Etat réclamation" outcome="/pagesAdmin/etatReclamation.xhtml"/>
-			<p:menuitem value="Genre" outcome="/pagesAdmin/sexe.xhtml"/>
-		</p:submenu>
-		
-		<p:submenu label="UE et ECUE">
-			<p:menuitem value="Enregistrer  UE" outcome="/pagesAdmin/ue.xhtml"/>
-			<p:menuitem value="Enregistrer ECUE"  outcome="/pagesAdmin/ecue.xhtml"/>
-		</p:submenu>
-		
+		<p:panelMenu >	
 		<p:submenu label="RECLAMATION">
-			<p:menuitem value="Valider les réclamations" outcome="/pagesAdmin/reception_reclamation.xhtml" />
-			<p:menuitem value="Traiter les réclamations" outcome="/pagesAdmin/traitementReclamation.xhtml"/>
+			<p:menuitem value="Traiter les réclamations" outcome="/pagesEtudiant/reclamation_etudiant.xhtml"/>
+		<p:menuitem value="Retour de réclamation"/>
+			
 		</p:submenu>
 		
-		<p:submenu label="UTILISATEURS" >
-			<p:menuitem value="Enregistrer enseignant" outcome="/pagesAdmin/enseignant.xhtml"/>
-			<p:menuitem value="Enregistrer etudiant" outcome="/pagesAdmin/etudiant.xhtml"/>
-			<p:menuitem value="Créer profil"/>
-		</p:submenu>
 		
 		
 		</p:panelMenu>

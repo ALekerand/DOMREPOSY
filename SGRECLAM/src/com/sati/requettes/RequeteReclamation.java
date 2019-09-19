@@ -8,19 +8,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sati.model.AnneeScolaire;
+import com.sati.model.Reclamation;
 
 @Transactional
 @Component
-public class RequeteAnneeScolaire {
+public class RequeteReclamation {
 	
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public AnneeScolaire recupererDerniereAnneeScolaire(){
-		
-		String query =	"SELECT `annee_scolaire`.* FROM `annee_scolaire` ORDER BY `annee_scolaire`.`CODE_ANNEE_SCOL` DESC LIMIT 0 , 1";
-		AnneeScolaire anneeScolaire = (AnneeScolaire) getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(AnneeScolaire.class).uniqueResult();
-		return anneeScolaire;
+	public List<Reclamation> recupererReclamationbyEtudiant(String matriculeEtudiant, int codeAnnee){
+	String query = "SELECT `reclamation`.*, `reclamation`.`CODE_ANNEE_SCOL` FROM `reclamation` WHERE ((`reclamation`.`MATRICULE_ETUDE` ='"+matriculeEtudiant+"') AND (`reclamation`.`CODE_ANNEE_SCOL` ='"+codeAnnee+"'))";
+		List liste = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Reclamation.class).list();
+		return liste;
 	}
 	
 	

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/templateEtudiant.xhtml">
+			<ui:define name="pageTitle">Title</ui:define>
+			<ui:define name="pageHeader">Header</ui:define>
+			<ui:define name="body">
+				<h:form id="form">
+				
+		<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="Enregistrement de RECLAMATION">
+	
+	<br/>	 	
+	<table>
+		<tr>
+			<td style="width:500px">
+			
+			<p:dataTable var="dom" value="#{reclamationAdminController.listEvaluation}" selection="#{reclamationAdminController.selectedEvaluation}" rowKey="#{dom.codeEvaluation}"   >
+				<f:facet name="header">Liste des Evaluation </f:facet>
+				
+				<p:column selectionMode="single" style="width:5% ">
+				</p:column>
+				
+				<p:column headerText="ECUE"  style="width:25%">
+					<h:outputLabel value="#{dom.ecue.libelleEcue}"></h:outputLabel>
+				</p:column>
+				
+				
+				
+				<p:column headerText="Code Evaluation" style="width:25%">
+					<h:outputLabel value="#{dom.codeEvaluation}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Libellé Evaluation">
+					<h:outputLabel value="#{dom.libeleEvaluation}"></h:outputLabel>
+				</p:column>
+				
+			</p:dataTable>
+			</td>
+			
+			<td>
+			
+			<fieldset>
+			<h:panelGrid columns="6" id="etudiant_grid">
+			<p:outputLabel  value="Maticule"/> 
+			<p:inputText value="#{reclamationAdminController.matricule}"></p:inputText>
+			<p:commandButton value="Rechercher" action="#{reclamationAdminController.rechercherEtudiant}" update="etudiant_grid"></p:commandButton>
+			<p:commandButton value="Annuler"  action="#{reclamationAdminController.annulerRecherche}" update="etudiant_grid" ></p:commandButton>
+			<p:outputLabel />
+			<p:outputLabel />
+			<p:outputLabel  value="Nom"/> 
+			<p:inputText value="#{reclamationAdminController.etudiant.nomEtud}" readonly="true"></p:inputText>
+			
+			
+			<p:outputLabel  value="Prenoms"/> 
+			<p:inputText value="#{reclamationAdminController.etudiant.prenomsEtude}" readonly="true"></p:inputText>
+			
+			<p:outputLabel  value="Maticule"/> 
+			<p:inputText value="#{reclamationAdminController.etudiant.dateNaissance}" readonly="true">
+				 <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+			</p:inputText>
+			</h:panelGrid>
+			</fieldset>
+	
+	<fieldset>
+	<legend>Informations de la réclamation</legend>
+		
+	<h:panelGrid columns="2" cellspacing="10">
+	<p:outputLabel value="Motif"></p:outputLabel> 
+	<p:selectOneMenu value="#{reclamationAdminController.codeMotifReclam}">
+	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
+	<f:selectItems value="#{reclamationAdminController.listMotifeReclamation}" var="dom" itemLabel="#{dom.libelleMotifReclam}" itemValue="#{dom.codeMotifReclam}"></f:selectItems>	
+	</p:selectOneMenu>
+	<p:outputLabel value="Detail" ></p:outputLabel>
+	<p:inputTextarea style="width:500px" value="#{reclamationAdminController.reclamation.detailReclam}"></p:inputTextarea>
+
+	</h:panelGrid>
+	
+	<p:fileUpload value="#{reclamationAdminController.file}" mode="simple" skinSimple="true"/>
+	</fieldset>
+	</td>
+	</tr>
+	</table>
+	<br></br>
+	<p:toolbar >
+			<f:facet name="left">
+				<p:commandButton value="Enregistrer" action="#{reclamationAdminController.enregistrer}" update="form" binding="#{reclamationAdminController.btnEnregistrer}" ></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{reclamationAdminController.annuler}" update="form" binding="#{reclamationAdminController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{reclamationAdminController.modifier}" update="form" binding="#{reclamationAdminController.btnModifier}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+		<br></br>
+			<p:dataTable  var="dom" value="#{reclamationAdminController.listReclamation}"  selectionMode="single" selection="#{reclamationAdminController.selectedReclamation}" rowKey="#{dom.numeroReclam}">
+ 
+ <f:facet name="header">
+           RECLAMATION
+        </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{reclamationAdminController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Numero de la reclamation" >
+        <h:outputText value="#{dom.numeroReclam}"/>
+        </p:column>
+        
+        <p:column headerText="Matricule etudiant" style="width:25%">
+        <h:outputText value="#{dom.etudiant.matriculeEtude}">
+        </h:outputText>
+   		</p:column>
+        
+        <p:column headerText="Motif">
+        <h:outputText value="#{dom.motifReclamation.libelleMotifReclam}"/>
+   		</p:column>
+   		
+   		 <p:column headerText="Evaluation">
+        <h:outputText value="#{dom.evaluation.libeleEvaluation}"/>
+   		</p:column>
+   		
+   		<p:column headerText="ECUE">
+        <h:outputText value="#{dom.evaluation.ecue.libelleEcue}">
+        </h:outputText>
+   		</p:column>
+  
+	</p:dataTable>
+		
+		</p:panel>	
+	</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>

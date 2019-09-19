@@ -23,14 +23,14 @@
 	
 	
     <h:form id="frm" onsubmit="return initialize();">
-     <div style="position: absolute; width: 350px; height: 300px; top:0; bottom:0; left:0; right: 0; margin: auto;" align="center">
+     <div style="position: absolute; width: 400px; height: 300px; top:0; bottom:0; left:0; right: 0; margin: auto;" align="center">
      	<img src="resource/images/examen.jpg" style="margin:0px;" alt="lolo" align="center"/>
      	
      	
-     <h:panelGrid columns="5" cellspacing="10" style="top:50px; position:relative;" >
-      <h:link style="color:green" value="CLIQUEZ ICI"  outcome="/templates/templateAdmin.xhtml"  />
-
-      
+     <h:panelGrid columns="3" cellspacing="10" style="top:50px; position:relative;" align="center" >
+      <h:link style="color:red" value="Entrée étudiant"  outcome="/templates/templateEtudiant.xhtml" />
+      <h:link style="color:green" value="Entrée enseignant"  outcome="/templates/templateEnseignant.xhtml"  />
+      <h:link style="color:blue" value="Entrée administrateur"  outcome="/templates/templateAdmin.xhtml"  />
      </h:panelGrid>
      </div>
     

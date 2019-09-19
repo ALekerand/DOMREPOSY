@@ -9,7 +9,7 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/templateAdmin.xhtml">
+	<ui:composition template="/templates/templateEtudiant.xhtml">
 			<ui:define name="pageTitle">Title</ui:define>
 			<ui:define name="pageHeader">Header</ui:define>
 			<ui:define name="body">
@@ -71,7 +71,9 @@
 	<br></br>
 	<p:toolbar >
 			<f:facet name="left">
-				<p:commandButton value="Enregistrer" action="#{reclamationController.enregistrer}" update="form" ></p:commandButton>
+				<p:commandButton value="Enregistrer" action="#{reclamationController.enregistrer}" update="form" binding="#{reclamationController.btnEnregistrer}">
+					<p:confirm header="Confirmation" message="Confirmez-vous la validation?" icon="ui-icon-alert"/>
+				</p:commandButton>
 				<p:commandButton value="Annuler"  action="#{reclamationController.annuler}" update="form" binding="#{reclamationController.btnAnnuler}"></p:commandButton>
 				<p:commandButton value="Modifier"  action="#{reclamationController.modifier}" update="form" binding="#{reclamationController.btnModifier}"></p:commandButton>
 			</f:facet>
@@ -94,7 +96,7 @@
    		</p:column>
         
         <p:column headerText="Motif">
-        <h:outputText value="#{dom.motifeReclamation.libelleMotifReclam}"/>
+        <h:outputText value="#{dom.motifReclamation.libelleMotifReclam}"/>
    		</p:column>
    		
    		 <p:column headerText="Evaluation">
@@ -109,6 +111,15 @@
 	</p:dataTable>
 		
 		</p:panel>	
+		
+		
+		<!-- Boite de confirmation -->
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Oui" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Non" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
 	</h:form>
 			</ui:define>
 	</ui:composition>

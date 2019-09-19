@@ -40,7 +40,7 @@ public class Service implements Iservice {
 		@Override
 		public Object getObjectById(String id, String objet) {
 			// TODO Auto-generated method stub
-			return getObjectById(id, objet);
+			return getDAO().getObjectById(id, objet);
 		}
 
 		@Override
