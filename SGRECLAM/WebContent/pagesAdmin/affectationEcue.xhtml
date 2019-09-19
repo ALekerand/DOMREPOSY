@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/templateAdmin.xhtml">
+			<ui:define name="pageTitle">Title</ui:define>
+			<ui:define name="pageHeader">Header</ui:define>
+			<ui:define name="body">
+				<h:form id="form">
+				
+				<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="AFFECTATION DES ECUE">
+	<table>
+ 
+  <tr>
+    <td>
+   	 <p:dataTable value="#{enseignerController.listEnseignant}" var="dom">
+   	 
+   	 <f:facet name="header">LISTE DES ENSEIGNANTS</f:facet>
+   	  <p:column headerText="Nom et prénoms">
+   	  <p:outputLabel value="#{dom.nomEnsei} #{dom.prenomsEnsei}" />
+   	  
+   	  </p:column>
+   	  <p:column headerText="Genre">
+   	  <p:outputLabel value="#{dom.sexe.libelleSexe}" />
+   	  </p:column>
+   	 </p:dataTable>
+    </td>
+    <td>
+    <p:dataTable value="#{enseignerController.}" var="dom">
+   	 
+   	 <f:facet name="header">LISTE DES ECUE</f:facet>
+   	 
+   	  <p:column headerText="Code Ecue">
+   	  <p:outputLabel value="#{dom.nomEnsei} #{dom.prenomsEnsei}" />
+   	  </p:column>
+   	  
+   	  <p:column headerText="Libellé Ecue">
+   	  <p:outputLabel value="#{dom.sexe.libelleSexe}" />
+   	  </p:column>
+   	  
+   	  <p:column headerText="UE">
+   	  <p:outputLabel value="#{dom.sexe.libelleSexe}" />
+   	  </p:column>
+   	  
+   	 </p:dataTable>
+    </td>
+  </tr>
+</table>
+
+	
+		</p:panel>	
+				
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>

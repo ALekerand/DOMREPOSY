@@ -55,7 +55,7 @@ public class Enseignant implements java.io.Serializable {
 		this.matriculeEnsei = matriculeEnsei;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_SEXE", nullable = false)
 	public Sexe getSexe() {
 		return this.sexe;
