@@ -4,6 +4,7 @@
 package com.sati.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,16 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.sati.model.Ecue;
 import com.sati.model.Etudiant;
 import com.sati.model.Evaluation;
 import com.sati.model.MotifReclamation;
 import com.sati.model.Reclamation;
-import com.sati.model.Sexe;
-import com.sati.model.TypeEvaluation;
-import com.sati.model.UserAuthentication;
 import com.sati.requettes.RequeteAnneeScolaire;
-import com.sati.requettes.RequeteEcue;
 import com.sati.requettes.RequeteUtilisateur;
 import com.sati.service.Iservice;
 
@@ -86,20 +82,23 @@ public class ReclamationAdminController {
 	public void enregistrer() {
 		//Recuperation du motis
 		choisirMotifeReclamation = (MotifReclamation) service.getObjectById(codeMotifReclam, "MotifReclamation");	
-		
-		//Recuperer l'étudiand connecté afin de le faire migrer dans l'objet Reclamation
-				UserAuthentication utilisateur = (UserAuthentication) requeteUtilisateur.recuperUser().get(0);
-		
+				
 		//Ajout des éléments migrants dans l'ojet reclamation avant d'aller en base de données
+		reclamation.setEtudiant(etudiant);
 		reclamation.setMotifReclamation(choisirMotifeReclamation);
-		reclamation.setEtudiant((Etudiant) service.getObjectById(utilisateur.getMatriculeActeur(), "Etudiant"));
 		reclamation.setEvaluation(selectedEvaluation);
 		reclamation.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire());
+		reclamation.setDateReclam(new Date());
 		
-		
+		//Ebregistrement en BD
 		service.addObject(reclamation);
-		info("Eneregistrement éffectué avec succès!");
+		
+		//Vider les ogjets liés à la page
+		annulerRecherche();
 		annuler();
+		selectedEvaluation = null;
+		codeMotifReclam = 0;
+		info("Eneregistrement éffectué avec succès!");
 		
 	}
 	

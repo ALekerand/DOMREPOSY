@@ -61,6 +61,8 @@ public class EtudiantController {
 		//Enregistrement de etudiant
 		service.addObject(etudiant);
 		
+		//Enregistrer dans niveau Etudiant
+		
 		//Enregistrement de NiveauEtudiant
 		niveauEtudiant.setEtudiant(etudiant);
 		niveauEtudiant.setNiveau(choosedNiveau);

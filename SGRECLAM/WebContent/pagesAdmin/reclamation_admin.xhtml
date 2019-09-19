@@ -22,12 +22,12 @@
 	<br/>	 	
 	<table>
 		<tr>
-			<td style="width:500px">
+			<td style="width:500px" valign="top">
 			
-			<p:dataTable var="dom" value="#{reclamationAdminController.listEvaluation}" selection="#{reclamationAdminController.selectedEvaluation}" rowKey="#{dom.codeEvaluation}"   >
+			<p:dataTable var="dom" value="#{reclamationAdminController.listEvaluation}" selection="#{reclamationAdminController.selectedEvaluation}" rowKey="#{dom.codeEvaluation}" scrollable="true"  scrollHeight="150"  >
 				<f:facet name="header">Liste des Evaluation </f:facet>
 				
-				<p:column selectionMode="single" style="width:5% ">
+				<p:column selectionMode="single" style="width:10% ">
 				</p:column>
 				
 				<p:column headerText="ECUE"  style="width:25%">
@@ -50,6 +50,7 @@
 			<td>
 			
 			<fieldset>
+			<legend>Informations de la réclamation</legend>
 			<h:panelGrid columns="6" id="etudiant_grid">
 			<p:outputLabel  value="Maticule"/> 
 			<p:inputText value="#{reclamationAdminController.matricule}"></p:inputText>
@@ -71,10 +72,8 @@
 			</h:panelGrid>
 			</fieldset>
 	
-	<fieldset>
-	<legend>Informations de la réclamation</legend>
-		
-	<h:panelGrid columns="2" cellspacing="10">
+	<fieldset>	
+	<h:panelGrid columns="4" cellspacing="10">
 	<p:outputLabel value="Motif"></p:outputLabel> 
 	<p:selectOneMenu value="#{reclamationAdminController.codeMotifReclam}">
 	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
@@ -82,7 +81,6 @@
 	</p:selectOneMenu>
 	<p:outputLabel value="Detail" ></p:outputLabel>
 	<p:inputTextarea style="width:500px" value="#{reclamationAdminController.reclamation.detailReclam}"></p:inputTextarea>
-
 	</h:panelGrid>
 	
 	<p:fileUpload value="#{reclamationAdminController.file}" mode="simple" skinSimple="true"/>

@@ -55,7 +55,7 @@ public class Ecue implements java.io.Serializable {
 		this.codeEcue = codeEcue;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_UE", nullable = false)
 	public Ue getUe() {
 		return this.ue;

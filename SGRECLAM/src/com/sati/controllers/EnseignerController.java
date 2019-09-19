@@ -4,6 +4,7 @@
 package com.sati.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 import com.sati.model.Ecue;
 import com.sati.model.Enseignant;
 import com.sati.model.Enseigner;
+import com.sati.model.Niveau;
 import com.sati.model.NiveauEcue;
 import com.sati.requettes.RequeteAnneeScolaire;
 import com.sati.service.Iservice;
@@ -44,9 +46,9 @@ private List<Enseigner> listEnseigner = new ArrayList<Enseigner>();
 
 private Enseigner selectedEnseigner = new Enseigner();
 
-private List<NiveauEcue> listNiveauEcue = new ArrayList<NiveauEcue>();
+private List<Niveau> listNiveau = new ArrayList<Niveau>();
 
-private NiveauEcue choosedNiveauEcue = new NiveauEcue();
+private NiveauEcue choosedNiveau = new NiveauEcue();
 
 private List<Enseignant> listEnseignant  = new ArrayList<Enseignant>();
 
@@ -56,7 +58,7 @@ private Ecue choosedEcue = new Ecue();
 
 private Enseignant choosedEnseignant = new Enseignant();
 
-public int codeNiveauEcue ;
+private int codeNiveau ;
 
 private CommandButton btnValider = new CommandButton();
 private CommandButton btnAnnuler = new CommandButton();
@@ -69,13 +71,13 @@ public void initialiser() {
 }
 
 public void enregistrer() {
-	choosedNiveauEcue = (NiveauEcue) service.getObjectById(codeNiveauEcue,"NiveauEcue");	
+	choosedNiveau = (NiveauEcue) service.getObjectById(codeNiveau,"Niveau");	
 	
 	
 	enseigner.setEnseignant(choosedEnseignant);
 	enseigner.setEcue(choosedEcue);
 	enseigner.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire());
-	
+	enseigner.setDateEnseigner(new Date());
 	service.addObject(enseigner);
 	info("Eneregistrement éffectué avec succès!");
 	annuler();
@@ -100,7 +102,7 @@ public void error() {
 public void annuler() {
 	enseigner.setCodeEnseigner(0);
 	enseigner.setDateEnseigner(null);
-btnValider.setDisabled(true);
+    btnValider.setDisabled(true);
 }
 
 public void modifier() {
@@ -134,21 +136,16 @@ public void setSelectedEnseigner(Enseigner selectedEnseigner) {
 	this.selectedEnseigner = selectedEnseigner;
 }
 
-public List<NiveauEcue> getListNiveauEcue() {
-	return listNiveauEcue;
+public List<Niveau> getListNiveau() {
+	
+	listNiveau = service.getObjects("Niveau");
+	return listNiveau;
 }
 
-public void setListNiveauEcue(List<NiveauEcue> listNiveauEcue) {
-	this.listNiveauEcue = listNiveauEcue;
+public void setListNiveau(List<Niveau> listNiveau) {
+	this.listNiveau = listNiveau;
 }
 
-public NiveauEcue getChoosedNiveauEcue() {
-	return choosedNiveauEcue;
-}
-
-public void setChoosedNiveauEcue(NiveauEcue choosedNiveauEcue) {
-	this.choosedNiveauEcue = choosedNiveauEcue;
-}
 
 public List<Enseignant> getListEnseignant() {
 	
@@ -185,6 +182,7 @@ public void setBtnAnnuler(CommandButton btnAnnuler) {
 }
 
 public List<Ecue> getListEcue() {
+	listEcue = service.getObjects("Ecue");
 	return listEcue;
 }
 
@@ -198,6 +196,14 @@ public Ecue getChoosedEcue() {
 
 public void setChoosedEcue(Ecue choosedEcue) {
 	this.choosedEcue = choosedEcue;
+}
+
+public int getCodeNiveau() {
+	return codeNiveau;
+}
+
+public void setCodeNiveau(int codeNiveau) {
+	this.codeNiveau = codeNiveau;
 }
 
 

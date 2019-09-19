@@ -18,15 +18,53 @@
 				<p:messages  showDetail="true" closable="true"></p:messages>			
 				
 	<p:panel header="AFFECTATION DES ECUE">
+	
+	
+	
 	<table>
  
   <tr>
+  
     <td>
-   	 <p:dataTable value="#{enseignerController.listEnseignant}" var="dom">
+    <p:panelGrid columns="2">
+    
+    <p:outputLabel value="Niveau Ecue"></p:outputLabel>
+    <p:selectOneMenu value="#{enseignerController.codeNiveau}">
+    <f:selectItem  itemLabel="selectionnez" itemValue=""></f:selectItem>
+    <f:selectItems value="#{enseignerController.listNiveau}"  var="dom" itemLabel="#{dom.libeleNiveau}" itemValue="#{dom.codeNiveau}"></f:selectItems>
+    
+    </p:selectOneMenu>
+    </p:panelGrid>
+      	 <p:dataTable value="#{enseignerController.listEcue}" var="dom" selection="#{enseignerController.choosedEcue}" rowKey="#{dom.codeEcue}">
+   	 
+   	 <f:facet name="header">LISTE DES ECUE</f:facet>
+   	 <p:column selectionMode="single" style="width:10% ">
+				</p:column>
+   	 
+   	  <p:column headerText="Code Ecue">
+   	  <p:outputLabel value="#{dom.codeEcue}" />
+   	  </p:column>
+   	  
+   	  <p:column headerText="Libellé Ecue">
+   	  <p:outputLabel value="#{dom.libelleEcue}" />
+   	  </p:column>
+   	  
+   	     	  <p:column headerText="UE">
+   	  <p:outputLabel value="#{dom.ue.libeleUe}" />
+   	  </p:column>
+   	  
+   	 </p:dataTable>
+    </td>
+  
+    <td>
+   	 <p:dataTable value="#{enseignerController.listEnseignant}" var="dom" selection="#{enseignerController.choosedEnseignant}" rowKey="#{dom.matriculeEnsei}">
    	 
    	 <f:facet name="header">LISTE DES ENSEIGNANTS</f:facet>
+   	 <p:column selectionMode="single" style="width:10% ">
+				</p:column>
+   	 
    	  <p:column headerText="Nom et prénoms">
-   	  <p:outputLabel value="#{dom.nomEnsei} #{dom.prenomsEnsei}" />
+   	  <p:outputLabel value="#{dom.nomEnsei}" />
    	  
    	  </p:column>
    	  <p:column headerText="Genre">
@@ -34,27 +72,11 @@
    	  </p:column>
    	 </p:dataTable>
     </td>
-    <td>
-    <p:dataTable value="#{enseignerController.}" var="dom">
-   	 
-   	 <f:facet name="header">LISTE DES ECUE</f:facet>
-   	 
-   	  <p:column headerText="Code Ecue">
-   	  <p:outputLabel value="#{dom.nomEnsei} #{dom.prenomsEnsei}" />
-   	  </p:column>
-   	  
-   	  <p:column headerText="Libellé Ecue">
-   	  <p:outputLabel value="#{dom.sexe.libelleSexe}" />
-   	  </p:column>
-   	  
-   	  <p:column headerText="UE">
-   	  <p:outputLabel value="#{dom.sexe.libelleSexe}" />
-   	  </p:column>
-   	  
-   	 </p:dataTable>
-    </td>
+  
   </tr>
 </table>
+
+
 
 	
 		</p:panel>	
