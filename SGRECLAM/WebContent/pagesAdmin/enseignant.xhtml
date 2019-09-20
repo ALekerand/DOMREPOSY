@@ -25,19 +25,28 @@
 	<p:inputText value="#{enseignantController.enseignant.nomEnsei}"></p:inputText>
 	<p:outputLabel value="Prenoms"></p:outputLabel >
 	<p:inputText value="#{enseignantController.enseignant.prenomsEnsei}" style="width:250px"></p:inputText>
-	<p:outputLabel value="Sexe"></p:outputLabel>
-	<p:inputText value="#{enseignantController.enseignant.sexeEnsei}"></p:inputText>
 	</h:panelGrid>		
 	</fieldset>
 	
+	 <p:panelGrid columns="2">
+    
+    <p:outputLabel value="Genre"></p:outputLabel>
+    <p:selectOneMenu value="#{enseignantController.codeSexe}">
+    <f:selectItem  itemLabel="selectionnez" itemValue=""></f:selectItem>
+    <f:selectItems value="#{enseignantController.listSexe}"  var="dom" itemLabel="#{dom.libelleSexe}" itemValue="#{dom.codeSexe}"></f:selectItems>
+    
+    </p:selectOneMenu>
+    </p:panelGrid>
+	
 		<p:toolbar >
 			<f:facet name="left">
-			<p:commandButton value="Enregistrer" action="#{enseignantController.enregistrer}" update="form" ></p:commandButton>
+			<h:commandButton value="Enregistrer" action="#{enseignantController.enregistrer}" update="form" ></h:commandButton>
 				<p:commandButton value="Annuler"  action="#{enseignantController.annuler}" update="form" binding="#{enseignantController.btnAnnuler}"></p:commandButton>
 				<p:commandButton value="Modifier"  action="#{enseignantController.modifier}" update="form" binding="#{enseignantController.btnEnregistrer1}"></p:commandButton>
 			</f:facet>
 		</p:toolbar>
 	<br></br>
+	
 	
 	
  <p:dataTable  var="opf" value="#{enseignantController.listEnseignant}"  selectionMode="single" selection="#{enseignantController.selectedEnseignant}" rowKey="#{opf.matriculeEnsei}" scrollable="true" scrollHeight="250">
@@ -58,11 +67,10 @@
    		 <p:column headerText="Prénoms Enseignant ">
         <h:outputText value="#{opf.prenomsEnsei}"/>
    		</p:column>
-   		
-   		 <p:column headerText="Sexe Enseignant ">
-        <h:outputText value="#{opf.sexeEnsei}"/>
+		
+		 <p:column headerText="Genre">
+        <h:outputText value="#{opf.sexe.libelleSexe}"/>
    		</p:column>
-	
 	
 	</p:dataTable>
 	

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.sati.model.Ecue;
 import com.sati.model.Enseignant;
+import com.sati.model.Sexe;
 import com.sati.service.Iservice;
 
 /**
@@ -32,7 +33,11 @@ public class EnseignantController {
 			private Enseignant enseignant = new Enseignant();
 			private List<Enseignant>listEnseignant = new ArrayList<Enseignant>();
 			private Enseignant selectedEnseignant = new Enseignant();
-		
+			private List<Sexe> listSexe = new ArrayList<Sexe>();
+			private Sexe choosedSexe = new Sexe();
+			private int codeSexe;
+			
+			
 			private CommandButton btnEnregistrer1= new CommandButton();
 			private CommandButton btnAnnuler = new CommandButton();
 			private CommandButton btnModifier1 = new CommandButton();
@@ -44,6 +49,7 @@ public class EnseignantController {
 			}
 			
 			public void enregistrer() {
+				enseignant.setSexe(choosedSexe);
 				service.addObject(enseignant);
 				info("Eneregistrement éffectué avec succès!");
 				annuler();
@@ -122,6 +128,32 @@ public class EnseignantController {
 
 		public void setBtnModifier1(CommandButton btnModifier1) {
 			this.btnModifier1 = btnModifier1;
+		}
+
+		public List<Sexe> getListSexe() {
+			listSexe = service.getObjects("Sexe");
+			return listSexe;
+		}
+
+		public void setListSexe(List<Sexe> listSexe) {
+			
+			this.listSexe = listSexe;
+		}
+
+		public Sexe getChoosedSexe() {
+			return choosedSexe;
+		}
+
+		public void setChoosedSexe(Sexe choosedSexe) {
+			this.choosedSexe = choosedSexe;
+		}
+
+		public int getCodeSexe() {
+			return codeSexe;
+		}
+
+		public void setCodeSexe(int codeSexe) {
+			this.codeSexe = codeSexe;
 		}
 
 	

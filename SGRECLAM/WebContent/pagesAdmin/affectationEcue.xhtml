@@ -64,7 +64,7 @@
 				</p:column>
    	 
    	  <p:column headerText="Nom et prénoms">
-   	  <p:outputLabel value="#{dom.nomEnsei}" />
+   	  <p:outputLabel value="#{dom.nomEnsei}#{dom.prenomsEnsei}"/>
    	  
    	  </p:column>
    	  <p:column headerText="Genre">
@@ -76,8 +76,39 @@
   </tr>
 </table>
 
+   <br></br>
+   
+      <p:commandButton value="Enregistrer" action="#{enseignerController.enregistrer}" update="form" binding="#{enseignerController.btnValider}"></p:commandButton>
+	  <p:commandButton value="Annuler"  action="#{enseignerController.annuler}" update="form" binding="#{enseignerController.btnAnnuler}"></p:commandButton>
 
+    <br></br>
 
+	<p:dataTable value="#{enseignerController.listEnseigner}" var="dom" selectionMode="single" selection="#{enseignerController.selectedEnseigner}" rowKey="#{dom.codeEnseigner}">
+	
+	<p:ajax event="rowSelect" process="@this"  update="form" listener="#{enseignerController.selectionnerLigne}"></p:ajax>
+   	 
+   	 <f:facet name="header">LISTE DES ECUE ATTRIBUES</f:facet>
+   	 
+   	  <p:column headerText="Nom de l'ENSEIGNANT">
+   	  <p:outputLabel value="#{dom.enseignant.nomEnsei}" />
+   	  </p:column>
+   	  
+   	   <p:column headerText="Prenoms de l'ENSEIGNANT">
+   	  <p:outputLabel value="#{dom.enseignant.prenomsEnsei}" />
+   	  </p:column>
+   	  
+   	   <p:column headerText="ECUE">
+   	  <p:outputLabel value="#{dom.ecue.libelleEcue}" />
+   	  </p:column>
+   	  
+   	  <p:column headerText="UE">
+   	  <p:outputLabel value="#{dom.ecue.ue.libeleUe}" />
+   	  </p:column>
+   	  
+   	  <p:column headerText="Année Scolaire">
+   	  <p:outputLabel value="#{dom.anneeScolaire}" />
+   	  </p:column> 
+   	 </p:dataTable>
 	
 		</p:panel>	
 				

@@ -60,7 +60,7 @@ public class Etudiant implements java.io.Serializable {
 		this.matriculeEtude = matriculeEtude;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_SEXE", nullable = false)
 	public Sexe getSexe() {
 		return this.sexe;

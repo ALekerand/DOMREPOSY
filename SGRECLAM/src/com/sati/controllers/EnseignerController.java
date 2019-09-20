@@ -67,7 +67,7 @@ private CommandButton btnAnnuler = new CommandButton();
 @PostConstruct
 public void initialiser() {
 	
-	btnValider.setDisabled(true);
+	btnValider.setDisabled(false);
 }
 
 public void enregistrer() {
@@ -121,6 +121,7 @@ public void setEnseigner(Enseigner enseigner) {
 }
 
 public List<Enseigner> getListEnseigner() {
+	listEnseigner = service.getObjects("Enseigner");
 	return listEnseigner;
 }
 
