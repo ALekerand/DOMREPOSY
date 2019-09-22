@@ -63,10 +63,14 @@
    	 <p:column selectionMode="single" style="width:10% ">
 				</p:column>
    	 
-   	  <p:column headerText="Nom et prénoms">
-   	  <p:outputLabel value="#{dom.nomEnsei}#{dom.prenomsEnsei}"/>
-   	  
+   	  <p:column headerText="Nom">
+   	  <p:outputLabel value="#{dom.nomEnsei}"/>
    	  </p:column>
+   	  
+   	  <p:column headerText="prénoms">
+   	  <p:outputLabel value="#{dom.prenomsEnsei}"/>
+   	  </p:column>
+   	  
    	  <p:column headerText="Genre">
    	  <p:outputLabel value="#{dom.sexe.libelleSexe}" />
    	  </p:column>
@@ -76,7 +80,7 @@
   </tr>
 </table>
 
-   <br></br>
+   <br></br>                     
    
       <p:commandButton value="Enregistrer" action="#{enseignerController.enregistrer}" update="form" binding="#{enseignerController.btnValider}"></p:commandButton>
 	  <p:commandButton value="Annuler"  action="#{enseignerController.annuler}" update="form" binding="#{enseignerController.btnAnnuler}"></p:commandButton>
@@ -106,7 +110,7 @@
    	  </p:column>
    	  
    	  <p:column headerText="Année Scolaire">
-   	  <p:outputLabel value="#{dom.anneeScolaire}" />
+   	  <p:outputLabel value="#{dom.anneeScolaire.libelleAnneeScol}" />
    	  </p:column> 
    	 </p:dataTable>
 	

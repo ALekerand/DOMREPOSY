@@ -49,6 +49,7 @@ public class EnseignantController {
 			}
 			
 			public void enregistrer() {
+				choosedSexe = (Sexe) service.getObjectById(codeSexe, "Sexe");
 				enseignant.setSexe(choosedSexe);
 				service.addObject(enseignant);
 				info("Eneregistrement éffectué avec succès!");

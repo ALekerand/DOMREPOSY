@@ -48,7 +48,7 @@ private Enseigner selectedEnseigner = new Enseigner();
 
 private List<Niveau> listNiveau = new ArrayList<Niveau>();
 
-private NiveauEcue choosedNiveau = new NiveauEcue();
+private Niveau choosedNiveau = new Niveau();
 
 private List<Enseignant> listEnseignant  = new ArrayList<Enseignant>();
 
@@ -71,7 +71,7 @@ public void initialiser() {
 }
 
 public void enregistrer() {
-	choosedNiveau = (NiveauEcue) service.getObjectById(codeNiveau,"Niveau");	
+	choosedNiveau = (Niveau) service.getObjectById(codeNiveau,"Niveau");	
 	
 	
 	enseigner.setEnseignant(choosedEnseignant);
