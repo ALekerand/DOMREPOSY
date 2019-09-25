@@ -16,6 +16,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.sati.model.Ecue;
+import com.sati.model.Niveau;
+import com.sati.model.NiveauEcue;
+import com.sati.model.NiveauEtudiant;
 import com.sati.model.Ue;
 import com.sati.service.Iservice;
 
@@ -38,8 +41,11 @@ public class EcueController {
 		private Ecue selectedEcue = new Ecue();
 		private List<Ue> listUe = new ArrayList<Ue>();
 		private Ue selectedUe = new Ue();
-		
-		
+		private List<Niveau> listNiveau = new ArrayList<Niveau>();
+		private Niveau selectedNiveau = new Niveau();
+		private List<NiveauEcue> listNiveauEcue = new ArrayList<NiveauEcue>();
+		private NiveauEcue choosedNiveauEcue = new NiveauEcue();
+		private int codeNiveau;
 		
 		private CommandButton btnEnregistrer= new CommandButton();
 		private CommandButton btnAnnuler = new CommandButton();
@@ -52,10 +58,14 @@ public class EcueController {
 		}
 		
 		public void enregistrer() {
+			choosedNiveauEcue.setEcue(ecue);
+			choosedNiveauEcue.setNiveau(niveau);
+			
 			//Completer l'objet avec ue qui migre
 			ecue.setUe(selectedUe);
 			
 			//envoie en base de donnée
+			service.addObject(niveau);
 			service.addObject(ecue);
 			info("Eneregistrement éffectué avec succès!");
 			annuler();
@@ -156,5 +166,49 @@ public class EcueController {
 		public void setSelectedUe(Ue selectedUe) {
 			this.selectedUe = selectedUe;
 		}
+
+		public List<NiveauEcue> getListNiveauEcue() {
+			listNiveauEcue = service.getObjects("NiveauEcue");
+			return listNiveauEcue;
+		}
+
+		public void setListNiveauEcue(List<NiveauEcue> listNiveauEcue) {
+			this.listNiveauEcue = listNiveauEcue;
+		}
+
+		public NiveauEcue getChoosedNiveauEcue() {
+			return choosedNiveauEcue;
+		}
+
+		public void setChoosedNiveauEcue(NiveauEcue choosedNiveauEcue) {
+			this.choosedNiveauEcue = choosedNiveauEcue;
+		}
+
+		public List<Niveau> getListNiveau() {
+			listNiveau = service.getObjects("Niveau");
+			return listNiveau;
+		}
+
+		public void setListNiveau(List<Niveau> listNiveau) {
+			this.listNiveau = listNiveau;
+		}
+
+		public Niveau getSelectedNiveau() {
+			return selectedNiveau;
+		}
+
+		public void setSelectedNiveau(Niveau selectedNiveau) {
+			this.selectedNiveau = selectedNiveau;
+		}
+
+		public int getCodeNiveau() {
+			return codeNiveau;
+		}
+
+		public void setCodeNiveau(int codeNiveau) {
+			this.codeNiveau = codeNiveau;
+		}
+
+
 
 }
