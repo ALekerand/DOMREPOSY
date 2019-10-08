@@ -30,15 +30,17 @@
 	
 	<p:outputLabel for="inputlibecue" value="Libellé ECUE"></p:outputLabel>
 	<p:inputText id="inputlibecue" value="#{ecueController.ecue.libelleEcue}" required="true" requiredMessage="Veuillez resseigner l'ecue SVP"></p:inputText>	
-	</h:panelGrid>
-	</fieldset>
 	
-	
-	<p:outputLabel value="Niveau"></p:outputLabel> 
+		<p:outputLabel value="Niveau"></p:outputLabel> 
 	<p:selectOneMenu value="#{ecueController.codeNiveau}">
 	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
 	<f:selectItems value="#{ecueController.listNiveau}" var="dom" itemLabel="#{dom.libeleNiveau}" itemValue="#{dom.codeNiveau}"></f:selectItems>	
 	</p:selectOneMenu>
+	</h:panelGrid>
+	</fieldset>
+	
+	
+
 	
 	
 			</td>

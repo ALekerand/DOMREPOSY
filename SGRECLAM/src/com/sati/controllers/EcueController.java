@@ -44,9 +44,9 @@ public class EcueController {
 		private List<Niveau> listNiveau = new ArrayList<Niveau>();
 		private Niveau selectedNiveau = new Niveau();
 		private List<NiveauEcue> listNiveauEcue = new ArrayList<NiveauEcue>();
-		private NiveauEcue choosedNiveauEcue = new NiveauEcue();
+		private Niveau choosedNiveau = new Niveau();
 		private int codeNiveau;
-		
+		private NiveauEcue niveauEcue = new NiveauEcue();		
 		private CommandButton btnEnregistrer= new CommandButton();
 		private CommandButton btnAnnuler = new CommandButton();
 		private CommandButton btnModifier = new CommandButton();
@@ -58,16 +58,27 @@ public class EcueController {
 		}
 		
 		public void enregistrer() {
-			choosedNiveauEcue.setEcue(ecue);
-			choosedNiveauEcue.setNiveau(niveau);
+			//choosedNiveauEcue.setEcue(ecue);
+		//	choosedNiveauEcue.setNiveau(niveau);
 			
 			//Completer l'objet avec ue qui migre
 			ecue.setUe(selectedUe);
 			
 			//envoie en base de donnée
-			service.addObject(niveau);
 			service.addObject(ecue);
+			
+			
+			
+			//ENREGISTREMENT DE niveauEcue
+			choosedNiveau = (Niveau) service.getObjectById(codeNiveau, "Niveau");
+			niveauEcue.setNiveau(choosedNiveau);
+			niveauEcue.setEcue(ecue);
+			service.addObject(niveauEcue);
+			
 			info("Eneregistrement éffectué avec succès!");
+			
+			
+			
 			annuler();
 			
 		}
@@ -90,6 +101,8 @@ public class EcueController {
 	 
 	 public void annuler() {
 		 ecue.setCodeEcue("");
+		 setChoosedNiveau(null);
+		 setSelectedUe(null);
 		 ecue.setLibelleEcue(null);
 		btnModifier.setDisabled(true);
 		btnEnregistrer.setDisabled(false);
@@ -176,14 +189,7 @@ public class EcueController {
 			this.listNiveauEcue = listNiveauEcue;
 		}
 
-		public NiveauEcue getChoosedNiveauEcue() {
-			return choosedNiveauEcue;
-		}
-
-		public void setChoosedNiveauEcue(NiveauEcue choosedNiveauEcue) {
-			this.choosedNiveauEcue = choosedNiveauEcue;
-		}
-
+		
 		public List<Niveau> getListNiveau() {
 			listNiveau = service.getObjects("Niveau");
 			return listNiveau;
@@ -207,6 +213,14 @@ public class EcueController {
 
 		public void setCodeNiveau(int codeNiveau) {
 			this.codeNiveau = codeNiveau;
+		}
+
+		public Niveau getChoosedNiveau() {
+			return choosedNiveau;
+		}
+
+		public void setChoosedNiveau(Niveau choosedNiveau) {
+			this.choosedNiveau = choosedNiveau;
 		}
 
 
