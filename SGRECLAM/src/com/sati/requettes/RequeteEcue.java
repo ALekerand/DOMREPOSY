@@ -25,6 +25,13 @@ public class RequeteEcue {
 	}
 	
 	
+	public List<Ecue> recupererEcue(){
+		String query =	"SELECT `ecue`.* FROM `ecue`";
+			List liste = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Ecue.class).list();
+			return liste;
+		}
+	
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

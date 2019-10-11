@@ -15,12 +15,15 @@ import org.primefaces.component.commandbutton.CommandButton;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sati.model.AnneeScolaire;
 import com.sati.model.Ecue;
 import com.sati.model.Enseignant;
 import com.sati.model.Enseigner;
 import com.sati.model.Niveau;
 import com.sati.model.NiveauEcue;
 import com.sati.requettes.RequeteAnneeScolaire;
+import com.sati.requettes.RequeteEcue;
+import com.sati.requettes.RequetteEnseigner;
 import com.sati.service.Iservice;
 
 /**
@@ -38,6 +41,12 @@ public class EnseignerController {
 	
 	@Autowired
 	RequeteAnneeScolaire requeteAnneeScolaire;
+	
+	@Autowired
+	RequetteEnseigner requetteEnseigner;
+	
+	@Autowired
+	RequeteEcue requeteEcue;
 	
 
 private Enseigner enseigner = new Enseigner();
@@ -59,6 +68,7 @@ private Ecue choosedEcue = new Ecue();
 private Enseignant choosedEnseignant = new Enseignant();
 
 private int codeNiveau ;
+private AnneeScolaire anneeScolaire;
 
 private CommandButton btnValider = new CommandButton();
 private CommandButton btnAnnuler = new CommandButton();
@@ -68,6 +78,7 @@ private CommandButton btnAnnuler = new CommandButton();
 public void initialiser() {
 	
 	btnValider.setDisabled(false);
+	anneeScolaire = requeteAnneeScolaire.recupererDerniereAnneeScolaire();
 }
 
 public void enregistrer() {
@@ -76,7 +87,7 @@ public void enregistrer() {
 	
 	enseigner.setEnseignant(choosedEnseignant);
 	enseigner.setEcue(choosedEcue);
-	enseigner.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire());
+	enseigner.setAnneeScolaire(anneeScolaire);
 	enseigner.setDateEnseigner(new Date());
 	service.addObject(enseigner);
 	info("Eneregistrement éffectué avec succès!");
@@ -102,7 +113,6 @@ public void error() {
 public void annuler() {
 	enseigner.setCodeEnseigner(0);
 	enseigner.setDateEnseigner(null);
-    btnValider.setDisabled(true);
 }
 
 public void modifier() {
@@ -182,8 +192,20 @@ public void setBtnAnnuler(CommandButton btnAnnuler) {
 	this.btnAnnuler = btnAnnuler;
 }
 
+
 public List<Ecue> getListEcue() {
-	listEcue = service.getObjects("Ecue");
+
+	listEcue = requeteEcue.recupererEcue();
+	
+  List<Enseigner> listEnseigner = requetteEnseigner.RecupEnseignerByAnneeScol(anneeScolaire.getCodeAnneeScol());
+  List<Ecue> listEcueAffectee = new ArrayList<>();
+  
+  for (Enseigner varEnseigner : listEnseigner) {
+	  listEcueAffectee.add(varEnseigner.getEcue());
+}
+  
+  listEcue.removeAll(listEcueAffectee);
+  
 	return listEcue;
 }
 
