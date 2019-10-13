@@ -45,8 +45,6 @@ public class EnseignerController {
 	@Autowired
 	RequetteEnseigner requetteEnseigner;
 	
-	@Autowired
-	RequeteEcue requeteEcue;
 	
 
 private Enseigner enseigner = new Enseigner();
@@ -194,19 +192,30 @@ public void setBtnAnnuler(CommandButton btnAnnuler) {
 
 
 public List<Ecue> getListEcue() {
-
-	listEcue = requeteEcue.recupererEcue();
-	
+	 //Cargement de toute la liste des ECUE
+  listEcue = service.getObjects("Ecue");
+  	//Création d'une liste tempon pour recuperer les Ecue affectées
+  List<Ecue> listeTempon = new ArrayList<>();
+  	//Recuperer la lister des enseigner afin d'avoir les ecue concernées
   List<Enseigner> listEnseigner = requetteEnseigner.RecupEnseignerByAnneeScol(anneeScolaire.getCodeAnneeScol());
-  List<Ecue> listEcueAffectee = new ArrayList<>();
   
-  for (Enseigner varEnseigner : listEnseigner) {
-	  listEcueAffectee.add(varEnseigner.getEcue());
+
+  for (Ecue varEcue : listEcue) {
+	for (Enseigner varEnseig : listEnseigner) {
+			//Verifier si l'element dans la liste Ecue est le meme que que dans la liste Enseigner
+		if (varEcue.getCodeEcue().equals(varEnseig.getEcue().getCodeEcue())) {
+				//Si c'est le meme alors l'ajoute dans la liste tempon
+			listeTempon.add(varEcue);
+			break;
+			
+		}
+		
+	}
 }
+  	//Retirer la liste des objets dans la liste tempon de la grande liste des ECUEs afin de les aficher 
+  listEcue.removeAll(listeTempon);
   
-  listEcue.removeAll(listEcueAffectee);
-  
-	return listEcue;
+	return listEcue ;
 }
 
 public void setListEcue(List<Ecue> listEcue) {
