@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.xml.validation.TypeInfoProvider;
 
 import org.primefaces.component.commandbutton.CommandButton;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ import org.springframework.stereotype.Component;
 import com.sati.model.Ecue;
 import com.sati.model.Enseignant;
 import com.sati.model.Sexe;
+import com.sati.model.TypeActeur;
+import com.sati.model.UserAuthentication;
+import com.sati.model.UserAuthorization;
+import com.sati.requettes.RequeteEvaluation;
+import com.sati.requettes.RequeteReclamation;
 import com.sati.service.Iservice;
 
 /**
@@ -36,22 +42,39 @@ public class EnseignantController {
 			private List<Sexe> listSexe = new ArrayList<Sexe>();
 			private Sexe choosedSexe = new Sexe();
 			private int codeSexe;
-			
+			private UserAuthentication userAuthentication = new UserAuthentication();
+			private UserAuthorization userAuthorization = new UserAuthorization();
 			
 			private CommandButton btnEnregistrer1= new CommandButton();
 			private CommandButton btnAnnuler = new CommandButton();
 			private CommandButton btnModifier1 = new CommandButton();
 			
-			
 			@PostConstruct
 			public void initialiser() {
 				btnModifier1.setDisabled(true);
+				
 			}
 			
 			public void enregistrer() {
 				choosedSexe = (Sexe) service.getObjectById(codeSexe, "Sexe");
 				enseignant.setSexe(choosedSexe);
 				service.addObject(enseignant);
+				
+				// Enregistrer dans UserAuthentification
+				userAuthentication .setNomUser(enseignant.getNomEnsei());
+				userAuthentication.setMatriculeActeur(enseignant.getMatriculeEnsei());
+				userAuthentication.setPrenomsUser(enseignant.getPrenomsEnsei());
+				userAuthentication.setTypeActeur((TypeActeur) service.getObjectById(2, "TypeActeur"));
+				userAuthentication.setEnabled(true);
+				service.addObject(userAuthentication);
+				
+				//Enregistrement de l'autorisation
+				
+				userAuthorization.setUserAuthentication(userAuthentication);
+				userAuthorization.setRole("ROLE_ENSEIGNANT");
+				service.addObject(userAuthorization);
+				
+				
 				info("Eneregistrement éffectué avec succès!");
 				annuler();
 				
@@ -156,6 +179,16 @@ public class EnseignantController {
 		public void setCodeSexe(int codeSexe) {
 			this.codeSexe = codeSexe;
 		}
+
+		public UserAuthentication getUserAuthentication() {
+			return userAuthentication;
+		}
+
+		public void setUserAuthentication(UserAuthentication userAuthentication) {
+			this.userAuthentication = userAuthentication;
+		}
+
+		
 
 	
 }

@@ -111,6 +111,7 @@ public void error() {
 public void annuler() {
 	enseigner.setCodeEnseigner(0);
 	enseigner.setDateEnseigner(null);
+	setChoosedEnseignant(null);
 }
 
 public void modifier() {
