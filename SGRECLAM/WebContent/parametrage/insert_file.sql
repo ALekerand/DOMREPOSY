@@ -1,5 +1,4 @@
 
-
 INSERT INTO `ue` (`CODE_UE`, `LIBELE_UE`) VALUES
 ('ANG1', 'Anglais'),
 ('ELECT1', 'ELECTRICITE'),
