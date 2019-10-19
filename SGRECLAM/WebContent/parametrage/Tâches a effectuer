@@ -1,0 +1,17 @@
+=================================TRAVAIL A FAIRE==============================
+
+	1- Apporter des corrections dans les controller ReclamationAdminController.java et ReclamationController.java
+		La table AnneScolaire n'étant plus liée à celle de la Reclamtion alors elle ne doit plus migrer dans les objets de type reclamation
+		Voir les repercutions pouvant eventuellement survenir  sur la page html
+		
+	2- Apporter des corrections sur le controller EvaluationController.java
+		Désormais, la table Année scolaire est liée à celle de Evaluation (voir MCD) alors l'objet anneeScolaire doit migrer dans celui de evaluation avant sa mise en base de donnée
+		NB: l'année scolaire est la derniière en cours donc injecter la requete RequeteAnneeScolaire.java pour la recuperer(il existe deja une méthode pour cela)
+		Corriger les impacts eventuels sur la page HTML
+		
+	3- Apporter des corrections sur le controller EcueController.java
+		Il faut faire migrer l'objet anneScolaire dans niveauEcue avant sa mise en base de donnée (ENREGISTREMENT DE NIVEAUECUE)
+		
+	
+	
+	Finis ces tâches et je t'indique la suite
