@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 13 sept. 2019 18:13:52 by Hibernate Tools 5.2.12.Final
+// Generated 19 oct. 2019 09:43:29 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -23,7 +23,6 @@ import org.hibernate.annotations.GenericGenerator;
 public class Reclamation implements java.io.Serializable {
 
 	private int numeroReclam;
-	private AnneeScolaire anneeScolaire;
 	private EtatReclamation etatReclamation;
 	private Etudiant etudiant;
 	private Evaluation evaluation;
@@ -38,21 +37,17 @@ public class Reclamation implements java.io.Serializable {
 	public Reclamation() {
 	}
 
-	public Reclamation(int numeroReclam, AnneeScolaire anneeScolaire, Etudiant etudiant, Evaluation evaluation,
-			MotifReclamation motifReclamation) {
+	public Reclamation(int numeroReclam, Etudiant etudiant, Evaluation evaluation, MotifReclamation motifReclamation) {
 		this.numeroReclam = numeroReclam;
-		this.anneeScolaire = anneeScolaire;
 		this.etudiant = etudiant;
 		this.evaluation = evaluation;
 		this.motifReclamation = motifReclamation;
 	}
 
-	public Reclamation(int numeroReclam, AnneeScolaire anneeScolaire, EtatReclamation etatReclamation,
-			Etudiant etudiant, Evaluation evaluation, MotifReclamation motifReclamation,
-			RetourReclamation retourReclamation, Date dateReclam, Date dateRetourReclam, Date dateEtatReclam,
-			String detailReclam, String fichierReclam) {
+	public Reclamation(int numeroReclam, EtatReclamation etatReclamation, Etudiant etudiant, Evaluation evaluation,
+			MotifReclamation motifReclamation, RetourReclamation retourReclamation, Date dateReclam,
+			Date dateRetourReclam, Date dateEtatReclam, String detailReclam, String fichierReclam) {
 		this.numeroReclam = numeroReclam;
-		this.anneeScolaire = anneeScolaire;
 		this.etatReclamation = etatReclamation;
 		this.etudiant = etudiant;
 		this.evaluation = evaluation;
@@ -77,17 +72,7 @@ public class Reclamation implements java.io.Serializable {
 		this.numeroReclam = numeroReclam;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "CODE_ANNEE_SCOL", nullable = false)
-	public AnneeScolaire getAnneeScolaire() {
-		return this.anneeScolaire;
-	}
-
-	public void setAnneeScolaire(AnneeScolaire anneeScolaire) {
-		this.anneeScolaire = anneeScolaire;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CODE_ETAT_RECLAM")
 	public EtatReclamation getEtatReclamation() {
 		return this.etatReclamation;
@@ -97,7 +82,7 @@ public class Reclamation implements java.io.Serializable {
 		this.etatReclamation = etatReclamation;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MATRICULE_ETUDE", nullable = false)
 	public Etudiant getEtudiant() {
 		return this.etudiant;
@@ -107,7 +92,7 @@ public class Reclamation implements java.io.Serializable {
 		this.etudiant = etudiant;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CODE_EVALUATION", nullable = false)
 	public Evaluation getEvaluation() {
 		return this.evaluation;
@@ -117,7 +102,7 @@ public class Reclamation implements java.io.Serializable {
 		this.evaluation = evaluation;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CODE_MOTIF_RECLAM", nullable = false)
 	public MotifReclamation getMotifReclamation() {
 		return this.motifReclamation;
@@ -127,7 +112,7 @@ public class Reclamation implements java.io.Serializable {
 		this.motifReclamation = motifReclamation;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CODE_RETOUR_RECLAM")
 	public RetourReclamation getRetourReclamation() {
 		return this.retourReclamation;

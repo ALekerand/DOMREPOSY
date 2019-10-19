@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 13 sept. 2019 18:13:52 by Hibernate Tools 5.2.12.Final
+// Generated 19 oct. 2019 09:43:29 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,9 +26,9 @@ public class AnneeScolaire implements java.io.Serializable {
 	private String libelleAnneeScol;
 	private Boolean etatAnnee;
 	private Set<NiveauEtudiant> niveauEtudiants = new HashSet<NiveauEtudiant>(0);
-	private Set<Reclamation> reclamations = new HashSet<Reclamation>(0);
-	private Set<Enseigner> enseigners = new HashSet<Enseigner>(0);
 	private Set<NiveauEcue> niveauEcues = new HashSet<NiveauEcue>(0);
+	private Set<Evaluation> evaluations = new HashSet<Evaluation>(0);
+	private Set<Enseigner> enseigners = new HashSet<Enseigner>(0);
 
 	public AnneeScolaire() {
 	}
@@ -39,17 +38,17 @@ public class AnneeScolaire implements java.io.Serializable {
 	}
 
 	public AnneeScolaire(int codeAnneeScol, Integer debutAnneeScol, Integer finAnneeScol, String libelleAnneeScol,
-			Boolean etatAnnee, Set<NiveauEtudiant> niveauEtudiants, Set<Reclamation> reclamations,
-			Set<Enseigner> enseigners, Set<NiveauEcue> niveauEcues) {
+			Boolean etatAnnee, Set<NiveauEtudiant> niveauEtudiants, Set<NiveauEcue> niveauEcues,
+			Set<Evaluation> evaluations, Set<Enseigner> enseigners) {
 		this.codeAnneeScol = codeAnneeScol;
 		this.debutAnneeScol = debutAnneeScol;
 		this.finAnneeScol = finAnneeScol;
 		this.libelleAnneeScol = libelleAnneeScol;
 		this.etatAnnee = etatAnnee;
 		this.niveauEtudiants = niveauEtudiants;
-		this.reclamations = reclamations;
-		this.enseigners = enseigners;
 		this.niveauEcues = niveauEcues;
+		this.evaluations = evaluations;
+		this.enseigners = enseigners;
 	}
 
 	@Id
@@ -110,12 +109,21 @@ public class AnneeScolaire implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "anneeScolaire")
-	public Set<Reclamation> getReclamations() {
-		return this.reclamations;
+	public Set<NiveauEcue> getNiveauEcues() {
+		return this.niveauEcues;
 	}
 
-	public void setReclamations(Set<Reclamation> reclamations) {
-		this.reclamations = reclamations;
+	public void setNiveauEcues(Set<NiveauEcue> niveauEcues) {
+		this.niveauEcues = niveauEcues;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "anneeScolaire")
+	public Set<Evaluation> getEvaluations() {
+		return this.evaluations;
+	}
+
+	public void setEvaluations(Set<Evaluation> evaluations) {
+		this.evaluations = evaluations;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "anneeScolaire")
@@ -125,15 +133,6 @@ public class AnneeScolaire implements java.io.Serializable {
 
 	public void setEnseigners(Set<Enseigner> enseigners) {
 		this.enseigners = enseigners;
-	}
-
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "anneeScolaires")
-	public Set<NiveauEcue> getNiveauEcues() {
-		return this.niveauEcues;
-	}
-
-	public void setNiveauEcues(Set<NiveauEcue> niveauEcues) {
-		this.niveauEcues = niveauEcues;
 	}
 
 }

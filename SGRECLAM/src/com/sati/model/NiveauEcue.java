@@ -1,16 +1,12 @@
 package com.sati.model;
-// Generated 13 sept. 2019 18:13:52 by Hibernate Tools 5.2.12.Final
+// Generated 19 oct. 2019 09:43:29 by Hibernate Tools 5.2.12.Final
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,27 +20,28 @@ import org.hibernate.annotations.GenericGenerator;
 public class NiveauEcue implements java.io.Serializable {
 
 	private int codeNiveauEcue;
+	private AnneeScolaire anneeScolaire;
 	private Ecue ecue;
 	private Niveau niveau;
 	private String libeleNiveauEcue;
-	private Set<AnneeScolaire> anneeScolaires = new HashSet<AnneeScolaire>(0);
 
 	public NiveauEcue() {
 	}
 
-	public NiveauEcue(int codeNiveauEcue, Ecue ecue, Niveau niveau) {
+	public NiveauEcue(int codeNiveauEcue, AnneeScolaire anneeScolaire, Ecue ecue, Niveau niveau) {
 		this.codeNiveauEcue = codeNiveauEcue;
+		this.anneeScolaire = anneeScolaire;
 		this.ecue = ecue;
 		this.niveau = niveau;
 	}
 
-	public NiveauEcue(int codeNiveauEcue, Ecue ecue, Niveau niveau, String libeleNiveauEcue,
-			Set<AnneeScolaire> anneeScolaires) {
+	public NiveauEcue(int codeNiveauEcue, AnneeScolaire anneeScolaire, Ecue ecue, Niveau niveau,
+			String libeleNiveauEcue) {
 		this.codeNiveauEcue = codeNiveauEcue;
+		this.anneeScolaire = anneeScolaire;
 		this.ecue = ecue;
 		this.niveau = niveau;
 		this.libeleNiveauEcue = libeleNiveauEcue;
-		this.anneeScolaires = anneeScolaires;
 	}
 
 	@Id
@@ -57,6 +54,16 @@ public class NiveauEcue implements java.io.Serializable {
 
 	public void setCodeNiveauEcue(int codeNiveauEcue) {
 		this.codeNiveauEcue = codeNiveauEcue;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CODE_ANNEE_SCOL", nullable = false)
+	public AnneeScolaire getAnneeScolaire() {
+		return this.anneeScolaire;
+	}
+
+	public void setAnneeScolaire(AnneeScolaire anneeScolaire) {
+		this.anneeScolaire = anneeScolaire;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -86,18 +93,6 @@ public class NiveauEcue implements java.io.Serializable {
 
 	public void setLibeleNiveauEcue(String libeleNiveauEcue) {
 		this.libeleNiveauEcue = libeleNiveauEcue;
-	}
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "association_19", catalog = "sgreclam_bd", joinColumns = {
-			@JoinColumn(name = "CODE_NIVEAU_ECUE", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "CODE_ANNEE_SCOL", nullable = false, updatable = false) })
-	public Set<AnneeScolaire> getAnneeScolaires() {
-		return this.anneeScolaires;
-	}
-
-	public void setAnneeScolaires(Set<AnneeScolaire> anneeScolaires) {
-		this.anneeScolaires = anneeScolaires;
 	}
 
 }
