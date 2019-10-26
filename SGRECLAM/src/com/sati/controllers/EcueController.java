@@ -82,9 +82,6 @@ public class EcueController {
 			service.addObject(niveauEcue);
 			
 			info("Eneregistrement éffectué avec succès!");
-			
-			
-			
 			annuler();
 			
 		}
