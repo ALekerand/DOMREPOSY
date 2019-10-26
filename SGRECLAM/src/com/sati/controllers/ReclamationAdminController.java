@@ -37,9 +37,6 @@ public class ReclamationAdminController {
 	Iservice service;
 	
 	@Autowired
-	RequeteAnneeScolaire requeteAnneeScolaire;
-	
-	@Autowired
 	RequeteUtilisateur requeteUtilisateur;
 	
 	private Reclamation reclamation = new Reclamation();
@@ -87,7 +84,6 @@ public class ReclamationAdminController {
 		reclamation.setEtudiant(etudiant);
 		reclamation.setMotifReclamation(choisirMotifeReclamation);
 		reclamation.setEvaluation(selectedEvaluation);
-		reclamation.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire());
 		reclamation.setDateReclam(new Date());
 		
 		//Ebregistrement en BD
