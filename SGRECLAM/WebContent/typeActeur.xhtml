@@ -9,7 +9,7 @@
 		Replace path to template, title, header and body
 		with actual data.
 	 -->
-	<ui:composition template="/templates/common.xhtml">
+	<ui:composition template="/templates/templateAdmin.xhtml">
 			<ui:define name="pageTitle">Title</ui:define>
 			<ui:define name="pageHeader">Header</ui:define>
 			<ui:define name="body">
@@ -46,18 +46,13 @@
 				
 			</p:dataTable>
 			</td>
-			
 			<td>
-	
 	<fieldset>
 	<legend>Informations de Type Acteur</legend>
 		
-	
 	<p:outputLabel for="input" value="Detail" ></p:outputLabel>
 	<p:inputTextarea id="input" style="width:500px" value="#{typeActeurController.libelleTypeAct}"></p:inputTextarea>
 
-	</h:panelGrid>
-	
 	<p:fileUpload value="#{reclamationController.file}" mode="simple" skinSimple="true"/>
 	</fieldset>
 	</td>
@@ -87,8 +82,6 @@
         <h:outputText value="#{dom.libelleTypeAct}">
         </h:outputText>
    		</p:column>
-        
-  
 	</p:dataTable>
 		
 		</p:panel>	
