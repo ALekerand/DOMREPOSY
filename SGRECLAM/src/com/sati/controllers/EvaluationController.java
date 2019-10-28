@@ -15,10 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.sati.model.AnneeScolaire;
 import com.sati.model.Ecue;
 import com.sati.model.Evaluation;
 import com.sati.model.Semestre;
 import com.sati.model.TypeEvaluation;
+import com.sati.requettes.RequeteAnneeScolaire;
 import com.sati.requettes.RequeteEcue;
 import com.sati.service.Iservice;
 
@@ -36,6 +38,9 @@ public class EvaluationController {
 	@Autowired
 	RequeteEcue requeteEcue;
 	
+	@Autowired
+	RequeteAnneeScolaire requeteAnneeScolaire;
+	
 	private Evaluation evaluation = new Evaluation();
 	private List<Evaluation> listEvaluation = new ArrayList<Evaluation>();
 	private Evaluation selectedEvaluation = new Evaluation();
@@ -46,6 +51,7 @@ public class EvaluationController {
 	private List<Semestre> listSemestre = new ArrayList<>();
 	private Semestre selectedSemestre = new Semestre();
 	private String codeSemestre;
+	private AnneeScolaire anneeScolaire;
 	
 	private String codeEcue;
 	private int codeTypeEvalu;
@@ -59,10 +65,13 @@ public class EvaluationController {
 	
 	@PostConstruct
 	public void initialiser() {
+		setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire());
 		btnModifier.setDisabled(true);
 	}
 	
 	public void enregistrer() {
+		
+		evaluation.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire());
 		
 		//Recuperer les objets en base par leur clé primaire;
 	//	choisirEcue = (Ecue) service.getObjectById(codeEcue, "Ecue");
@@ -255,6 +264,14 @@ public class EvaluationController {
 
 	public void setCodeSemestre(String codeSemestre) {
 		this.codeSemestre = codeSemestre;
+	}
+
+	public AnneeScolaire getAnneeScolaire() {
+		return anneeScolaire;
+	}
+
+	public void setAnneeScolaire(AnneeScolaire anneeScolaire) {
+		this.anneeScolaire = anneeScolaire;
 	}
 
 }

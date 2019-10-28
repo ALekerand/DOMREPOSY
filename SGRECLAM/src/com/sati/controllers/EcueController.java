@@ -15,11 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.sati.model.AnneeScolaire;
 import com.sati.model.Ecue;
 import com.sati.model.Niveau;
 import com.sati.model.NiveauEcue;
 import com.sati.model.NiveauEtudiant;
 import com.sati.model.Ue;
+import com.sati.requettes.RequeteAnneeScolaire;
 import com.sati.service.Iservice;
 
 /**
@@ -36,6 +38,9 @@ public class EcueController {
 	@Autowired
 		Iservice service;
 	
+	@Autowired
+	RequeteAnneeScolaire requeteAnneeScolaire;
+	
 		private Ecue ecue = new Ecue();
 		private List<Ecue>listEcue = new ArrayList<Ecue>();
 		private Ecue selectedEcue = new Ecue();
@@ -50,7 +55,7 @@ public class EcueController {
 		private CommandButton btnEnregistrer= new CommandButton();
 		private CommandButton btnAnnuler = new CommandButton();
 		private CommandButton btnModifier = new CommandButton();
-		
+		private AnneeScolaire anneeScolair;
 		
 		@PostConstruct
 		public void initialiser() {
@@ -73,12 +78,10 @@ public class EcueController {
 			choosedNiveau = (Niveau) service.getObjectById(codeNiveau, "Niveau");
 			niveauEcue.setNiveau(choosedNiveau);
 			niveauEcue.setEcue(ecue);
+			niveauEcue.setAnneeScolaire(requeteAnneeScolaire.recupererDerniereAnneeScolaire());
 			service.addObject(niveauEcue);
 			
 			info("Eneregistrement éffectué avec succès!");
-			
-			
-			
 			annuler();
 			
 		}
@@ -221,6 +224,14 @@ public class EcueController {
 
 		public void setChoosedNiveau(Niveau choosedNiveau) {
 			this.choosedNiveau = choosedNiveau;
+		}
+
+		public AnneeScolaire getAnneeScolair() {
+			return anneeScolair;
+		}
+
+		public void setAnneeScolair(AnneeScolaire anneeScolair) {
+			this.anneeScolair = anneeScolair;
 		}
 
 

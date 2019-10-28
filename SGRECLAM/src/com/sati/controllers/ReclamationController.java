@@ -42,8 +42,7 @@ public class ReclamationController {
 	@Autowired
 	Iservice service;
 	
-	@Autowired
-	RequeteAnneeScolaire requeteAnneeScolaire;
+	
 	
 	@Autowired
 	RequeteUtilisateur requeteUtilisateur;
@@ -75,8 +74,7 @@ public class ReclamationController {
 		//Recuperer l'étudiant connecté
 		recupererEtudiantConnecte();
 		
-		//Recuperer l'annee scolaire en cours
-		anneeScolaire = requeteAnneeScolaire.recupererDerniereAnneeScolaire();
+		
 		
 		btnModifier.setDisabled(true);
 	}
@@ -99,7 +97,7 @@ public class ReclamationController {
 		reclamation.setMotifReclamation(choisirMotifeReclamation);
 		reclamation.setEtudiant(etudiant);
 		reclamation.setEvaluation(selectedEvaluation);
-		reclamation.setAnneeScolaire(anneeScolaire);
+		
 		
 		
 		service.addObject(reclamation);

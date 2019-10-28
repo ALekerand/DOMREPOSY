@@ -86,7 +86,12 @@
         <p:column headerText="Semestre">
         <h:outputText value="#{opf.semestre.libelleSemestre}"/>
         </p:column>
-	</p:dataTable>	
+        
+        <p:column headerText="Année Scolaire">
+   	  <p:outputLabel value="#{opf.anneeScolaire.libelleAnneeScol}" />
+   	  </p:column> 
+   	 </p:dataTable>
+        	
 	
 	</p:panel>
 				</h:form>
