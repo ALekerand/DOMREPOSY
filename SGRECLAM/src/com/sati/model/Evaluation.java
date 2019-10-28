@@ -61,7 +61,7 @@ public class Evaluation implements java.io.Serializable {
 		this.codeEvaluation = codeEvaluation;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_ANNEE_SCOL", nullable = false)
 	public AnneeScolaire getAnneeScolaire() {
 		return this.anneeScolaire;
@@ -71,7 +71,7 @@ public class Evaluation implements java.io.Serializable {
 		this.anneeScolaire = anneeScolaire;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_ECUE", nullable = false)
 	public Ecue getEcue() {
 		return this.ecue;
@@ -81,7 +81,7 @@ public class Evaluation implements java.io.Serializable {
 		this.ecue = ecue;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_SEMESTRE", nullable = false)
 	public Semestre getSemestre() {
 		return this.semestre;
@@ -91,7 +91,7 @@ public class Evaluation implements java.io.Serializable {
 		this.semestre = semestre;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_TYPE_EVALU", nullable = false)
 	public TypeEvaluation getTypeEvaluation() {
 		return this.typeEvaluation;

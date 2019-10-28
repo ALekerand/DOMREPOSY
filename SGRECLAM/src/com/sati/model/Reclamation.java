@@ -72,7 +72,7 @@ public class Reclamation implements java.io.Serializable {
 		this.numeroReclam = numeroReclam;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_ETAT_RECLAM")
 	public EtatReclamation getEtatReclamation() {
 		return this.etatReclamation;
@@ -82,7 +82,7 @@ public class Reclamation implements java.io.Serializable {
 		this.etatReclamation = etatReclamation;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "MATRICULE_ETUDE", nullable = false)
 	public Etudiant getEtudiant() {
 		return this.etudiant;
@@ -92,7 +92,7 @@ public class Reclamation implements java.io.Serializable {
 		this.etudiant = etudiant;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_EVALUATION", nullable = false)
 	public Evaluation getEvaluation() {
 		return this.evaluation;
@@ -102,7 +102,7 @@ public class Reclamation implements java.io.Serializable {
 		this.evaluation = evaluation;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_MOTIF_RECLAM", nullable = false)
 	public MotifReclamation getMotifReclamation() {
 		return this.motifReclamation;
