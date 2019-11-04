@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/templateAdmin.xhtml">
+			<ui:define name="pageTitle">Title</ui:define>
+			<ui:define name="pageHeader">Header</ui:define>
+			<ui:define name="body">
+				<form  id="form">
+				
+				
+				<p:messages  showDetail="true" closable="true"></p:messages>			
+				
+	<p:panel header="Enregistrement de la liste des Evaluations">
+		<fieldset>
+ 	<legend>Evaluation</legend>
+	<h:panelGrid columns="4" >
+	<p:outputLabel value="Annee Scolaire"></p:outputLabel> 
+	<p:selectOneMenu value="#{listeEvaluationController.codeAnneeScol}">
+	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
+	<f:selectItems value="#{listeEvaluationController.listAnneeScolaire}" var="dom" itemLabel="#{dom.libelleAnneeScol}" itemValue="#{dom.codeAnneeScol}"></f:selectItems>	
+	</p:selectOneMenu>
+	
+	
+	<p:outputLabel value="Ecue"></p:outputLabel> 
+	<p:selectOneMenu value="#{listeEvaluationController.codeSemestre}">
+	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
+	<f:selectItems value="#{listeEvaluationController.listEcue}" var="dom" itemLabel="#{dom.libelleEcue}" itemValue="#{dom.codeEcue}"></f:selectItems>	
+	</p:selectOneMenu>
+	
+	</h:panelGrid>	
+			
+	</fieldset>
+	
+	
+	
+ <p:dataTable  var="dom" value="#{listeEvaluationController.listEvaluation}"  selectionMode="single" selection="#{listeEvaluationController.selectedEvaluation}" rowKey="#{dom.codeEvaluation}">
+ 
+ 	<f:facet name="header">
+            LISTE DES EVALUATIONS
+        </f:facet>
+ 
+ 	<p:column headerText="Code">
+        <h:outputText value="#{dom.codeEvaluation}"/>
+   		</p:column>
+   		
+   		<p:column headerText="Libellé">
+        <h:outputText value="#{dom.libeleEvaluation}"/>
+        </p:column>
+        
+        <p:column headerText="Type evaluation">
+        <h:outputText value="#{dom.typeEvaluation.libelleTypeEvalu}"/>
+        </p:column>
+        
+        <p:column headerText="Ecue">
+        <h:outputText value="#{dom.ecue.libelleEcue}"/>
+        </p:column>
+        
+        <p:column headerText="Année Scolaire">
+   	  <p:outputLabel value="#{dom.anneeScolaire.libelleAnneeScol}" />
+   	  </p:column> 
+   	 </p:dataTable>
+        	
+	</p:panel>
+	
+				
+				</form>
+			</ui:define>
+	</ui:composition>
+
+</html>
