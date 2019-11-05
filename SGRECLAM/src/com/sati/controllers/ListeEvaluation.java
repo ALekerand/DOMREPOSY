@@ -122,6 +122,7 @@ public void setAnneeScolaire(AnneeScolaire anneeScolaire) {
 
 public List<AnneeScolaire> getListAnneeScolaire() {
 	listAnneeScolaire = service.getObjects("AnneeScolaire");
+	System.out.println("======= La liste des annéeScolires:"+ listAnneeScolaire.size() );
 	return listAnneeScolaire;
 }
 
