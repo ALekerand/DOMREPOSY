@@ -15,7 +15,6 @@
 			<ui:define name="body">
 				<form  id="form">
 				
-				
 				<p:messages  showDetail="true" closable="true"></p:messages>			
 				
 	<p:panel header="Enregistrement de la liste des Evaluations">
@@ -38,8 +37,6 @@
 	</h:panelGrid>	
 			
 	</fieldset>
-	
-	
 	
  <p:dataTable  var="dom" value="#{listeEvaluationController.listEvaluation}"  selectionMode="single" selection="#{listeEvaluationController.selectedEvaluation}" rowKey="#{dom.codeEvaluation}">
  

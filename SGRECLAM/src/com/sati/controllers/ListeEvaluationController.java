@@ -23,7 +23,8 @@ import com.sati.service.Iservice;
  *
  */
 @Component
-public class ListeEvaluation {
+public class ListeEvaluationController {
+	
 @Autowired
 Iservice service;
 

@@ -17,7 +17,6 @@ public class RequeteAnneeScolaire {
 	SessionFactory sessionFactory;
 
 	public AnneeScolaire recupererDerniereAnneeScolaire(){
-		
 		String query =	"SELECT `annee_scolaire`.* FROM `annee_scolaire` ORDER BY `annee_scolaire`.`CODE_ANNEE_SCOL` DESC LIMIT 0 , 1";
 		AnneeScolaire anneeScolaire = (AnneeScolaire) getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(AnneeScolaire.class).uniqueResult();
 		return anneeScolaire;
