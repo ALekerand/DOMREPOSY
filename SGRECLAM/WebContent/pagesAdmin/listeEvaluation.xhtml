@@ -20,18 +20,19 @@
 	<p:panel header="Enregistrement de la liste des Evaluations">
 		<fieldset>
  	<legend>Evaluation</legend>
-	<h:panelGrid columns="4" >
+	<h:panelGrid columns="4"  >
 	<p:outputLabel value="Annee Scolaire"></p:outputLabel> 
-	<p:selectOneMenu value="#{listeEvaluationController.codeAnneeScol}">
+	<p:selectOneMenu id="dom" value="#{listeEvaluationController.codeAnneeScol}">
 	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
 	<f:selectItems value="#{listeEvaluationController.listAnneeScolaire}" var="dom" itemLabel="#{dom.libelleAnneeScol}" itemValue="#{dom.codeAnneeScol}"></f:selectItems>	
 	</p:selectOneMenu>
 	
 	
 	<p:outputLabel value="Ecue"></p:outputLabel> 
-	<p:selectOneMenu value="#{listeEvaluationController.codeSemestre}">
+	<p:selectOneMenu value="#{listeEvaluationController.codeEcue}">
 	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
 	<f:selectItems value="#{listeEvaluationController.listEcue}" var="dom" itemLabel="#{dom.libelleEcue}" itemValue="#{dom.codeEcue}"></f:selectItems>	
+			<p:ajax event="change" listener="#{listeEvaluationController.chargerListEvaluation}" process="@this,dom"></p:ajax>
 	</p:selectOneMenu>
 	
 	</h:panelGrid>	

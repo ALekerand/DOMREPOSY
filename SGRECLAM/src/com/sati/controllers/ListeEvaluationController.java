@@ -16,6 +16,7 @@ import com.sati.model.AnneeScolaire;
 import com.sati.model.Ecue;
 import com.sati.model.Evaluation;
 import com.sati.model.TypeEvaluation;
+import com.sati.requettes.RequetteAnneeScolaireEcue;
 import com.sati.service.Iservice;
 
 /**
@@ -27,6 +28,9 @@ public class ListeEvaluationController {
 	
 @Autowired
 Iservice service;
+
+@Autowired
+RequetteAnneeScolaireEcue requetteAnneeScolaireEcue;
 
 private Evaluation evaluation = new Evaluation();
 private List<Evaluation> listEvaluation = new ArrayList<Evaluation>();
@@ -43,24 +47,12 @@ private String codeEcue;
 private int codeAnneeScol;
 
 
-public void enregistrer() {
-	
-	
-	choisiEcue = (Ecue)service.getObjectById(codeEcue, "Ecue");
-	evaluation.setEcue(choisiEcue);
-	choisiAnneeScolaire = (AnneeScolaire)service.getObjectById(codeAnneeScol, "AnneeScolaire");
-	evaluation.setAnneeScolaire(choisiAnneeScolaire);
-	info("Eneregistrement éffectué avec succès!");
-	annuler();
+public void chargerListEvaluation() {
+		System.out.println("=============== je suis en debut de méthode");
+	listEvaluation = requetteAnneeScolaireEcue.recupEvaluationByAnneeScolaireAndEcue(codeEcue, codeAnneeScol); 
+	System.out.println("=================je suis en fin de méthode");
 	
 }
-
-public void selectionnerLigne() {
-	evaluation = selectedEvaluation;
-
-}
-
-
 
 public void info(String monMessage) {
     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", monMessage));
@@ -97,7 +89,6 @@ public void setEvaluation(Evaluation evaluation) {
 }
 
 public List<Evaluation> getListEvaluation() {
-	listEvaluation = service.getObjects("Evaluation");
 	return listEvaluation;
 }
 
@@ -106,6 +97,7 @@ public void setListEvaluation(List<Evaluation> listEvaluation) {
 }
 
 public Evaluation getSelectedEvaluation() {
+	
 	return selectedEvaluation;
 }
 
