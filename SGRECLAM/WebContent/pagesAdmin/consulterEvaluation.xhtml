@@ -1,45 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-	<!-- 
-		Replace path to template, title, header and body
-		with actual data.
-	 -->
+
 	<ui:composition template="/templates/templateAdmin.xhtml">
-			<ui:define name="pageTitle">Title</ui:define>
-			<ui:define name="pageHeader">Header</ui:define>
+			
 			<ui:define name="body">
-				<form  id="form">
-				
-				<p:messages  showDetail="true" closable="true"></p:messages>			
-				
-	<p:panel header="Enregistrement de la liste des Evaluations">
-		<fieldset>
- 	<legend>Evaluation</legend>
-	<h:panelGrid columns="5"  >
-	<p:outputLabel value="Annee Scolaire"></p:outputLabel> 
-	<p:selectOneMenu id="dom" value="#{listeEvaluationController.codeAnneeScol}">
+				<h:form  id="form">
+			<p:messages  showDetail="true" closable="true"></p:messages>			
+	<p:panel header="Enregistrement des UE">
+	 	
+	<fieldset>
+ 	<legend>INFORMATION SUR L'ANNEE SCOLAIRE</legend>	
+ 	<h:panelGrid columns="5"  >
+ 	<p:outputLabel value="Annee Scolaire"></p:outputLabel> 
+	<p:selectOneMenu id="dom" value="#{consulterEvaliuation.codeAnneeScol}">
 	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
-	<f:selectItems value="#{listeEvaluationController.listAnneeScolaire}" var="dom" itemLabel="#{dom.libelleAnneeScol}" itemValue="#{dom.codeAnneeScol}"></f:selectItems>	
+	<f:selectItems value="#{consulterEvaliuation.listAnneeScolaire}" var="dom" itemLabel="#{dom.libelleAnneeScol}" itemValue="#{dom.codeAnneeScol}"></f:selectItems>	
 	</p:selectOneMenu>
 	
 	
 	<p:outputLabel value="Ecue"></p:outputLabel> 
-	<p:selectOneMenu value="#{listeEvaluationController.codeEcue}">
+	<p:selectOneMenu value="#{consulterEvaliuation.codeEcue}">
 	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
-	<f:selectItems value="#{listeEvaluationController.listEcue}" var="dom" itemLabel="#{dom.libelleEcue}" itemValue="#{dom.codeEcue}"></f:selectItems>	
-			<p:ajax event="change" listener="#{listeEvaluationController.chargerListEvaluation}" process="@this,dom"></p:ajax>
+	<f:selectItems value="#{consulterEvaliuation.listEcue}" var="dom" itemLabel="#{dom.libelleEcue}" itemValue="#{dom.codeEcue}"></f:selectItems>	
+	<p:ajax event="change" listener="#{consulterEvaliuation.chargerListEvaluation}" process="@this,dom" update="form"></p:ajax>
 	</p:selectOneMenu>
+	</h:panelGrid>
+	</fieldset>		
+	<br/>
 	
-	</h:panelGrid>	
-			
-	</fieldset>
+	<br></br>
 	
- <p:dataTable  var="dom" value="#{listeEvaluationController.listEvaluation}"  selectionMode="single" selection="#{listeEvaluationController.selectedEvaluation}" rowKey="#{dom.codeEvaluation}">
+ <p:dataTable  var="dom" value="#{consulterEvaliuation.listEvaluation}"   rowKey="#{dom.codeEvaluation}">
  
  	<f:facet name="header">
             LISTE DES EVALUATIONS
@@ -65,11 +61,9 @@
    	  <p:outputLabel value="#{dom.anneeScolaire.libelleAnneeScol}" />
    	  </p:column> 
    	 </p:dataTable>
-        	
-	</p:panel>
 	
-				
-				</form>
+	</p:panel>
+				</h:form>
 			</ui:define>
 	</ui:composition>
 
