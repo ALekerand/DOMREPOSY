@@ -34,7 +34,6 @@ public List<Evaluation> recupEvaluationByAnneeScolaireAndEcue(String  codeEcue, 
 		String query = "SELECT* FROM evaluation WHERE evaluation.CODE_ANNEE_SCOL = '"+codeAnneeScol+"'AND evaluation.CODE_ECUE = '"+codeEcue+"'";
 		
 		 List lister = sessionFactory.getCurrentSession().createSQLQuery(query).addEntity(Evaluation.class).list();
-		 		System.out.println("==========la taille liste Evaluation est" +lister.size());
 		return lister;
 		
 	

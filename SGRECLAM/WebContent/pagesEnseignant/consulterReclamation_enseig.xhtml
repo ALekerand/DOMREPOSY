@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/templateEnseignant.xhtml">
+			<ui:define name="body">
+				<h:form id="form">
+		<fieldset>
+ 	<legend>Informations du Genre</legend>		
+<h:panelGrid columns="2" cellpadding="10">
+	<p:outputLabel value="Ecue"></p:outputLabel>
+	
+<p:selectOneMenu id="dom" value="#{consulterReclamEnseignantController.codeEcue}">
+<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>
+<f:selectItems value="#{consulterReclamEnseignantController.listEcue}" var="dom" itemLabel="#{dom.libelleEcue}" itemValue="#{dom.codeEcue}"></f:selectItems>			
+	<p:ajax event="change" listener="#{consulterReclamEnseignantController.founirListReclamation}" update="form"></p:ajax>
+</p:selectOneMenu>
+</h:panelGrid>
+</fieldset>
+<br/>
+
+	<br/>
+	
+	<p:dataTable  var="dom" value="#{consulterReclamEnseignantController.listReclamation}" rowKey="#{dom.numeroReclam}">
+	
+
+	<f:facet name="header">
+            LISTE RECLAMATION
+        </f:facet>
+
+	<p:column headerText="Date reclamation" >
+        <h:outputText value="test domi"/>
+        </p:column>
+	
+   		<p:column headerText="Date reclamation" >
+        <h:outputText value="#{dom.dateReclam}"/>
+        </p:column>
+        
+        <p:column headerText="Detail reclamation">
+        <h:outputText value="#{dom.detailReclam}"/>
+   		</p:column>
+   		
+   		 <p:column headerText="Motif reclamation">
+        <h:outputText value="#{dom.motifReclamation.libelleMotifReclam}"/>
+   		</p:column>
+   		
+   		<p:column headerText="Ecue">
+        <h:outputText value="#{dom.evaluation.ecue.libelleEcue}"/>
+   		</p:column>
+
+</p:dataTable>	
+				
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>

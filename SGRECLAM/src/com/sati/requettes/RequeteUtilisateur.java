@@ -54,9 +54,10 @@ public class RequeteUtilisateur {
 	 
 	 public List recuperUser() {
 	String query = "SELECT `user_authentication`.* FROM `user_authentication` WHERE (`user_authentication`.`USERNAME` ='"+ recupererLogin() +"')";
-	System.out.println("Utiliateur courant"+recupererLogin());
-		 List list = (List) getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(UserAuthentication.class).list();
-		return list;
+		 List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(UserAuthentication.class).list();
+		
+		 System.out.println("======== User:"+list.get(0));
+		 return list;
 	 }
 	 
 	 

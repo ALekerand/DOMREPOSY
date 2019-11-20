@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+	<ui:composition template="/templates/templateEnseignant.xhtml">
+			
+			<ui:define name="body">
+				<form id="form">
+				
+				
+<p:outputLabel value="Ecue"></p:outputLabel>
+<p:selectOneMenu id="dom" value="#{consultReclamController.codeEcue}">
+<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>
+<f:selectItems value="#{consultReclamController.listEcue}" var="dom" itemLabel="#{dom.libelleEcue}" itemValue="#{dom.codeEcue}"></f:selectItems>			
+
+	<p:ajax event="change" listener="#{consultReclamController.founirListReclamation}"></p:ajax>
+</p:selectOneMenu>
+
+
+	<h:commandButton value="Valider"  action="#{consultReclamController.founirListReclamation}"></h:commandButton>
+<br />
+ 
+ <p:dataTable  var="dom" value="#{consultReclamController.listReclamation}">
+
+<f:facet name="header">
+            LISTE RECLAMATION
+        </f:facet>
+
+   		<p:column headerText="Date reclamation" >
+        <h:outputText value="#{dom.dateReclam}"/>
+        </p:column>
+        
+        <p:column headerText="Detail reclamation">
+        <h:outputText value="#{dom.detailReclam}"/>
+   		</p:column>
+   		
+   		 <p:column headerText="Motif reclamation">
+        <h:outputText value="#{dom.motifReclamation.libelleMotifReclam}"/>
+   		</p:column>
+   		
+   		<p:column headerText="Ecue">
+        <h:outputText value="#{dom.evaluation.ecue.libelleEcue}"/>
+   		</p:column>
+
+</p:dataTable>			
+				
+				</form>
+
+			</ui:define>
+	</ui:composition>
+
+</html>

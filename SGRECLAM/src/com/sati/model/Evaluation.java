@@ -110,7 +110,7 @@ public class Evaluation implements java.io.Serializable {
 		this.libeleEvaluation = libeleEvaluation;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "evaluation")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluation")
 	public Set<Reclamation> getReclamations() {
 		return this.reclamations;
 	}

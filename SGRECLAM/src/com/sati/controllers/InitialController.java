@@ -38,8 +38,6 @@ public class InitialController {
 	
 	public AnneeScolaire chargerAnneeScolaire () {
 		annneScolaire = requeteAnneScolaire.recupererDerniereAnneeScolaire();
-		
-		System.out.println("==========Annee solaire:"+annneScolaire.getLibelleAnneeScol());
 		return annneScolaire;
 		
 	}

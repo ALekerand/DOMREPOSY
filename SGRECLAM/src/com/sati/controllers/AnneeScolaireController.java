@@ -24,7 +24,6 @@ import com.sati.service.Iservice;
  */
 @Component
 public class AnneeScolaireController {
-	
 
 		@Autowired
 			Iservice service;
