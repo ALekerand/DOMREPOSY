@@ -46,8 +46,6 @@ public class ConsulterReclamEnseignantController {
 	 @Autowired
 	 RequeteEvaluation requeteEvaluation;
 		 
-
-	//private List<Evaluation> listEvaluation = new ArrayList<Evaluation>();
 	private List<Ecue>listEcue = new ArrayList<Ecue>();
 	private List<Reclamation> listReclamation = new ArrayList<>();
 	private String codeEcue;
@@ -58,10 +56,7 @@ public class ConsulterReclamEnseignantController {
 	
 	@PostConstruct
 	public void initialiser(){
-		System.out.println("========== methode Initialiser");
 		 user = (UserAuthentication)requeteUtilisateur.recuperUser().get(0);
-		 
-		 System.out.println("======User:"+user.getPrenomsUser());
 		 anneeScolaire = requeteAnneeScolaire.recupererDerniereAnneeScolaire();
 		 chargerListEcue();
 	}
@@ -70,23 +65,17 @@ public class ConsulterReclamEnseignantController {
 	
 	public List<Reclamation> founirListReclamation(){
 		listReclamation.clear();
-		System.out.println("========== Code ECUE: "+codeEcue);
-		System.out.println("========== Code année scolaire: "+anneeScolaire.getCodeAnneeScol());
-		
 		List<Evaluation> listEvaluation = requeteEvaluation.recupEvaluationByAnneeScolaireAndEcue(codeEcue, anneeScolaire.getCodeAnneeScol());
 		
-			
-		System.out.println("========== Liste évaluation: "+listEvaluation.size());
-		
 		for (Evaluation evaluation : listEvaluation) {
-			System.out.println("========== Evaluation: "+evaluation.getLibeleEvaluation());
-			listReclamation.addAll(evaluation.getReclamations());
-			System.out.println("========== Objet Reclamation: "+evaluation.getReclamations().size());
+			
+			for (Reclamation varReclam : evaluation.getReclamations()) {
+				if (varReclam.getEtatReclamation().equals(1)) {
+					listReclamation.add(varReclam);
+				}
+			}
 		}
 		
-		System.out.println("========== Taille liste Reclamation: "+listReclamation.size());
-		
-		System.out.println("========== Fin methode");
 		
 		return listReclamation;
 	}
@@ -120,7 +109,6 @@ public class ConsulterReclamEnseignantController {
 	}
 
 	public List<Reclamation> getListReclamation() {
-		System.out.println("========== Dans le getter de reclamation:"+listReclamation.size());
 		return listReclamation;
 	}
 
