@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/templateAdmin.xhtml">
+			
+			<ui:define name="body">
+				<form id="form">
+				
+				
+		<p:panel header="ETAT DES RECLAMATIONS">
+			<tr>
+			<td>
+	<p:outputLabel value="Ecue"></p:outputLabel> 
+	<p:selectOneMenu id="dom" value="#{listEtudController.codeEcue}">
+	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
+	<f:selectItems value="#{listEtudController.listEcue}" var="dom" itemLabel="#{dom.libelleEcue}" itemValue="#{dom.codeEcue}"></f:selectItems>	
+	<p:ajax event="change" listener="#{listEtudController.choisirEcue}" process="@this,dom" update="form"></p:ajax>
+	</p:selectOneMenu>
+	</td>
+	
+	<td>
+	
+	<p:dataTable var="dom" value="#{listEtudController.listEvaluation}" selection="#{listEtudController.choisirEvaluation}" rowKey="#{dom.codeEvaluation}"   >
+				<f:facet name="header">Liste des UE </f:facet>
+				
+				<p:column selectionMode="single" style="width:20%">
+				</p:column>
+				
+				<p:column headerText="Code Evaluation" style="width:20%">
+					<h:outputLabel value="#{dom.codeEvaluation}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Libellé Evaluation">
+					<h:outputLabel value="#{dom.libeleEvaluation}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Type Evaluation">
+					<h:outputLabel value="#{dom.typeEvaluation.codeTypeEvalu}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Semestre">
+					<h:outputLabel value="#{dom.semestre.libelleSemestre}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Ecue">
+					<h:outputLabel value="#{dom.ecue.libelleEcue}"></h:outputLabel>
+				</p:column>
+			
+			<p:ajax event="rowSelect" listener="#{listEtudController.choisirEvaluation}" process="@this,dom" update="form"></p:ajax>	
+			</p:dataTable>
+			
+	
+	</td>
+	</tr>
+	
+		
+	<p:dataTable var="dom" value="#{listEtudController.listEtudiant}" rowKey="#{dom.matriculeEtude}"   >
+				<f:facet name="header">Liste des UE </f:facet>
+				
+				<p:column selectionMode="single" style="width:20%">
+				</p:column>
+				
+				<p:column headerText="Matricule" style="width:20%">
+					<h:outputLabel value="#{dom.matriculeEtude}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Nom">
+					<h:outputLabel value="#{dom.nomEtud}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Prenoms">
+					<h:outputLabel value="#{dom.prenomsEtude}"></h:outputLabel>
+				</p:column>
+				
+				<p:column headerText="Date naissance">
+				<h:outputText value="#{dom.dateNaissance}">
+        		 <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+        		</h:outputText>	
+				</p:column>
+				
+				 <p:column headerText="Date reclamation">
+       			 <h:outputText value="#{dom.reclamation.dateReclam}">
+        		<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+        		</h:outputText>
+   				</p:column>
+				
+				<p:column headerText="Motif">
+					<h:outputLabel value="#{dom.reclamation.motifReclamation.libelleMotifReclam}"></h:outputLabel>
+				</p:column>
+				
+			</p:dataTable>	
+			
+			</p:panel>	
+				
+				
+				</form>
+			</ui:define>
+	</ui:composition>
+
+</html>
