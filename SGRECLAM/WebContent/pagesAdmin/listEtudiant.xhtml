@@ -12,27 +12,31 @@
 	<ui:composition template="/templates/templateAdmin.xhtml">
 			
 			<ui:define name="body">
-				<form id="form">
+				<h:form id="form">
 				
 				
 		<p:panel header="ETAT DES RECLAMATIONS">
+		<table>
+
+
+
 			<tr>
 			<td>
+	<h:panelGrid columns="2">		
 	<p:outputLabel value="Ecue"></p:outputLabel> 
-	<p:selectOneMenu id="dom" value="#{listEtudController.codeEcue}">
+	<p:selectOneMenu id="cb_ecue" value="#{listEtudController.codeEcue}">
+		<p:ajax event ="change" listener="#{listEtudController.chargerListEvaluation}" process="cb_ecue" update="dt_evaluation"></p:ajax>
 	<f:selectItem itemLabel="Selectionner" itemValue=""></f:selectItem>	
 	<f:selectItems value="#{listEtudController.listEcue}" var="dom" itemLabel="#{dom.libelleEcue}" itemValue="#{dom.codeEcue}"></f:selectItems>	
-	<p:ajax event="change" listener="#{listEtudController.choisirEcue}" process="@this,dom" update="form"></p:ajax>
 	</p:selectOneMenu>
+	</h:panelGrid>
 	</td>
 	
 	<td>
 	
-	<p:dataTable var="dom" value="#{listEtudController.listEvaluation}" selection="#{listEtudController.choisirEvaluation}" rowKey="#{dom.codeEvaluation}"   >
-				<f:facet name="header">Liste des UE </f:facet>
-				;
-				<p:column selectionMode="single" style="width:20%">
-				</p:column>
+	<p:dataTable id="dt_evaluation" var="dom" value="#{listEtudController.listEvaluation}" selection="#{listEtudController.selectedEvaluation}" rowKey="#{dom.codeEvaluation}" selectionMode="single"  >
+				<f:facet name="header">Liste des Evaluation</f:facet>
+				<p:ajax event="rowSelect" listener="#{listEtudController.chargerEtudiant}" process="@this" update=":form:dt_etudiant"></p:ajax>	
 				
 				<p:column headerText="Code Evaluation" style="width:20%">
 					<h:outputLabel value="#{dom.codeEvaluation}"></h:outputLabel>
@@ -54,54 +58,50 @@
 					<h:outputLabel value="#{dom.ecue.libelleEcue}"></h:outputLabel>
 				</p:column>
 			
-			<p:ajax event="rowSelect" listener="#{listEtudController.choisirEvaluation}" update="form"></p:ajax>	
 			</p:dataTable>
 			
 	
 	</td>
 	</tr>
-	
+	</table>
 		
-	<p:dataTable var="dom" value="#{listEtudController.listEtudiant}" rowKey="#{dom.matriculeEtude}"   >
-				<f:facet name="header">Liste des UE </f:facet>
-				
-				<p:column selectionMode="single" style="width:20%">
-				</p:column>
+	<p:dataTable id="dt_etudiant" var="dom" value="#{listEtudController.listReclamation}" rowKey="#{dom.numeroReclam}"   >
+				<f:facet name="header">Liste des Etudiant </f:facet>
 				
 				<p:column headerText="Matricule" style="width:20%">
-					<h:outputLabel value="#{dom.matriculeEtude}"></h:outputLabel>
+					<h:outputLabel value="#{dom.etudiant.matriculeEtude}"></h:outputLabel>
 				</p:column>
 				
 				<p:column headerText="Nom">
-					<h:outputLabel value="#{dom.nomEtud}"></h:outputLabel>
+					<h:outputLabel value="#{dom.etudiant.nomEtud}"></h:outputLabel>
 				</p:column>
 				
 				<p:column headerText="Prenoms">
-					<h:outputLabel value="#{dom.prenomsEtude}"></h:outputLabel>
+					<h:outputLabel value="#{dom.etudiant.prenomsEtude}"></h:outputLabel>
 				</p:column>
 				
 				<p:column headerText="Date naissance">
-				<h:outputText value="#{dom.dateNaissance}">
+				<h:outputText value="#{dom.etudiant.dateNaissance}">
         		 <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
         		</h:outputText>	
 				</p:column>
 				
 				 <p:column headerText="Date reclamation">
-       			 <h:outputText value="#{dom.reclamation.dateReclam}">
+       			 <h:outputText value="#{dom.dateReclam}">
         		<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
         		</h:outputText>
    				</p:column>
 				
 				<p:column headerText="Motif">
-					<h:outputLabel value="#{dom.reclamation.motifReclamation.libelleMotifReclam}"></h:outputLabel>
+					<h:outputLabel value="#{dom.motifReclamation.libelleMotifReclam}"></h:outputLabel>
 				</p:column>
 				
-			</p:dataTable>	
+			</p:dataTable>
 			
 			</p:panel>	
 				
 				
-				</form>
+				</h:form>
 			</ui:define>
 	</ui:composition>
 

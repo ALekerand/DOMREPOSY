@@ -6,15 +6,21 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import com.sati.model.AnneeScolaire;
 import com.sati.model.Ecue;
 import com.sati.model.Etudiant;
 import com.sati.model.Evaluation;
+import com.sati.model.Reclamation;
+import com.sati.requettes.RequeteAnneeScolaire;
 import com.sati.requettes.RequeteEcue;
 import com.sati.requettes.RequeteEvaluation;
 import com.sati.service.Iservice;
 
-
+@Component
+@Scope("session")
 public class ListEtudController {
 	@Autowired
 	Iservice service;
@@ -23,51 +29,47 @@ public class ListEtudController {
 	RequeteEcue requeteEcue;
 	
 	@Autowired
+	RequeteAnneeScolaire requeteAnneeScolaire;
+	
+	@Autowired
 	RequeteEvaluation requeteEvaluation;
 	
 	private Etudiant etudiant = new Etudiant();
-	private List<Etudiant> listEtudiant = new ArrayList<Etudiant>();
+	private List<Reclamation> listReclamation = new ArrayList<>();
 	private List<Ecue> listEcue = new ArrayList<>();
 	private List<Evaluation> listEvaluation = new ArrayList<>();
-	private Ecue  choisirEcue = new Ecue();
-	private Evaluation choisirEvaluation = new Evaluation();
+	private Ecue  choosedEcue = new Ecue();
 	private int codeAnneeScol;
 	private String codeEcue;
-	
-	
-	
-	public List<Evaluation>choisirEvaluation(){
-		
-		setListEvaluation(requeteEvaluation.recupEvaluationByAnneeScolaireAndEcue(codeEcue, codeAnneeScol));
-		
-		return listEvaluation;
-		
-		
-	}
-	
-	
-	public List<Ecue> choisirEcue(){
-		setListEcue(requeteEcue.recupererEcueparCode(codeEcue));
-		return listEcue;
-		
-		
-	}
+	private Evaluation selectedEvaluation = new Evaluation();
+	private AnneeScolaire anneescolaire = new AnneeScolaire();
 	
 	@PostConstruct
-	public void initialiser() {
-		choisirEvaluation();
-		choisirEcue();
+	public void initialisation() {
+		anneescolaire = requeteAnneeScolaire.recupererDerniereAnneeScolaire();		
 	}
 	
 	
+	public List<Evaluation> chargerListEvaluation(){
+		System.out.println("je suis dans la methode");
 	
-	public Evaluation getChoisirEvaluation() {
-		return choisirEvaluation;
+		return listEvaluation = requeteEvaluation.recupEvaluationByAnneeScolaireAndEcue(codeEcue, anneescolaire.getCodeAnneeScol());
+		
 	}
+	
+	
+	public List<Reclamation> chargerEtudiant(){
+		listReclamation.clear();
+		for (Reclamation varReclam : selectedEvaluation.getReclamations()) {
+			listReclamation.add(varReclam);
+		}
+		System.out.println("====================taille liste reclamation"+listReclamation.size());
+		return listReclamation;
+		
+		
+	}
+	
 
-	public void setChoisirEvaluation(Evaluation choisirEvaluation) {
-		this.choisirEvaluation = choisirEvaluation;
-	}
 
 	public Etudiant getEtudiant() {
 		return etudiant;
@@ -77,15 +79,6 @@ public class ListEtudController {
 		this.etudiant = etudiant;
 	}
 
-	public List<Etudiant> getListEtudiant() {
-		listEtudiant = service.getObjects("Etudiant");
-		return listEtudiant;
-	}
-
-	public void setListEtudiant(List<Etudiant> listEtudiant) {
-
-		this.listEtudiant = listEtudiant;
-	}
 
 	public List<Ecue> getListEcue() {
 		listEcue = service.getObjects("Ecue");
@@ -97,7 +90,6 @@ public class ListEtudController {
 	}
 
 	public List<Evaluation> getListEvaluation() {
-		listEvaluation = service.getObjects("Evaluation");
 		return listEvaluation;
 	}
 
@@ -105,14 +97,7 @@ public class ListEtudController {
 		this.listEvaluation = listEvaluation;
 	}
 
-	public Ecue getChoisirEcue() {
-		return choisirEcue;
-	}
-
-	public void setChoisirEcue(Ecue choisirEcue) {
-		this.choisirEcue = choisirEcue;
-	}
-
+	
 
 
 
@@ -140,5 +125,35 @@ public class ListEtudController {
 	public void setCodeEcue(String codeEcue) {
 		this.codeEcue = codeEcue;
 	}
+
+
+	public Ecue getChoosedEcue() {
+		return choosedEcue;
+	}
+
+
+	public void setChoosedEcue(Ecue choosedEcue) {
+		this.choosedEcue = choosedEcue;
+	}
+
+	public List<Reclamation> getListReclamation() {
+		return listReclamation;
+	}
+
+	public void setListReclamation(List<Reclamation> listReclamation) {
+		this.listReclamation = listReclamation;
+	}
+
+
+	public Evaluation getSelectedEvaluation() {
+		return selectedEvaluation;
+	}
+
+
+	public void setSelectedEvaluation(Evaluation selectedEvaluation) {
+		this.selectedEvaluation = selectedEvaluation;
+	}
+
+
 
 }
